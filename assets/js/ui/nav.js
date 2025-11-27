@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const toggleBtn = document.getElementById("menu-toggle");
-    const menu = document.getElementById("main-menu");
+    const checkbox = document.querySelector("#menu_checkbox");
+    const primaryNav = document.querySelector(".nav");
+    const navToggleButton = document.querySelector(".nav-toggle");
 
-    toggleBtn.addEventListener("click", () => {
-        const isVisible = menu.getAttribute("data-visible") === "true";
+    checkbox.addEventListener("change", () => {
+        const isOpen = checkbox.checked;
 
-        menu.setAttribute("data-visible", !isVisible);
-        toggleBtn.setAttribute("aria-expanded", !isVisible);
-
+        primaryNav.setAttribute("data-visible", isOpen);
+        navToggleButton.setAttribute("aria-expanded", isOpen);
     });
 });
