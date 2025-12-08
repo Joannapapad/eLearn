@@ -4,6 +4,11 @@ async function loadlayout() {
 
     document.querySelector("header").innerHTML = headerHTML;
 
+    const footerHTML = await fetch("../frontend/components/footer.html")
+    .then(res => res.text());
+
+document.querySelector("footer").innerHTML = footerHTML;
+
     initNavMenu();
 }
 

@@ -1,6 +1,6 @@
 :root {
     /* ----- Primary Branding ----- */
-    --primary: #2B5EFF;
+    --primary: #bfadad;
     --primary-dark: #1A2A45;
 
     /* ----- Secondary Colors ----- */
@@ -25,6 +25,8 @@
 }
 
 body {
+    padding: 0;
+    margin: 0;
     background: var(--bg-light);
     color: var(--text-medium);
     font-family: Arial, sans-serif;
@@ -103,8 +105,9 @@ h1, h2, h3 {
 
 /* Footer */
 footer {
-    background: var(--footer-bg);
-    color: var(--gray-light);
+    background: var(--primary);
+    color: ;
     padding: 2em;
+    margin: 0;
     text-align: center;
 }
