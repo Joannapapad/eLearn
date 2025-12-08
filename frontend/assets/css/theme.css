@@ -1,0 +1,110 @@
+:root {
+    /* ----- Primary Branding ----- */
+    --primary: #2B5EFF;
+    --primary-dark: #1A2A45;
+
+    /* ----- Secondary Colors ----- */
+    --secondary-blue: #74A9FF;
+    --secondary-teal: #36CFC9;
+    --accent-orange: #ffe6c8;
+
+    /* ----- Grayscale ----- */
+    --bg-light: #F5F7FA;
+    --gray-light: #E5E7EB;
+    --gray-medium: #9CA3AF;
+    --text-dark: #111827;
+    --text-medium: #374151;
+
+    /* ----- Elements ----- */
+    --card-bg: #FFFFFF;
+    --footer-bg: #111827;
+
+    /* ----- Shadows / Radii ----- */
+    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --radius: 12px;
+}
+
+body {
+    background: var(--bg-light);
+    color: var(--text-medium);
+    font-family: Arial, sans-serif;
+}
+
+/* ========== SCROLLBAR ========== */
+*::-webkit-scrollbar {
+    width: 11px;
+}
+*::-webkit-scrollbar-track {
+    background: #f3f3f3;
+}
+*::-webkit-scrollbar-thumb {
+    background: #AFA4A5;
+    border-radius: 8px;
+}
+
+
+
+/* Titles */
+h1, h2, h3 {
+    color: var(--text-dark);
+}
+
+/* Buttons */
+.burger div {
+    background: var(--primary-dark);
+
+}
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.75em 1.4em;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+/* Hover */
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+}
+
+/* Secondary Button */
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--gray-light);
+}
+
+/* Cards */
+.card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 1.5em;
+    box-shadow: var(--shadow-soft);
+}
+
+/* Links */
+
+.nav-link, a {
+    color: var(--text-dark);
+    text-decoration: none;
+}
+
+.nav-link:hover , a:hover {
+    color: var(--secondary-blue);
+}
+
+/* Footer */
+footer {
+    background: var(--footer-bg);
+    color: var(--gray-light);
+    padding: 2em;
+    text-align: center;
+}
