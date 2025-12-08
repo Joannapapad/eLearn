@@ -1,10 +1,9 @@
 async function loadlayout() {
-    const headerHTML = await fetch("../../../frontend/components/header.html")
+    const headerHTML = await fetch("../frontend/components/header.html")
         .then(res => res.text());
 
     document.querySelector("header").innerHTML = headerHTML;
 
-    // Now the header exists — attach events safely
     initNavMenu();
 }
 
