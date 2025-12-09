@@ -9,8 +9,15 @@
   align-items: center;
   justify-content: space-between;
   padding: 1em;
-}
+  transition: all 0.3s ease;
 
+}
+.header.scrolled {
+  background: var(--primary);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 0.5em 1em; /* makes header move up a little by shrinking */
+  backdrop-filter: blur(10px); /* optional: nice frosted effect */
+}
 .header-right {
   display: flex;
   align-items: center;

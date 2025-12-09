@@ -1,3 +1,5 @@
+loadlayout();
+
 async function loadlayout() {
     const headerHTML = await fetch("../frontend/components/header.html")
         .then(res => res.text());
@@ -10,9 +12,9 @@ async function loadlayout() {
 document.querySelector("footer").innerHTML = footerHTML;
 
     initNavMenu();
+    initScrollHeader(); 
 }
 
-loadlayout();
 
 function initNavMenu() {
     const checkbox = document.querySelector("#menu_checkbox");
@@ -31,3 +33,30 @@ function initNavMenu() {
         navToggleButton.setAttribute("aria-expanded", isOpen);
     });
 }
+
+function initScrollHeader() {
+    const header = document.querySelector(".header");
+
+    if (!header) {
+        console.error("Header not found for scroll effect");
+        return;
+    }
+
+    function handleScroll() {
+        if (window.innerWidth > 800) {
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        } else {
+            // remove scroll styling if user shrinks the window
+            header.classList.remove("scrolled");
+        }
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll); 
+}
+
+

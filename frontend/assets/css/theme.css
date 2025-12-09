@@ -27,6 +27,7 @@
 body {
     padding: 0;
     margin: 0;
+    overflow-x: hidden;
     background: var(--bg-light);
     color: var(--text-medium);
     font-family: Arial, sans-serif;
@@ -49,6 +50,7 @@ body {
 /* Titles */
 h1, h2, h3 {
     color: var(--text-dark);
+    padding: 1rem;
 }
 
 /* Buttons */
