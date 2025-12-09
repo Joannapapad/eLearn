@@ -1,23 +1,23 @@
 :root {
     /* ----- Primary Branding ----- */
-    --primary: #bfadad;
-    --primary-dark: #1A2A45;
+    --primary: #e4dbdb;        /* kept as-is */
+    --primary-dark: #5a4f4f;   /* warmer, beige-friendly dark tone */
 
-    /* ----- Secondary Colors ----- */
-    --secondary-blue: #74A9FF;
-    --secondary-teal: #36CFC9;
-    --accent-orange: #ffe6c8;
+    /* ----- Secondary Colors (Beige Theme) ----- */
+    --secondary-blue: #c9c7b8;     /* muted beige-gray */
+    --secondary-teal: #d8cfc4;     /* warm neutral teal alternative */
+    --accent-orange: #f3e2c6;      /* soft beige-orange accent */
 
-    /* ----- Grayscale ----- */
-    --bg-light: #F5F7FA;
-    --gray-light: #E5E7EB;
-    --gray-medium: #9CA3AF;
-    --text-dark: #111827;
-    --text-medium: #374151;
+    /* ----- Grayscale (Warm Neutrals) ----- */
+    --bg-light: #f9f5ef;        /* light beige */
+    --gray-light: #e8e1d9;      /* warm light gray-beige */
+    --gray-medium: #b7aa9f;     /* taupe-like gray */
+    --text-dark: #3a2f2b;       /* warm dark brown */
+    --text-medium: #6a5e56;     /* medium warm brown */
 
     /* ----- Elements ----- */
-    --card-bg: #FFFFFF;
-    --footer-bg: #111827;
+    --card-bg: #ffffff;         /* clean white still works well with beige */
+    --footer-bg: #2e2420;       /* deep brown for contrast */
 
     /* ----- Shadows / Radii ----- */
     --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -106,7 +106,6 @@ h1, h2, h3 {
 /* Footer */
 footer {
     background: var(--primary);
-    color: ;
     padding: 2em;
     margin: 0;
     text-align: center;

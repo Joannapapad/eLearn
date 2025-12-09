@@ -8,7 +8,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #bfadad;
   padding: 1em;
 }
 
@@ -158,33 +157,8 @@
     transform: rotateZ(-45deg);
   }
   
-  
-/* ========== DESKTOP VERSION ========== */
-
-@media (min-width: 800px) {
-  .nav-toggle {
-      display: none;
-  }
-
-  .nav {
-      position: static;
-      transform: none;
-      flex-direction: row;
-      background: none;
-      justify-content: flex-end;
-      gap: 2rem;
-  }
-
-  .nav-link {
-      font-size: 1em;
-      margin: 0;
-  }
-}
-
-
 /* FOOTER */
 .footer {
-  background: #bfadad;
   color: #00000070;
   padding: 3em 1em 1em;
   font-family: sans-serif;
@@ -249,4 +223,3 @@
   border-radius: 3px;
   font-size: 0.9em;
 }
-
