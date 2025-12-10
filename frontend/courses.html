@@ -16,38 +16,53 @@
 <header></header>
 
 <main class="courses-page">
+    <div class="courses-picture">
 
-    <h1 class="page-title">Courses</h1>
 
-    <section class="filters card">
-        <label>
-            Category:
-            <select id="filter-category">
-                <option value="all">All</option>
-                <option value="programming">Programming</option>
-                <option value="networks">Networks</option>
-                <option value="security">Security</option>
-                <option value="databases">Databases</option>
-            </select>
-        </label>
+        <h1 class="page-title ">Courses</h1>
+    </div>
 
-        <label>
-            Level:
-            <select id="filter-level">
-                <option value="all">All</option>
-                <option value="beginner">Beginner</option>
-                <option value="intermediate">Intermediate</option>
-                <option value="advanced">Advanced</option>
-            </select>
-        </label>
+        <div class="desktop">
+            <section class="filters card">
+                <label class="search-wrapper">
+                <input type="text" id="filter-search" placeholder="Search courses...">
+                </label>
+                
+                <div class="checkboxes">
+                    <div class="filter-group" data-filter="category">
+                        <div class="filter-header"><h3>➤ Category</h3></div>
+                        <div class="filter-options">
+                        <label><input type="checkbox" value="programming"> Programming</label>
+                        <label><input type="checkbox" value="networks"> Networks</label>
+                        <label><input type="checkbox" value="security"> Security</label>
+                        <label><input type="checkbox" value="databases"> Databases</label>
+                        <label><input type="checkbox" value="core"> Core</label>
+                        <label><input type="checkbox" value="mathematics"> Mathematics</label>
+                        <label><input type="checkbox" value="systems"> Systems</label>
+                        <label><input type="checkbox" value="software engineering">Engineering</label>
+                        <label><input type="checkbox" value="design"> Design</label>
+                        <label><input type="checkbox" value="ai"> AI</label>
+                        <label><input type="checkbox" value="data"> Data</label>
+                        </div>
+                        </div>
+                        
+                        
+                        <div class="filter-group" data-filter="level">
+                        <div class="filter-header"><h3>➤ Level</h3></div>
+                        <div class="filter-options">
+                        <label><input type="checkbox" value="beginner"> Beginner</label>
+                        <label><input type="checkbox" value="intermediate"> Intermediate</label>
+                        <label><input type="checkbox" value="advanced"> Advanced</label>
+                        </div>
+                        </div>
+                </div>
 
-        <label>
-            Search:
-            <input type="text" id="filter-search" placeholder="Search courses...">
-        </label>
-    </section>
+            </section>
+            <section id="courses-list" class="courses-grid center"></section>
 
-    <section id="courses-list" class="courses-grid"></section>
+        </div>
+
+
 
 </main>
 
@@ -56,6 +71,7 @@
 <script src="assets/js/data/courses.js"></script>
 <script src="assets/js/ui/menu.js"></script>
 <script src="assets/js/app.js"></script>
+<script src="assets/js/ui/responsive.js"></script>
 
 
 </body>

@@ -50,9 +50,18 @@ body {
 /* Titles */
 h1, h2, h3 {
     color: var(--text-dark);
-    padding: 1rem;
+}
+h1 {
+    padding-top: 2em;
 }
 
+.page-title {
+    text-align: center;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+    color: var(--primary-dark);
+    font-size: 2rem;
+}
 /* Buttons */
 .burger div {
     background: var(--primary-dark);
@@ -90,7 +99,6 @@ h1, h2, h3 {
 .card {
     background: var(--card-bg);
     border-radius: var(--radius);
-    padding: 1.5em;
     box-shadow: var(--shadow-soft);
 }
 

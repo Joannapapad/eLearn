@@ -1,6 +1,10 @@
 
 @media (min-width: 800px) {
 
+    .page-title {
+        margin-top: 6rem;
+        margin-bottom: 2rem;
+    }
 
     .nav-toggle {
         display: none;
@@ -21,9 +25,40 @@
         margin: 0;
     }
 
+
+
+
+    .filter-group .filter-options {
+        display: flex !important;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .desktop {
+        align-items: start;
+        display: grid;
+        grid-template-columns: 260px 1fr; /* filters | courses */
+        gap: 25px;
+        width: 100%;
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 20px; /* <--- add horizontal space from edges */
+        box-sizing: border-box;
+    }
+
+
     .filters {
-        flex-direction: row;
-        max-width: 700px;
+        max-width: 280px !important;
+        width: 100%;
+    }
+
+    .courses-grid {
+        align-content: start;
+        width: 100%;
+        height: 100%;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        padding: 0;
+        min-width: 0;
     }
 
 }
