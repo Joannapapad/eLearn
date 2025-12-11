@@ -1,6 +1,6 @@
 const COURSES = [
     {
-      id: 101,
+      id: "101",
       title: "Introduction to Computer Science",
       category: "core",
       level: "beginner",
@@ -10,7 +10,7 @@ const COURSES = [
       description: "Overview of computing, problem solving and basic programming concepts."
     },
     {
-      id: 102,
+      id: "102",
       title: "Mathematics for Computer Science",
       category: "mathematics",
       level: "beginner",
@@ -20,7 +20,7 @@ const COURSES = [
       description: "Logic, sets, combinatorics and discrete mathematics foundations."
     },
     {
-      id: 103,
+      id: "103",
       title: "Introduction to Programming with Java",
       category: "programming",
       level: "beginner",
@@ -30,7 +30,7 @@ const COURSES = [
       description: "Java syntax, OOP, basic algorithms and program structuring."
     },
     {
-      id: 104,
+      id: "104",
       title: "Linear Algebra",
       category: "mathematics",
       level: "beginner",
@@ -40,7 +40,7 @@ const COURSES = [
       description: "Vectors, matrices, linear transformations and applications in computing."
     },
     {
-      id: 201,
+      id: "201",
       title: "Data Structures & Algorithms",
       category: "programming",
       level: "intermediate",
@@ -50,7 +50,7 @@ const COURSES = [
       description: "Lists, trees, graphs, sorting, algorithm complexity and design techniques."
     },
     {
-      id: 202,
+      id: "202",
       title: "Database Systems",
       category: "databases",
       level: "intermediate",
@@ -60,7 +60,7 @@ const COURSES = [
       description: "Relational databases, SQL, schema design and normalization."
     },
     {
-      id: 203,
+      id: "203",
       title: "Statistics & Probability",
       category: "mathematics",
       level: "intermediate",
@@ -70,7 +70,7 @@ const COURSES = [
       description: "Probability theory, distributions, inference and statistical modeling."
     },
     {
-      id: 204,
+      id: "204",
       title: "Computer Architecture",
       category: "systems",
       level: "intermediate",
@@ -80,7 +80,7 @@ const COURSES = [
       description: "CPU organization, memory hierarchy, instruction cycles and assembly basics."
     },
     {
-      id: 301,
+      id: "301",
       title: "Operating Systems",
       category: "systems",
       level: "intermediate",
@@ -90,9 +90,9 @@ const COURSES = [
       description: "Processes, threads, memory management, scheduling and file systems."
     },
     {
-      id: 302,
+      id: "302",
       title: "Algorithms & Complexity",
-      category: "theory",
+      category: "mathematics",
       level: "intermediate",
       credits: 6,
       semester: 4,
@@ -100,9 +100,9 @@ const COURSES = [
       description: "Advanced algorithms, NP-completeness, dynamic programming and graph algorithms."
     },
     {
-      id: 303,
+      id: "303",
       title: "Web Development",
-      category: "software engineering",
+      category: "engineering",
       level: "intermediate",
       credits: 5,
       semester: 4,
@@ -110,7 +110,7 @@ const COURSES = [
       description: "Front-end and back-end fundamentals, HTTP, REST and web application design."
     },
     {
-      id: 304,
+      id: "304",
       title: "Human-Computer Interaction",
       category: "design",
       level: "intermediate",
@@ -120,7 +120,7 @@ const COURSES = [
       description: "User-centered design, usability evaluation and UX principles."
     },
     {
-      id: 401,
+      id: "401",
       title: "Computer Networks",
       category: "networks",
       level: "intermediate",
@@ -130,9 +130,9 @@ const COURSES = [
       description: "Network layers, routing, TCP/IP protocols, wireless and network applications."
     },
     {
-      id: 402,
+      id: "402",
       title: "Software Engineering",
-      category: "software engineering",
+      category: "engineering",
       level: "intermediate",
       credits: 6,
       semester: 5,
@@ -140,7 +140,7 @@ const COURSES = [
       description: "Software lifecycle, agile methodologies, testing and design patterns."
     },
     {
-      id: 403,
+      id: "403",
       title: "Distributed Systems",
       category: "systems",
       level: "advanced",
@@ -150,7 +150,7 @@ const COURSES = [
       description: "Distributed architectures, consensus algorithms, cloud computing and scalability."
     },
     {
-      id: 404,
+      id: "404",
       title: "Information Security",
       category: "security",
       level: "intermediate",
@@ -160,7 +160,7 @@ const COURSES = [
       description: "Cryptography basics, threat models, secure protocols and cybersecurity principles."
     },
     {
-      id: 501,
+      id: "501",
       title: "Machine Learning",
       category: "ai",
       level: "advanced",
@@ -170,7 +170,7 @@ const COURSES = [
       description: "Supervised learning, unsupervised learning and model evaluation."
     },
     {
-      id: 502,
+      id: "502",
       title: "Artificial Intelligence",
       category: "ai",
       level: "advanced",
@@ -180,7 +180,7 @@ const COURSES = [
       description: "Search, reasoning, planning, agents and basic neural networks."
     },
     {
-      id: 503,
+      id: "503",
       title: "Mobile Application Development",
       category: "programming",
       level: "advanced",
@@ -190,7 +190,7 @@ const COURSES = [
       description: "Mobile UI design, platform APIs, sensors and deployment."
     },
     {
-      id: 504,
+      id: "504",
       title: "Big Data & Cloud Technologies",
       category: "data",
       level: "advanced",

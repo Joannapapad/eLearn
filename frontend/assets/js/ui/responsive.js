@@ -74,21 +74,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         coursesList.innerHTML = results.map(c => `
-        <div class="course-card">
+        <div class="course-card"  data-id="${c.id}">
     
             <div class="card-header">
                 <h3 class="course-title">${c.title}</h3>
                 <div class="course-category-icon">
-                    <img src="/frontend/assets/icons/${c.category}.svg" alt="${c.category}">
+                    <img src="assets/img/icons/${c.category}.png" alt="${c.category}">
                 </div>
             </div>
     
             <p class="course-level">${c.level}</p>
-    
+            
             <p class="course-description">${c.description}</p>
     
         </div>
     `).join('');
+    
+        // Add click listeners
+        document.querySelectorAll('.course-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const id = card.dataset.id;
+                window.location.href = `course-details.html?id=${id}`;
+            });
+        });
     
     }
 
