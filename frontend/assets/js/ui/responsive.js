@@ -97,6 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.location.href = `course-details.html?id=${id}`;
             });
         });
+
+        
     
     }
 

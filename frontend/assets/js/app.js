@@ -16,11 +16,21 @@ document.addEventListener("DOMContentLoaded", () => {
             }, {threshold:0.2});
             
             observer.observe(fadeSection);
-    
-    
-    
         }
+
+        //click in cateogiry boxes
+        const categoryCards = document.querySelectorAll(".category");
+
+        categoryCards.forEach(card => {
+            card.style.cursor= "pointer";
+            card.addEventListener("click" ,() =>{
+                const categoryKey = card.dataset.category;
+                window.location.href = `courses.html?category=${categoryKey}`;
+            });
+        });
     }
+
+
     function getParameterByName(name) {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(name);
@@ -32,6 +42,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const filterLevel = document.getElementById("filter-level");
         const filterSearch = document.getElementById("filter-search");
 
+        const params = new URLSearchParams(window.location.search);
+        const initialCategory = params.get("category");
+
+        
         if (!listEl) return;
 
         function renderCourses(items) {
