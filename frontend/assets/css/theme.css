@@ -34,8 +34,12 @@ body {
 
 
 }
-
-
+p {
+    margin: 0;
+}
+ul {
+    margin-bottom: 0;
+}
 /* ========== SCROLLBAR ========== */
 *::-webkit-scrollbar {
     width: 11px;
@@ -56,6 +60,8 @@ h1, h2, h3 {
 }
 h1 {
     padding-top: 2em;
+    font-size: 2rem;
+
 }
 
 .page-title {

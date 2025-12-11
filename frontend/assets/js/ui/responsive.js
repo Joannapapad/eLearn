@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
             card.addEventListener('click', () => {
                 const id = card.dataset.id;
                 window.location.href = `course-details.html?id=${id}`;
-            });
+            }); 
         });
 
         

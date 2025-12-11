@@ -36,95 +36,124 @@ document.addEventListener("DOMContentLoaded", () => {
         return urlParams.get(name);
     }
 
-    if (window.location.pathname.includes("courses.html")) {
-        const listEl = document.getElementById("courses-list");
-        const filterCategory = document.getElementById("filter-category");
-        const filterLevel = document.getElementById("filter-level");
-        const filterSearch = document.getElementById("filter-search");
 
-        const params = new URLSearchParams(window.location.search);
-        const initialCategory = params.get("category");
 
-        
-        if (!listEl) return;
 
-        function renderCourses(items) {
-            listEl.innerHTML = items.map(course => `
-                <div class="course-card" data-id="${course.id}">
-                    <div class="card-header">
-                        <h3 class="course-title">${course.title}</h3>
-                        <div class="course-category-icon">
-                            <img src="assets/img/icons/${course.category}.png" alt="${course.category}">
-                        </div>
-                    </div>
-                    <p class="course-level">${course.level}</p>
-                    <p class="course-description">${course.description}</p>
-                </div>
-            `).join("");
+  if (window.location.pathname.includes("course-details.html")) {
+    const courseId = getParameterByName('id');
+    const course = COURSES.find(c => c.id === courseId);
 
-            document.querySelectorAll('.course-card').forEach(card => {
-                card.addEventListener('click', () => {
-                    const id = card.dataset.id;
-                    window.location.href = `course-details.html?id=${id}`;
-                });
-            });
-        }
+    const container = document.getElementById("course-details-container");
 
-        function applyFilters() {
-            let results = [...COURSES];
-
-            if (filterCategory?.value && filterCategory.value !== "all") {
-                results = results.filter(c => c.category === filterCategory.value);
-            }
-
-            if (filterLevel?.value && filterLevel.value !== "all") {
-                results = results.filter(c => c.level === filterLevel.value);
-            }
-
-            if (filterSearch?.value?.trim()) {
-                const term = filterSearch.value.trim().toLowerCase();
-                results = results.filter(c =>
-                    c.title.toLowerCase().includes(term) ||
-                    c.description.toLowerCase().includes(term)
-                );
-            }
-
-            renderCourses(results);
-        }
-
-        filterCategory?.addEventListener("change", applyFilters);
-        filterLevel?.addEventListener("change", applyFilters);
-        filterSearch?.addEventListener("input", applyFilters);
-
-        renderCourses(COURSES);
+    if (!course || !container) {
+      container.innerHTML = `
+        <div style="padding: 40px; text-align: center;">
+          <h2>Course not found</h2>
+          <a href="courses.html" class="back-btn">Back to Courses</a>
+        </div>
+      `;
+      return;
     }
 
-    if (window.location.pathname.includes("course-details.html")) {
-        const courseId = getParameterByName('id');
+    // Prepare prerequisites text
+    const prereqs = course.prerequisites.length > 0 ? course.prerequisites.join(", ") : "None";
 
-        const titleEl = document.getElementById("course-title");
-        const levelEl = document.getElementById("course-level");
-        const descEl = document.getElementById("course-description");
-        const iconEl = document.getElementById("course-icon");
+    // Map book IDs to book titles
+// Map book IDs to book items with link and hover effect
+    const bibliographyList = course.bibliography.length > 0
+    ? course.bibliography.map(bookId => {
+        const book = BOOKS.find(b => b.id === bookId);
+        if (!book) return '';
+        return `
+            <a href="book-details.html?id=${book.id}" class="book-item">
+            <div class="book-title">
+                ${book.title} <span class="book-arrow">></span>
+            </div>
+            <div class="book-hover">Learn More</div>
+            </a>
+        `;
+        }).join('')
+    : '<div>No recommended books</div>';
 
-        if (!titleEl || !levelEl || !descEl || !iconEl) return;
 
-        const course = COURSES.find(c => c.id === courseId);
+    // Prepare learning outcomes list
+    const learningList = course.learningOutcomes.map(item => `<li>${item}</li>`).join("");
+   
+    container.innerHTML = `
+      <div class="course-header">
+        <h1 class="course-title">${course.title}</h1>
+        <div class="course-id">Course ID: ${course.id}</div>
+      </div>
 
-        if (!course) {
-            document.body.innerHTML = `
-                <div style="padding: 40px; text-align: center;">
-                    <h2>Course not found</h2>
-                    <a href="courses.html">Back to Courses</a>
+      <div class="course-columns">
+        <div class="left-column">
+          <div class="course-desc">
+            <p>${course.description}</p>
+          </div>
+
+          <div class="course-instructor">
+            <div class="instructor-photo">
+              <img src="assets/img/default.png" alt="Instructor">
+            </div>
+            <div class="instructor-name">TBD</div>
+            
+          </div>
+
+          <div class="course-meta">
+            <div class="meta-item"><strong>Credits:</strong> ${course.credits}</div>
+            <div class="meta-item"><strong>Semester:</strong> ${course.semester}</div>
+            <div class="meta-item"><strong>Category:</strong><ul>${course.category}<ul></div>
+            
+                <div class="meta-item meta-prereqs">
+                    <strong>Prerequisites:</strong>
+                    <ul>
+                    ${course.prerequisites.length > 0 
+                        ? course.prerequisites.map(p => `<li>${p}</li>`).join("") 
+                        : "<li>None</li>"}
+                    </ul>
                 </div>
-            `;
-        } else {
-            titleEl.textContent = course.title;
-            levelEl.textContent = "Level: " + course.level;
-            descEl.innerHTML = course.description;
-            iconEl.src = `assets/img/icons/${course.category}.png`;
-            iconEl.alt = course.category;
-        }
-    }
+
+            </div>
+
+
+        </div>
+
+        <div class="right-column">
+
+            <div class="course-about">
+                <div class="section-title">About this Course</div>
+                <div class="category-icon">
+                    <img src="assets/img/icons/${course.category}.png" alt="${course.category}">
+                </div>
+                <p>
+                    This course belongs to the <strong>${course.category}</strong> category.
+                    It is designed to provide students with the foundational knowledge and skills necessary for this field.
+                </p>
+            </div>
+    
+          <div class="recommended-books">
+            <div class="section-title">Recommended Books</div>
+            <div class="book-slider">
+              ${bibliographyList}
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+
+      <div class="course-learning">
+        <div class="section-title">Learning Outcomes</div>
+        <ul>${learningList}</ul>
+      </div>
+
+      <a href="courses.html" class="back-btn">← Back to Courses</a>
+    `;
+
+
+  }
 
 });
