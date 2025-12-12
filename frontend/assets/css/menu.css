@@ -4,7 +4,6 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,8 +16,8 @@
 .header.scrolled {
   background: var(--primary);
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  padding: 0.5em 1em; /* makes header move up a little by shrinking */
-  backdrop-filter: blur(10px); /* optional: nice frosted effect */
+  padding: 0.5em 1em; 
+  backdrop-filter: blur(10px); 
 }
 .header-right {
   display: flex;
@@ -43,7 +42,6 @@
   background: none;
   cursor: pointer;
   position: relative;
-  z-index: 1001;
 }
 
 /* ========== LAYOUT HELPERS ========== */
@@ -217,12 +215,17 @@
   border-top: 1px solid #444;
   padding-top: 1em;
 }
-
 .social-links {
   list-style: none;
   display: flex;
+  justify-content: center; /* centers the items horizontally */
+  gap: 0.5em; /* spacing between items */
   padding: 0;
-  gap: 0.5em;
+  margin: 0; /* remove default margin */
+}
+
+.social-links li {
+  display: inline-block; /* ensures proper spacing inside flex */
 }
 
 .social-links li a {
@@ -231,4 +234,5 @@
   border: 1px solid #fff;
   border-radius: 3px;
   font-size: 0.9em;
+  text-align: center; /* center text inside the link */
 }

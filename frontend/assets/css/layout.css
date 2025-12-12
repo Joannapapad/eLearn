@@ -1,6 +1,9 @@
 
 @media (min-width: 800px) {
-
+    h1 {
+        font-size: 2rem;
+    
+    }
     .page-title {
         margin-top: 6rem;
         margin-bottom: 2rem;

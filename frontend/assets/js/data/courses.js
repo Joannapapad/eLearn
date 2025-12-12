@@ -24,7 +24,12 @@ const COURSES = [
       "Understand how data is represented and processed in a computer",
       "Recognize the societal and ethical challenges of modern computing"
     ],
-    bibliography: ["B101", "B102"]
+    bibliography: ["B101", "B102"],
+    professor: {
+      name: "Dr. Alice Johnson",
+      photo: "assets/img/professors/alice-johnson.jpg",
+      email: "alice.johnson@university.edu"
+    }
   },
 
   {
@@ -52,7 +57,12 @@ const COURSES = [
       "Use graph theory to understand data structures and networks",
       "Understand the mathematical foundations behind algorithms"
     ],
-    bibliography: ["B103"]
+    bibliography: ["B103"],
+    professor: {
+      name: "Dr. Alice Johnson",
+      photo: "assets/img/professors/alice-johnson.jpg",
+      email: "alice.johnson@university.edu"
+    }
   },
 
   {
@@ -80,7 +90,12 @@ const COURSES = [
       "Apply modular programming using functions and classes",
       "Solve computational problems using Java"
     ],
-    bibliography: ["B105"]
+    bibliography: ["B105"],
+    professor: {
+      name: "Dr. Alice Johnson",
+      photo: "assets/img/professors/alice-johnson.jpg",
+      email: "alice.johnson@university.edu"
+    }
   },
 
   {
@@ -108,7 +123,12 @@ const COURSES = [
       "Compute eigenvalues and eigenvectors and identify applications",
       "Apply linear algebra concepts to computing problems"
     ],
-    bibliography: ["B104"]
+    bibliography: ["B104"],
+    professor: {
+      name: "Dr. Alice Johnson",
+      photo: "assets/img/professors/alice-johnson.jpg",
+      email: "alice.johnson@university.edu"
+    }
   },
 
   {
@@ -136,7 +156,12 @@ const COURSES = [
       "Apply algorithmic techniques to solve real-world problems",
       "Compare, evaluate, and optimize algorithm performance"
     ],
-    bibliography: ["B106", "B112"]
+    bibliography: ["B106", "B112"],
+    professor: {
+      name: "Dr. Alice Johnson",
+      photo: "assets/img/professors/alice-johnson.jpg",
+      email: "alice.johnson@university.edu"
+    }
   },
   {
       id: "101",
@@ -163,7 +188,12 @@ const COURSES = [
         "Understand how data is represented and processed in a computer",
         "Recognize the societal and ethical challenges of modern computing"
       ],
-      bibliography: ["B101", "B102"]
+      bibliography: ["B101", "B102"],
+      professor: {
+        name: "Dr. Alice Johnson",
+        photo: "assets/img/professors/alice-johnson.jpg",
+        email: "alice.johnson@university.edu"
+      }
     },
   
     {
@@ -191,7 +221,12 @@ const COURSES = [
         "Use graph theory to understand data structures and networks",
         "Understand the mathematical foundations behind algorithms"
       ],
-      bibliography: ["B103"]
+      bibliography: ["B103"],
+      professor: {
+        name: "Dr. Alice Johnson",
+        photo: "assets/img/professors/alice-johnson.jpg",
+        email: "alice.johnson@university.edu"
+      }
     },
   
     {
@@ -219,7 +254,12 @@ const COURSES = [
         "Apply modular programming using functions and classes",
         "Solve computational problems using Java"
       ],
-      bibliography: ["B105"]
+      bibliography: ["B105"],
+      professor: {
+        name: "Dr. Alice Johnson",
+        photo: "assets/img/professors/alice-johnson.jpg",
+        email: "alice.johnson@university.edu"
+      }
     },
   
     {
@@ -247,7 +287,12 @@ const COURSES = [
         "Compute eigenvalues and eigenvectors and identify applications",
         "Apply linear algebra concepts to computing problems"
       ],
-      bibliography: ["B104"]
+      bibliography: ["B104"],
+      professor: {
+        name: "Dr. Alice Johnson",
+        photo: "assets/img/professors/alice-johnson.jpg",
+        email: "alice.johnson@university.edu"
+      }
     },
   
     {
@@ -275,7 +320,12 @@ const COURSES = [
         "Apply algorithmic techniques to solve real-world problems",
         "Compare, evaluate, and optimize algorithm performance"
       ],
-      bibliography: ["B106", "B112"]
+      bibliography: ["B106", "B112"],
+      professor: {
+        name: "Dr. Alice Johnson",
+        photo: "assets/img/professors/alice-johnson.jpg",
+        email: "alice.johnson@university.edu"
+      }
     },
     {
       id: "204",
@@ -300,7 +350,12 @@ const COURSES = [
         "Evaluate performance trade-offs",
         "Apply concepts to system design problems"
       ],
-      bibliography: ["B108"]
+      bibliography: ["B108"],
+      professor: {
+        name: "Dr. Alice Johnson",
+        photo: "assets/img/professors/alice-johnson.jpg",
+        email: "alice.johnson@university.edu"
+      }
     },
     {
       id: "301",
@@ -325,7 +380,12 @@ const COURSES = [
         "Analyze file system design",
         "Handle concurrency and synchronization issues"
       ],
-      bibliography: ["B108"]
+      bibliography: ["B108"],
+      professor: {
+        name: "Dr. Alice Johnson",
+        photo: "assets/img/professors/alice-johnson.jpg",
+        email: "alice.johnson@university.edu"
+      }
     },
     {
       id: "302",
@@ -350,7 +410,12 @@ const COURSES = [
         "Understand NP-complete problems",
         "Solve advanced graph problems"
       ],
-      bibliography: ["B112"]
+      bibliography: ["B112"],
+      professor: {
+        name: "Dr. Alice Johnson",
+        photo: "assets/img/professors/alice-johnson.jpg",
+        email: "alice.johnson@university.edu"
+      }
     },
     {
       id: "303",
@@ -375,7 +440,12 @@ const COURSES = [
         "Work with databases in web apps",
         "Understand web security practices"
       ],
-      bibliography: ["B114"]
+      bibliography: ["B114"],
+      professor: {
+        name: "Dr. Alice Johnson",
+        photo: "assets/img/professors/alice-johnson.jpg",
+        email: "alice.johnson@university.edu"
+      }
     },
     {
       id: "304",
@@ -400,7 +470,12 @@ const COURSES = [
         "Apply UX principles in projects",
         "Consider accessibility in design"
       ],
-      bibliography: ["B113"]
+      bibliography: ["B113"],
+      professor: {
+        name: "Dr. Alice Johnson",
+        photo: "assets/img/professors/alice-johnson.jpg",
+        email: "alice.johnson@university.edu"
+      }
     },
     {
       id: "401",
@@ -425,7 +500,12 @@ const COURSES = [
         "Apply wireless networking concepts",
         "Evaluate network security measures"
       ],
-      bibliography: ["B109"]
+      bibliography: ["B109"],
+      professor: {
+        name: "Dr. Alice Johnson",
+        photo: "assets/img/professors/alice-johnson.jpg",
+        email: "alice.johnson@university.edu"
+      }
     },
     {
       id: "402",
@@ -450,7 +530,12 @@ const COURSES = [
         "Implement design patterns",
         "Collaborate using version control systems"
       ],
-      bibliography: []
+      bibliography: [],
+      professor: {
+        name: "Dr. Alice Johnson",
+        photo: "assets/img/professors/alice-johnson.jpg",
+        email: "alice.johnson@university.edu"
+      }
     },
     {
       id: "403",
@@ -475,7 +560,12 @@ const COURSES = [
         "Ensure fault tolerance and reliability",
         "Optimize distributed system performance"
       ],
-      bibliography: ["B115"]
+      bibliography: ["B115"],
+      professor: {
+        name: "Dr. Alice Johnson",
+        photo: "assets/img/professors/alice-johnson.jpg",
+        email: "alice.johnson@university.edu"
+      }
     },
     {
       id: "404",
@@ -500,7 +590,12 @@ const COURSES = [
         "Apply security measures to systems",
         "Evaluate information security policies"
       ],
-      bibliography: []
+      bibliography: [],
+      professor: {
+        name: "Dr. Alice Johnson",
+        photo: "assets/img/professors/alice-johnson.jpg",
+        email: "alice.johnson@university.edu"
+      }
     },
     {
       id: "501",
@@ -525,7 +620,12 @@ const COURSES = [
         "Understand ML theory and applications",
         "Develop practical machine learning projects"
       ],
-      bibliography: ["B111"]
+      bibliography: ["B111"],
+      professor: {
+        name: "Dr. Alice Johnson",
+        photo: "assets/img/professors/alice-johnson.jpg",
+        email: "alice.johnson@university.edu"
+      }
     },
     {
       id: "502",
@@ -550,7 +650,12 @@ const COURSES = [
         "Understand basic neural networks",
         "Apply AI techniques to practical problems"
       ],
-      bibliography: ["B110"]
+      bibliography: ["B110"],
+      professor: {
+        name: "Dr. Alice Johnson",
+        photo: "assets/img/professors/alice-johnson.jpg",
+        email: "alice.johnson@university.edu"
+      }
     },
     {
       id: "503",
@@ -575,7 +680,12 @@ const COURSES = [
         "Handle data storage and networking",
         "Deploy apps to app stores"
       ],
-      bibliography: []
+      bibliography: [],
+      professor: {
+        name: "Dr. Alice Johnson",
+        photo: "assets/img/professors/alice-johnson.jpg",
+        email: "alice.johnson@university.edu"
+      }
     },
     {
       id: "504",
@@ -600,6 +710,11 @@ const COURSES = [
         "Process and analyze large datasets",
         "Optimize systems for scalability"
       ],
-      bibliography: ["B116"]
+      bibliography: ["B116"],
+      professor: {
+        name: "Dr. Alice Johnson",
+        photo: "assets/img/professors/alice-johnson.jpg",
+        email: "alice.johnson@university.edu"
+      }
     }
   ];

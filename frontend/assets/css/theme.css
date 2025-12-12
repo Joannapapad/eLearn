@@ -23,8 +23,16 @@
     --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
     --radius: 12px;
 }
+html {
+    height: 100%;
+    min-height: 100vh;
+}
 
+* {
+    box-sizing: border-box;
+}
 body {
+    
     padding: 0;
     margin: 0;
     overflow-x: hidden;
@@ -32,7 +40,17 @@ body {
     color: var(--text-medium);
     font-family: Arial, sans-serif;
 
+}
+#video-overlay {
+    z-index: 10000 !important;
+}
 
+.header {
+    z-index: 1500; /* lower than overlay */
+}
+
+.nav {
+    z-index: 1400; /* lower than overlay */
 }
 p {
     margin: 0;
@@ -63,8 +81,7 @@ h1, h2, h3 {
     color: var(--text-dark);
 }
 h1 {
-    padding-top: 2em;
-    font-size: 2rem;
+    font-size: 1.6rem;
 
 }
 .back-btn {
@@ -81,6 +98,7 @@ h1 {
     margin-bottom: 2rem;
     color: var(--primary-dark);
     font-size: 2rem;
+    z-index: 100;
 }
 
 .burger div {
