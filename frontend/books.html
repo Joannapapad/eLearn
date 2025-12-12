@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+
+    <link rel="stylesheet" href="assets/css/theme.css">
+    <link rel="stylesheet" href="assets/css/menu.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+
+<body>
+
+<header></header>
+
+<main class="courses-page">
+
+    <div class="courses-picture">
+        <h1 class="page-title">Books</h1>
+    </div>
+
+    <div class="desktop">
+
+        <section class="filters card">
+            <label class="search-wrapper">
+                <input type="text" id="filter-search-books" placeholder="Search books...">
+            </label>
+
+            <div class="checkboxes">
+
+                <div class="filter-group" data-filter="book-category">
+                    <div class="filter-header"><h3>➤ Category</h3></div>
+                    <div class="filter-options">
+
+                        <label><input type="checkbox" value="programming"> Programming</label>
+                        <label><input type="checkbox" value="networks"> Networks</label>
+                        <label><input type="checkbox" value="security"> Security</label>
+                        <label><input type="checkbox" value="databases"> Databases</label>
+                        <label><input type="checkbox" value="core"> Core</label>
+                        <label><input type="checkbox" value="mathematics"> Mathematics</label>
+                        <label><input type="checkbox" value="systems"> Systems</label>
+                        <label><input type="checkbox" value="software engineering"> Software Engineering</label>
+                        <label><input type="checkbox" value="design"> Design</label>
+                        <label><input type="checkbox" value="ai"> AI</label>
+                        <label><input type="checkbox" value="data"> Data</label>
+
+                    </div>
+                </div>
+
+                <div class="filter-group" data-filter="book-level">
+                    <div class="filter-header"><h3>➤ Level</h3></div>
+                    <div class="filter-options">
+
+                        <label><input type="checkbox" value="beginner"> Beginner</label>
+                        <label><input type="checkbox" value="intermediate"> Intermediate</label>
+                        <label><input type="checkbox" value="advanced"> Advanced</label>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section id="books-list" class="courses-grid center"></section>
+
+    </div>
+
+</main>
+
+<footer></footer>
+
+<script src="assets/js/data/books.js"></script>
+
+<script src="assets/js/ui/menu.js"></script>
+<script src="assets/js/ui/modal.js"></script>
+<script src="assets/js/ui/responsive.js"></script>
+
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>

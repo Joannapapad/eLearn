@@ -1,9 +1,6 @@
-// wait for DOM
 document.addEventListener("DOMContentLoaded", () => {
 
     const filters = document.querySelectorAll('.filter-group');
-    const searchInput = document.getElementById('filter-search');
-    const coursesList = document.getElementById('courses-list');
 
     /* --------------------------
        MOBILE TOGGLE FILTERS
@@ -12,104 +9,166 @@ document.addEventListener("DOMContentLoaded", () => {
         const header = f.querySelector('.filter-header');
         const opts = f.querySelector('.filter-options');
 
+        if (!header || !opts) return;
+
         header.addEventListener('click', () => {
             if (window.innerWidth < 900) {
+
                 const open = opts.classList.contains("open");
 
-                // close all
                 document.querySelectorAll(".filter-options").forEach(o => {
                     o.classList.remove("open");
                 });
 
-                // open only this if was closed
                 if (!open) opts.classList.add("open");
             }
         });
     });
 
-    // close when clicking outside
     document.addEventListener('click', e => {
         if (window.innerWidth < 900) {
             if (!e.target.closest('.filter-group')) {
-                document.querySelectorAll('.filter-options').forEach(o => o.classList.remove("open"));
+                document.querySelectorAll('.filter-options')
+                    .forEach(o => o.classList.remove("open"));
             }
         }
     });
 
+    /* ============================
+       COURSES PAGE ONLY
+    ============================= */
+    const searchInput = document.getElementById('filter-search');
+    const coursesList = document.getElementById('courses-list');
 
-    /* --------------------------
-        RENDER COURSES
-    -----------------------------*/
-    function renderCourses() {
-        let results = [...COURSES];
+    if (searchInput && coursesList) {
 
-        const selectedCategories =
-            [...document.querySelectorAll('[data-filter="category"] input:checked')]
-                .map(i => i.value);
+        function renderCourses() {
+            let results = [...COURSES];
 
-        const selectedLevels =
-            [...document.querySelectorAll('[data-filter="level"] input:checked')]
-                .map(i => i.value);
+            const selectedCategories =
+                [...document.querySelectorAll('[data-filter="category"] input:checked')]
+                    .map(i => i.value);
 
-        const searchTerm = searchInput.value.trim().toLowerCase();
+            const selectedLevels =
+                [...document.querySelectorAll('[data-filter="level"] input:checked')]
+                    .map(i => i.value);
 
+            const searchTerm = searchInput.value.trim().toLowerCase();
 
-        // CATEGORY FILTER
-        if (selectedCategories.length > 0) {
-            results = results.filter(c => selectedCategories.includes(c.category));
-        }
+            if (selectedCategories.length > 0) {
+                results = results.filter(c => selectedCategories.includes(c.category));
+            }
 
-        // LEVEL FILTER
-        if (selectedLevels.length > 0) {
-            results = results.filter(c => selectedLevels.includes(c.level));
-        }
+            if (selectedLevels.length > 0) {
+                results = results.filter(c => selectedLevels.includes(c.level));
+            }
 
-        // SEARCH FILTER
-        if (searchTerm !== "") {
-            results = results.filter(c =>
-                c.title.toLowerCase().includes(searchTerm) ||
-                c.description.toLowerCase().includes(searchTerm)
-            );
-        }
+            if (searchTerm) {
+                results = results.filter(c =>
+                    c.title.toLowerCase().includes(searchTerm) ||
+                    c.description.toLowerCase().includes(searchTerm)
+                );
+            }
 
-
-        coursesList.innerHTML = results.map(c => `
-        <div class="course-card"  data-id="${c.id}">
-    
-            <div class="card-header">
-                <h3 class="course-title">${c.title}</h3>
-                <div class="course-category-icon">
-                    <img src="assets/img/icons/${c.category}.png" alt="${c.category}">
+            coursesList.innerHTML = results.map(c => `
+                <div class="course-card" data-id="${c.id}">
+                    <div class="card-header">
+                        <h3 class="course-title">${c.title}</h3>
+                        <div class="course-category-icon">
+                            <img src="assets/img/icons/${c.category}.png" alt="${c.category}">
+                        </div>
+                    </div>
+                    <p class="course-level">${c.level}</p>
+                    <p class="course-description">${c.description}</p>
                 </div>
-            </div>
-    
-            <p class="course-level">${c.level}</p>
-            
-            <p class="course-description">${c.description}</p>
-    
-        </div>
-    `).join('');
-    
-        // Add click listeners
-        document.querySelectorAll('.course-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const id = card.dataset.id;
-                window.location.href = `course-details.html?id=${id}`;
-            }); 
-        });
+            `).join('');
 
-        
-    
+            document.querySelectorAll('.course-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    window.location.href = `course-details.html?id=${card.dataset.id}`;
+                });
+            });
+        }
+
+        document.querySelectorAll('.filter-options input')
+            .forEach(cb => cb.addEventListener('change', renderCourses));
+
+        searchInput.addEventListener('input', renderCourses);
+
+        renderCourses();
     }
 
 
-    /* --------------------------
-        EVENT LISTENERS
-    -----------------------------*/
-    document.querySelectorAll('.filter-options input')
-        .forEach(cb => cb.addEventListener('change', renderCourses));
+    /* ============================
+       BOOKS PAGE ONLY
+    ============================= */
+    const booksSearch = document.getElementById('filter-search-books');
+    const booksList = document.getElementById('books-list');
 
-    searchInput.addEventListener('input', renderCourses);
+    if (booksSearch && booksList) {
 
-    renderCourses();
+        function renderBooks() {
+            let results = [...BOOKS];
+
+            const selectedCategories =
+                [...document.querySelectorAll('[data-filter="book-category"] input:checked')]
+                    .map(i => i.value);
+
+            const selectedLevels =
+                [...document.querySelectorAll('[data-filter="book-level"] input:checked')]
+                    .map(i => i.value);
+
+            const searchTerm = booksSearch.value.trim().toLowerCase();
+
+            if (selectedCategories.length > 0) {
+                results = results.filter(b => selectedCategories.includes(b.category));
+            }
+
+            if (selectedLevels.length > 0) {
+                results = results.filter(b => selectedLevels.includes(b.level));
+            }
+
+            if (searchTerm) {
+                results = results.filter(b =>
+                    b.title.toLowerCase().includes(searchTerm) ||
+                    b.description.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            booksList.innerHTML = results.map(b => `
+            <div class="book-card" data-id="${b.id}">
+        
+                <div class="book-header book-${b.category}">
+                    <div class="book-title-wrapper">
+                        <p class="book-author">${b.author}</p>
+                        <h3 class="book-title">${b.title}</h3>
+                    </div>
+                    <div class="book-edition">${b.edition ? b.edition : ""}</div>
+
+                </div>
+        
+                <div class="book-body">
+                    <p class="book-description">${b.description}</p>
+                </div>
+        
+            </div>
+        `).join('');
+        
+        
+
+            document.querySelectorAll('.book-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    window.location.href = `book-details.html?id=${card.dataset.id}`;
+                });
+            });
+        }
+
+        document.querySelectorAll('[data-filter="book-category"] input, [data-filter="book-level"] input')
+            .forEach(cb => cb.addEventListener('change', renderBooks));
+
+        booksSearch.addEventListener('input', renderBooks);
+
+        renderBooks();
+    }
+
 });

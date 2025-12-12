@@ -52,7 +52,11 @@ ul {
     border-radius: 8px;
 }
 
-
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 /* Titles */
 h1, h2, h3 {
@@ -63,6 +67,13 @@ h1 {
     font-size: 2rem;
 
 }
+.back-btn {
+    display: inline-block;
+    margin-top: 30px;
+    text-decoration: none;
+    color: var(--primary-dark);
+    font-weight: 600;
+}
 
 .page-title {
     text-align: center;
@@ -71,11 +82,12 @@ h1 {
     color: var(--primary-dark);
     font-size: 2rem;
 }
-/* Buttons */
+
 .burger div {
     background: var(--primary-dark);
 
 }
+
 .btn-primary {
     background: var(--primary);
     color: white;
@@ -88,7 +100,9 @@ h1 {
 }
 
 /* Hover */
-
+.btn-course-detail {
+    margin: 2rem;
+}
 .btn-primary:hover {
     background: var(--primary-dark);
 }
@@ -98,6 +112,8 @@ h1 {
     background: transparent;
     border: 2px solid var(--primary);
     color: var(--primary);
+    border-radius: 10px;
+    padding: 0 10px;
 }
 
 .btn-outline:hover {
