@@ -1,25 +1,16 @@
 :root {
-    /* ----- Primary Branding ----- */
-    --primary: #e4dbdb;        /* kept as-is */
-    --primary-dark: #5a4f4f;   /* warmer, beige-friendly dark tone */
-
-    /* ----- Secondary Colors (Beige Theme) ----- */
-    --secondary-blue: #c9c7b8;     /* muted beige-gray */
-    --secondary-teal: #d8cfc4;     /* warm neutral teal alternative */
-    --accent-orange: #f3e2c6;      /* soft beige-orange accent */
-
-    /* ----- Grayscale (Warm Neutrals) ----- */
-    --bg-light: #f9f5ef;        /* light beige */
-    --gray-light: #e8e1d9;      /* warm light gray-beige */
-    --gray-medium: #b7aa9f;     /* taupe-like gray */
-    --text-dark: #3a2f2b;       /* warm dark brown */
-    --text-medium: #6a5e56;     /* medium warm brown */
-
-    /* ----- Elements ----- */
-    --card-bg: #ffffff;         /* clean white still works well with beige */
-    --footer-bg: #2e2420;       /* deep brown for contrast */
-
-    /* ----- Shadows / Radii ----- */
+    --primary: #e4dbdb;
+    --primary-dark: #5a4f4f;
+    --secondary-blue: #c9c7b8;
+    --secondary-teal: #d8cfc4;
+    --accent-orange: #f3e2c6;
+    --bg-light: #f9f5ef;
+    --gray-light: #e8e1d9;
+    --gray-medium: #b7aa9f;
+    --text-dark: #3a2f2b;
+    --text-medium: #6a5e56;
+    --card-bg: #ffffff;
+    --footer-bg: #2e2420;
     --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
     --radius: 12px;
 }
@@ -27,36 +18,29 @@ html {
     height: 100%;
     min-height: 100vh;
 }
-
 * {
     box-sizing: border-box;
 }
 body {
-    
     padding: 0;
     margin: 0;
     overflow-x: hidden;
     background: var(--bg-light);
     color: var(--text-medium);
     font-family: Arial, sans-serif;
-
 }
-
 #video-overlay {
     z-index: 999999 !important;
     isolation: isolate;
-
 }
 .nav-toggle {
-    z-index: 2500; /* lower than overlay */
-
+    z-index: 2500;
 }
 .header {
-    z-index: 1000; /* lower than overlay */
+    z-index: 1000;
 }
-
 .nav {
-    z-index: 1400; /* lower than overlay */
+    z-index: 1400;
 }
 p {
     margin: 0;
@@ -64,7 +48,6 @@ p {
 ul {
     margin-bottom: 0;
 }
-/* ========== SCROLLBAR ========== */
 *::-webkit-scrollbar {
     width: 11px;
 }
@@ -75,20 +58,16 @@ ul {
     background: #AFA4A5;
     border-radius: 8px;
 }
-
 .flex {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
-/* Titles */
 h1, h2, h3 {
     color: var(--text-dark);
 }
 h1 {
     font-size: 1.6rem;
-
 }
 .back-btn {
     display: inline-block;
@@ -97,21 +76,18 @@ h1 {
     color: var(--primary-dark);
     font-weight: 600;
 }
-
 .page-title {
+    position: relative;
+    z-index: 10;
     text-align: center;
-    margin-top: 4rem;
+    margin-top: 2rem;
     margin-bottom: 2rem;
     color: var(--primary-dark);
     font-size: 2rem;
-    z-index: 100;
 }
-
 .burger div {
     background: var(--primary-dark);
-
 }
-
 .btn-primary {
     background: var(--primary);
     color: white;
@@ -122,16 +98,12 @@ h1 {
     cursor: pointer;
     transition: 0.25s ease;
 }
-
-/* Hover */
 .btn-course-detail {
     margin: 2rem;
 }
 .btn-primary:hover {
     background: var(--primary-dark);
 }
-
-/* Secondary Button */
 .btn-outline {
     background: transparent;
     border: 2px solid var(--primary);
@@ -139,30 +111,21 @@ h1 {
     border-radius: 10px;
     padding: 0 10px;
 }
-
 .btn-outline:hover {
     background: var(--gray-light);
 }
-
-/* Cards */
 .card {
     background: var(--card-bg);
     border-radius: var(--radius);
     box-shadow: var(--shadow-soft);
 }
-
-/* Links */
-
 .nav-link, a {
     color: var(--text-dark);
     text-decoration: none;
 }
-
-.nav-link:hover , a:hover {
+.nav-link:hover, a:hover {
     color: var(--secondary-blue);
 }
-
-/* Footer */
 footer {
     background: var(--primary);
     padding: 2em;

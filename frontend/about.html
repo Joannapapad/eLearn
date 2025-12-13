@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="assets/css/theme.css">
+    <link rel="stylesheet" href="assets/css/menu.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <style>
+/* =========================================
+   ABOUT US PAGE - Beige Theme
+========================================= */
+.about-us {
+    background: var(--bg-light);
+    padding: 4em 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-dark);
+}
+
+.about-container {
+    max-width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+    justify-content: space-between;
+    margin-bottom: 4em;
+}
+
+.about-text {
+    flex: 1 1 500px;
+}
+
+.about-text h1 {
+    font-size: 2.5rem;
+    color: var(--primary-dark);
+    margin-bottom: 0.5em;
+}
+
+.about-text h2 {
+    font-size: 1.5rem;
+    color: var(--secondary-blue);
+    margin-bottom: 1em;
+}
+
+.about-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-medium);
+}
+
+.about-image {
+    flex: 1 1 400px;
+    display: flex;
+    justify-content: center;
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+}
+
+/* Stats */
+.stats {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 1000px;
+    text-align: center;
+    margin-top: 2em;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.stat-item {
+
+    flex: 1 1 200px;
+    padding: 1.5em;
+}
+
+.two, .three{
+    border-left: 2px solid var(--primary-dark);
+}
+
+.stat-item h3 {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 0.25em;
+    margin-top: 0;
+}
+
+.stat-item p {
+    font-size: 1rem;
+    color: var(--text-medium);
+}
+
+/* Buttons */
+.about-us .btn-primary {
+    background: var(--primary);
+    color: white;
+    padding: 0.75em 1.5em;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 2rem;
+    transition: 0.25s ease;
+}
+
+.about-us .btn-primary:hover {
+    background: var(--primary-dark);
+}
+
+/* Creators Section */
+.creators {
+    max-width: 1000px;
+    margin: 4rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.creator {
+    display: flex;
+    flex-direction: row-reverse; /* image on the right */
+    align-items: center;
+    gap: 2rem;
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+}
+
+.creator-info {
+    flex: 1;
+}
+
+.creator-info h3 {
+    font-size: 1.5rem;
+    color: var(--primary-dark);
+    margin-bottom: 0.5rem;
+}
+
+.creator-info p {
+    font-size: 1rem;
+    color: var(--text-medium);
+    margin: 0.3rem 0;
+}
+
+.creator-image img {
+    max-width: 200px;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 800px) {
+    .creator {
+        flex-direction: column;
+        text-align: center;
+    }
+    .creator-image img {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* Responsive - Mobile-first (min-width for larger screens) */
+@media (min-width: 801px) {
+    .about-container {
+        flex-direction: row;
+        text-align: left;
+        padding-top: 2rem;
+
+    }
+
+    .about-text h1 {
+        font-size: 2.5rem;
+    }
+    .about-text h2 {
+        font-size: 1.5rem;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+<header></header>
+
+<main class="about-us">
+    <div class="about-container">
+        <div class="about-text">
+            <h1>About Us</h1>
+            <h2>Empowering Learning, Anytime, Anywhere</h2>
+            <div class="boo">
+                Our e-learning platform provides high-quality online courses to help students, professionals, and lifelong learners achieve their educational goals.
+                We focus on interactive, engaging content that can be accessed anytime and anywhere, supporting a flexible and personalized learning experience.
+            </div>
+        </div>
+        <div class="about-image">
+            <img src="assets/img/homebackground.png" alt="About us image">
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stat-item">
+            <h3>1,250</h3>
+            <p>Courses Available</p>
+        </div>
+        <div class="stat-item two">
+            <h3>15,340</h3>
+            <p>Enrolled Students</p>
+        </div>
+        <div class="stat-item three">
+            <h3>350</h3>
+            <p>Expert Instructors</p>
+        </div>
+    </div>
+
+    <!-- Creators Section -->
+<section class="creators">
+    <div class="creator">
+        <div class="creator-info">
+            <h3>Ioanna Papadakaki</h3>
+            <p><strong>Email:</strong> p3220148@aueb.gr</p>
+            <p><strong>Student ID:</strong> 3220148</p>
+            <p>A passionate web developer who loves creating interactive learning experiences.</p>
+        </div>
+        <div class="creator-image">
+            <img src="assets/img/default.png" alt="John Doe">
+        </div>
+    </div>
+
+    <div class="creator">
+        <div class="creator-info">
+            <h3>Fani Tsiokani</h3>
+            <p><strong>Email:</strong> p3220214@aueb.gr</p>
+            <p><strong>Student ID:</strong> 3220214</p>
+            <p>Focused on UI/UX design and improving user experience in e-learning platforms.</p>
+        </div>
+        <div class="creator-image">
+            <img src="assets/img/default.png" alt="Jane Smith">
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer></footer>
+
+<script src="assets/js/data/books.js"></script>
+<script src="assets/js/data/courses.js"></script>
+<script src="assets/js/ui/modal.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/ui/menu.js"></script>
+<script>
+    // Counter Animation
+    document.addEventListener("DOMContentLoaded", () => {
+        const counters = document.querySelectorAll(".stat-item h3");
+    
+        counters.forEach(counter => {
+            const target = parseInt(counter.textContent.replace(/,/g, '')); // remove commas
+            let count = 0;
+            const increment = Math.ceil(target / 200); // 200 steps for smooth animation
+            const updateCounter = () => {
+                count += increment;
+                if (count < target) {
+                    counter.textContent = count.toLocaleString();
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counter.textContent = target.toLocaleString(); // ensure exact target
+                }
+            };
+            updateCounter();
+        });
+    });
+    </script>
+    
+</body>
+</html>

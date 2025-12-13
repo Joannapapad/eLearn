@@ -12,7 +12,7 @@ const BOOKS = [
   },
   {
     id: "B102",
-    title: "Computer Science: A Structured Programming Approach Using C",
+    title: "A Structured Programming Approach Using C",
     author: "Harvey & Paul",
     edition: "2nd Edition",
     category: "programming",
