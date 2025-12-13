@@ -41,12 +41,18 @@ body {
     font-family: Arial, sans-serif;
 
 }
-#video-overlay {
-    z-index: 10000 !important;
-}
 
+#video-overlay {
+    z-index: 999999 !important;
+    isolation: isolate;
+
+}
+.nav-toggle {
+    z-index: 2500; /* lower than overlay */
+
+}
 .header {
-    z-index: 1500; /* lower than overlay */
+    z-index: 1000; /* lower than overlay */
 }
 
 .nav {

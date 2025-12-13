@@ -505,7 +505,7 @@
     background-color: #f9f9f9;
     border-radius: 10px;
     padding: 20px;
-    margin-top: 30px;
+    margin: 20px;
     text-align: justify;
 }
 
@@ -591,7 +591,6 @@
 /* --------------------------
    VIDEO OVERLAY PLAYER
 -------------------------- */
-
 #video-overlay {
     position: fixed;
     top: 0;
@@ -602,28 +601,28 @@
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
 }
 
 #video-overlay-content {
     position: relative;
-    width: 80%;
-    max-width: 900px;
-    
+    width: 90%;
+    max-width: 800px; 
 }
 
 #video-player {
     width: 100%;
+    max-width: 800px; /* enforce max width */
     border-radius: 10px;
     background: black;
 }
 
 #video-close {
-    position: absolute;
-    top: -40px;
-    right: 0;
+    position: fixed; /* fixed on viewport */
+    top: 20px;       /* distance from top */
+    right: 30px;     /* distance from right */
     font-size: 42px;
     color: white;
     cursor: pointer;
     font-weight: bold;
+    z-index: 1000000; /* above everything */
 }

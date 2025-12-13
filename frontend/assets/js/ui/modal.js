@@ -40,9 +40,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
           container.innerHTML = `
           <div class="details">
-              <div class="course-header">
+              <div class="book-header">
+                <div class="course-header">
+
                   <h1 class="course-title">${course.title}</h1>
                   <div class="course-id">Course ID: ${course.id}</div>
+                  </div>
               </div>
 
               <div class="course-columns">
@@ -154,12 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         container.innerHTML = `
         <div class="details">
-        <div id="video-overlay">
-        <div id="video-overlay-content">
-            <span id="video-close">&times;</span>
-            <video id="video-player" controls></video>
-        </div>
-    </div>
+
     
             <div class="book-header book-${book.category}">
                 <div class="book-header-left">
@@ -188,9 +186,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="instructor-name">${book.author}</div>
                     </div>
 
-                </div>
-
-                <div class="right-column">
                     <div class="course-about">
                         <div class="section-title">About this Book</div>
                         <div class="category-icon">
@@ -199,6 +194,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         <p>This book belongs to the <strong>${book.category}</strong> category.
                            It provides the foundational knowledge required for this field.</p>
                     </div>
+                </div>
+
+                <div class="right-column">
+
 
                     <div class="recommended-books">
                         <div class="section-title">Recommended Courses</div>
@@ -217,6 +216,9 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
 
             <a href="books.html" class="btn-primary btn-book-detail">← Back to Books</a>
+        
+
+
         </div>
         `;
     }
@@ -226,38 +228,42 @@ document.addEventListener("DOMContentLoaded", () => {
 // Video Overlay Logic
 document.addEventListener("click", function (e) {
     const card = e.target.closest(".video-card");
-    if (card) {
-        const videoSrc = card.getAttribute("data-video-src");
-        const overlay = document.getElementById("video-overlay");
-        const player = document.getElementById("video-player");
+    if (!card) return;
 
-        player.src = videoSrc;
-        overlay.style.display = "flex";
-        player.play();
-    }
+    const videoSrc = card.getAttribute("data-video-src");
+    const overlay = document.getElementById("video-overlay");
+    const player = document.getElementById("video-player");
+
+    player.src = videoSrc;
+    overlay.style.display = "flex";
+
+
+    // 🔒 LOCK SCROLL
+    document.body.style.overflow = "hidden";
+
+    player.play();
 });
 
 // Close overlay
-document.getElementById("video-close").addEventListener("click", () => {
+document.getElementById("video-close").addEventListener("click", closeOverlay);
+
+// Close when clicking outside video
+document.getElementById("video-overlay").addEventListener("click", (e) => {
+    if (e.target.id === "video-overlay") {
+        closeOverlay();
+    }
+});
+
+function closeOverlay() {
     const overlay = document.getElementById("video-overlay");
     const player = document.getElementById("video-player");
 
     player.pause();
     player.src = "";
     overlay.style.display = "none";
-});
-
-// Close when clicking outside video
-document.getElementById("video-overlay").addEventListener("click", (e) => {
-    if (e.target.id === "video-overlay") {
-        const overlay = document.getElementById("video-overlay");
-        const player = document.getElementById("video-player");
-
-        player.pause();
-        player.src = "";
-        overlay.style.display = "none";
-    }
-});
+    // 🔓 UNLOCK SCROLL
+    document.body.style.overflow = "";
+}
 
 
 });
