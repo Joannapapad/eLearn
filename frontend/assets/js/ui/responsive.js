@@ -1,5 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    /* ============================
+   COURSES PAGE - URL CATEGORY
+============================ */
+
+if (window.location.pathname.includes("courses.html")) {
+
+    const params = new URLSearchParams(window.location.search);
+    const selectedCategory = params.get("category");
+
+    if (selectedCategory) {
+        const categoryCheckboxes =
+            document.querySelectorAll('[data-filter="category"] input');
+
+        categoryCheckboxes.forEach(cb => {
+            cb.checked = cb.value === selectedCategory;
+        });
+    }
+}
+
     const filters = document.querySelectorAll('.filter-group');
 
     /* --------------------------
@@ -72,6 +91,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             coursesList.innerHTML = results.map(c => `
                 <div class="course-card" data-id="${c.id}">
+                <div class="course-image">
+                    <img src="assets/img/courses/${c.image}" alt="${c.title}">
+                </div>
+        
                     <div class="card-header">
                         <h3 class="course-title">${c.title}</h3>
                         <div class="course-category-icon">
@@ -79,7 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                     </div>
                     <p class="course-level">${c.level}</p>
-                    <p class="course-description">${c.description}</p>
                 </div>
             `).join('');
 

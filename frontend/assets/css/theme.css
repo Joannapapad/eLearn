@@ -89,6 +89,7 @@ h1 {
     background: var(--primary-dark);
 }
 .btn-primary {
+    max-width: fit-content;
     background: var(--primary);
     color: white;
     border: none;

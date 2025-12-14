@@ -6,6 +6,7 @@ const COURSES = [
     level: "beginner",
     credits: 6,
     semester: 1,
+    image: "ai.png",
     prerequisites: [],
     description:
       "This course provides a broad and engaging introduction to the foundations of computer science. Students explore how computers work, how software is developed, and how computational thinking can be applied to problem-solving. Topics include data representation, hardware fundamentals, algorithmic processes, simple programming structures, and introductory topics in the history and impact of computing.",
