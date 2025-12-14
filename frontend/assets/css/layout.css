@@ -1,9 +1,6 @@
 
 @media (min-width: 800px) {
-    .categories-left {
-        align-items: start;
-        gap: 2rem;
-    }
+    
     .recommended-categories .categories-container {
         max-width: 1100px;
         width: 100%;
@@ -11,9 +8,15 @@
         flex-direction: column; 
         align-items: center;  
         gap: 3rem;
-        padding: 8rem;
-    }
+        padding-top: 8rem;
+        padding-bottom: 8rem;
 
+        
+    }
+    .two-column-section {
+        padding: 8rem 2rem;
+
+    }
     h1 {
         font-size: 2rem;
     
@@ -104,7 +107,13 @@
     .recommended-categories .categories-container {
         max-width: 1100px;
         flex-direction: row; 
+        
 
+    }
+
+    .categories-left {
+        align-items: start;
+        gap: 2rem;
     }
 }
 

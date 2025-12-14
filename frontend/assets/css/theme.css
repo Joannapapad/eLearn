@@ -58,6 +58,24 @@ ul {
     background: #AFA4A5;
     border-radius: 8px;
 }
+.recommended-categories {
+    background-color: var(--secondary-teal);
+}
+/* Hide scrollbar for Chrome, Safari, Opera */
+.slider-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge */
+.slider-track {
+    -ms-overflow-style: none;
+}
+
+/* Hide scrollbar for Firefox */
+.slider-track {
+    scrollbar-width: none;
+}
+
 .flex {
     display: flex;
     align-items: center;

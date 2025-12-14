@@ -101,7 +101,6 @@ if (window.location.pathname.includes("courses.html")) {
                             <img src="assets/img/icons/${c.category}.png" alt="${c.category}">
                         </div>
                     </div>
-                    <p class="course-level">${c.level}</p>
                 </div>
             `).join('');
 

@@ -263,27 +263,29 @@
 <script src="assets/js/app.js"></script>
 <script src="assets/js/ui/menu.js"></script>
 <script>
-    // Counter Animation
     document.addEventListener("DOMContentLoaded", () => {
         const counters = document.querySelectorAll(".stat-item h3");
+        const duration = 2000; // 2 seconds in milliseconds
     
         counters.forEach(counter => {
             const target = parseInt(counter.textContent.replace(/,/g, '')); // remove commas
-            let count = 0;
-            const increment = Math.ceil(target / 200); // 200 steps for smooth animation
-            const updateCounter = () => {
-                count += increment;
-                if (count < target) {
-                    counter.textContent = count.toLocaleString();
+            let start = null;
+    
+            const updateCounter = (timestamp) => {
+                if (!start) start = timestamp;
+                const progress = timestamp - start;
+                const current = Math.min(Math.floor((progress / duration) * target), target);
+                counter.textContent = current.toLocaleString();
+                if (progress < duration) {
                     requestAnimationFrame(updateCounter);
-                } else {
-                    counter.textContent = target.toLocaleString(); // ensure exact target
                 }
             };
-            updateCounter();
+    
+            requestAnimationFrame(updateCounter);
         });
     });
     </script>
+    
     
 </body>
 </html>

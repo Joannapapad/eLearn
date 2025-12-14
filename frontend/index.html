@@ -35,11 +35,50 @@
             </div>
         </section>
 
-
-        <section class="recommended-categories fade-section">
-            <div class="categories-container">
+        <section class="two-column-section main-about-preview">
+            <div class="section-container">
+                <div class="section-left">
+                    <span class="section-label">About Us</span>
+                    <h2>Our e-Learning Platform</h2>
+                    <p>
+                        Our goal is to create a fully functional, static yet dynamically-behaving website that showcases
+                        the e-learning service and allows basic user data collection and management entirely in the browser. 
+                        We use HTML5 for structure, CSS3 for appearance and layout, and JavaScript for interactivity and logic.
+                    </p>
         
-                <div class="categories-left">
+                    <div class="preview-cards">
+                        <a href="courses.html" class="preview-card">
+                            <div class="card-icon">
+                                <img src="assets/img/icons/learning.png" alt="Courses">
+                            </div>
+                            <div>
+                                <h3>Course Categories</h3>
+                                <p>We offer categories in IT courses such as programming, networks, security, and databases.</p>
+                            </div>
+                        </a>
+        
+                        <a href="books.html" class="preview-card">
+                            <div class="card-icon">
+                                <img src="assets/img/icons/open-book.png" alt="Books & Videos">
+                            </div>
+                            <div>
+                                <h3>Books and Videos</h3>
+                                <p>Users can explore lists of books and videos, view descriptions, and select materials for study.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+        
+                <div class="section-right about-preview-image">
+                    <img src="assets/img/ebout_main.jpg" alt="About preview">
+                    <button class="btn-primary">Learn More</button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="two-column-section recommended-categories">
+            <div class="section-container">
+                <div class="section-left categories-left">
                     <h1>Recommended Categories</h1>
                     <p>
                         Explore some of our most popular learning paths, carefully selected to help you
@@ -48,10 +87,9 @@
                     <a href="courses.html" class="btn-primary">View All Categories</a>
                 </div>
         
-                <div class="categories-right">
-        
+                <div class="section-right categories-right">
                     <a href="courses.html?category=programming" class="category-link">
-                        <article class="category flex">
+                        <article class="category">
                             <div class="category-icon">
                                 <img src="assets/img/icons/programming.png" alt="Programming">
                             </div>
@@ -61,7 +99,7 @@
                     </a>
         
                     <a href="courses.html?category=ai" class="category-link">
-                        <article class="category flex">
+                        <article class="category">
                             <div class="category-icon">
                                 <img src="assets/img/icons/ai.png" alt="AI">
                             </div>
@@ -71,7 +109,7 @@
                     </a>
         
                     <a href="courses.html?category=data" class="category-link">
-                        <article class="category flex">
+                        <article class="category">
                             <div class="category-icon">
                                 <img src="assets/img/icons/data.png" alt="Data">
                             </div>
@@ -81,7 +119,7 @@
                     </a>
         
                     <a href="courses.html?category=security" class="category-link">
-                        <article class="category flex">
+                        <article class="category">
                             <div class="category-icon">
                                 <img src="assets/img/icons/security.png" alt="Security">
                             </div>
@@ -89,26 +127,27 @@
                             <p>Learn how to protect systems, networks and digital information.</p>
                         </article>
                     </a>
-        
                 </div>
             </div>
         </section>
         
-
-        <section class="featured-courses">
-            <h1>Recommended Courses</h1>
-            <p>One course for each category</p>
-
-            <div class="slider">
-                <button class="slider-btn prev" type="button">‹</button>
-
-                <div class="slider-viewport">
-                    <div id="featured-courses-main" class="slider-track"></div>
+        
+            <section class="featured-courses">
+                <h1>Recommended Courses</h1>
+                <p>One course for each category</p>
+    
+                <div class="slider">
+                    <button class="slider-btn prev" type="button">‹</button>
+    
+                    <div class="slider-viewport">
+                        <div id="featured-courses-main" class="slider-track"></div>
+                    </div>
+    
+                    <button class="slider-btn next" type="button">›</button>
                 </div>
-
-                <button class="slider-btn next" type="button">›</button>
-            </div>
-        </section>
+                <button class="btn-primary">See More</button>
+            </section>
+        
 
     </main>
 
