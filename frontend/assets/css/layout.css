@@ -118,13 +118,13 @@
 }
 
 
-    .fade-section{
-        opacity:0;
-        transform: translateY(20px);
-        transition: opacity 0.8s ease, transform 0.8s ease;
-    }
+.fade-section{
+    opacity:0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
 
-    .fade-section.is-visible{
-        opacity: 1;
-        transform: translateY(0);
-    }
+.fade-section.is-visible{
+    opacity: 1;
+    transform: translateY(0);
+}

@@ -113,6 +113,7 @@ const BOOKS = [
     id: "B111",
     title: "Machine Learning",
     author: "Tom Mitchell",
+    edition:"6th Edition",
     category: "ai",
     image: "images/books/machine-learning-mitchell.jpg",
     description: "Introduces machine learning principles...",

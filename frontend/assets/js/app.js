@@ -1,23 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
     
+   const fadeSections = document.querySelectorAll(".fade-section");
+
+  if (fadeSections.length) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        entry.target.classList.toggle("is-visible", entry.isIntersecting);
+      });
+    }, { threshold: 0.2 });
+
+    fadeSections.forEach(sec => observer.observe(sec));
+  }
+        
+
+   
     if(window.location.pathname.includes("index.html")) {
 
-      
-        const fadeSection = document.querySelector(".fade-section");
-        if(fadeSection) {
-            const observer = new IntersectionObserver((entries,obs) => {
-                entries.forEach(entry=> {
-                    if(entry.isIntersecting){
-                        entry.target.classList.add("is-visible");
-                    }else{
-                        entry.target.classList.remove("is-visible");
-    
-                    }
-                })
-            }, {threshold:0.2});
-            
-            observer.observe(fadeSection);
-        }
 
         //click in cateogiry boxes
         const categoryCards = document.querySelectorAll(".category");

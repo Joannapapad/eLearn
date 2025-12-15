@@ -13,9 +13,83 @@
 </head>
 <body>
 
-<header></header>
+<header>Register Form</header>
 
-<main class="courses-details-picture">
+<main class=" form-container">
+    <div class="background-image">
+        <form class="registration-form" id="registrationForm">
+            <fieldset class="form-section personal-details">
+                <legend class="title">Personal Details</legend>
+
+                <div class="form">
+                    <label for="firstName">First Name : </label>
+                    <input id="firstName" name="firstName" type="text" placeholder="Yout First Name"/>
+                    <small class="error" aria-live="polite"></small>
+                </div>
+
+                <div class="form">
+                    <label for="lastName">Last Name : </label>
+                    <input id="lastName" name="lastName" type="text" placeholder="Yout Last Name"/>
+                    <small class="error" aria-live="polite"></small>
+                </div>
+
+                <div class="form">
+                    <label for="dateOfBirth">Date Of Birth : </label>
+                    <input id="dateOfBirth" name="dateOfBirth" type="date"/>
+                    <small class="error" aria-live="polite"></small>
+                </div>
+
+                <div class="form">
+                    <label for="occupation">Occupation : </label>
+                    <input id="occupation" name="occupation" type="text" placeholder="Enter Your Occupation"/>
+                    <small class="error" aria-live="polite"></small>
+                </div>
+
+                <div class="form">
+                    <label for="gender">Gender : </label>
+                    <select id="gender" name="gender">
+                        <option value="" selected disabled>Select</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                        <option value="na">Prefer not tot say</option>
+                    </select>
+                    <small class="error" aria-live="polite"></small>
+                </div>
+
+                
+            </fieldset>
+
+            <fieldset class="form-section account-details">
+                 <legend class="title">Account Details</legend>
+                 <div class="form">
+                    <label for="email">Email : </label>
+                    <input id="email" name="email" type="text" inputmode="email" placeholder="ex. example@email.com"/>
+                    <small class="error" aria-live="polite"></small>
+                </div>
+
+                 <div class="form">
+                    <label for="password">Password : </label>
+                    <input id="password" name="password" type="password" placeholder="Enter Yout Password"/>
+                    <small class="error" aria-live="polite"></small>
+                </div>
+
+                <div class="form">
+                    <label for="confirmPassword">Confirm Password : </label>
+                    <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Re-enter Your Password"/>
+                    <small class="error" aria-live="polite"></small>
+                </div>
+                
+            </fieldset>  
+
+            <div class="refister-actions">
+                <button class="btn-primary" type="submit">
+                    Register Now
+                </button>
+            </div>
+        </form>
+
+    </div>
 
 
    
