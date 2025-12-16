@@ -99,6 +99,15 @@
 
     .course-mini-card{ flex-basis: 85%; } /* 1 card σχεδόν full */
 
+    .registration-form{
+        padding: 40px 30px;
+    }
+
+    .form-section{
+        grid-template-columns: repeat(2 , minmax(0,1fr));
+        gap: 10px 10px;
+    }
+
 
       
 
@@ -127,4 +136,26 @@
 .fade-section.is-visible{
     opacity: 1;
     transform: translateY(0);
+}
+
+/* === Responsive === */
+@media (max-width: 900px) {
+    .section-container {
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .preview-cards {
+        align-items: center;
+    }
+
+    .categories-left {
+        align-items: center;
+    }
+
+    .categories-right {
+        align-items: center;
+    }
+
 }
