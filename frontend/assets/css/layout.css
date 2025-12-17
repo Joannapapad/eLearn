@@ -108,6 +108,9 @@
         gap: 10px 10px;
     }
 
+    .form-section.interests .error {
+        grid-column: 1 / -1;
+    }
 
       
 
@@ -124,6 +127,18 @@
         align-items: start;
         gap: 2rem;
     }
+
+}
+
+@media (max-width: 480px) {
+  .modal-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .modal-actions button {
+    width: 100%;
+  }
 }
 
 
