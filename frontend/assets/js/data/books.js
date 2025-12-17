@@ -16,7 +16,7 @@ const BOOKS = [
     author: "Harvey & Paul",
     edition: "2nd Edition",
     category: "programming",
-    image: "images/books/c-structured.jpg",
+    image: "assets/img/books/b102.png",
     description: "This textbook introduces structured programming concepts using the C language...",
     recommendedCourses: ["101"],
     recommendedVideos: ["v101", "v103", "v106"]
@@ -27,7 +27,7 @@ const BOOKS = [
     author: "Kenneth Rosen",
     edition: "8th Edition",
     category: "mathematics",
-    image: "images/books/discrete-math.jpg",
+    image: "assets/img/books/b103.png",
     description: "A thorough guide to discrete mathematics...",
     recommendedCourses: ["102"],
     recommendedVideos: ["v105", "v108"]
@@ -38,7 +38,7 @@ const BOOKS = [
     author: "Gilbert Strang",
     edition: "5th Edition",
     category: "mathematics",
-    image: "images/books/linear-algebra.jpg",
+    image: "assets/img/books/b104.png",
     description: "This book explores linear algebra in depth...",
     recommendedCourses: ["104", "501"],
     recommendedVideos: ["v104", "v108"]
@@ -49,7 +49,7 @@ const BOOKS = [
     author: "Y. Daniel Liang",
     edition: "10th Edition",
     category: "programming",
-    image: "images/books/java-liang.jpg",
+    image: "assets/img/books/b105.png",
     description: "A detailed introduction to Java programming...",
     recommendedCourses: ["103"],
     recommendedVideos: ["v101", "v103", "v106"]
@@ -60,7 +60,7 @@ const BOOKS = [
     author: "Robert Lafore",
     edition: "2nd Edition",
     category: "programming",
-    image: "images/books/data-structures-java.jpg",
+    image: "assets/img/books/b106.png",
     description: "Provides a clear and practical approach to understanding common data structures...",
     recommendedCourses: ["201"],
     recommendedVideos: ["v103", "v105", "v110"]
@@ -71,7 +71,7 @@ const BOOKS = [
     author: "Silberschatz, Korth, Sudarshan",
     edition: "7th Edition",
     category: "databases",
-    image: "images/books/db-concepts.jpg",
+    image: "assets/img/books/b107.png",
     description: "A comprehensive guide to relational database systems...",
     recommendedCourses: ["202", "303"],
     recommendedVideos: ["v102", "v107"]
@@ -82,7 +82,7 @@ const BOOKS = [
     author: "Silberschatz, Galvin, Gagne",
     edition: "10th Edition",
     category: "systems",
-    image: "images/books/os-concepts.jpg",
+    image: "assets/img/books/b108.png",
     description: "Covers the fundamental concepts of modern operating systems...",
     recommendedCourses: ["204", "301"],
     recommendedVideos: ["v109"]
@@ -93,7 +93,7 @@ const BOOKS = [
     author: "Kurose & Ross",
     edition: "7th Edition",
     category: "networks",
-    image: "images/books/computer-networks.jpg",
+    image: "assets/img/books/b109.png",
     description: "Explores networking concepts using a top-down approach...",
     recommendedCourses: ["401"],
     recommendedVideos: ["v109"]
@@ -104,7 +104,7 @@ const BOOKS = [
     author: "Russell & Norvig",
     edition: "4th Edition",
     category: "ai",
-    image: "images/books/ai-modern-approach.jpg",
+    image: "assets/img/books/b110.png",
     description: "A comprehensive overview of artificial intelligence...",
     recommendedCourses: ["502"],
     recommendedVideos: ["v104", "v108", "v110"]
@@ -115,7 +115,7 @@ const BOOKS = [
     author: "Tom Mitchell",
     edition:"6th Edition",
     category: "ai",
-    image: "images/books/machine-learning-mitchell.jpg",
+    image: "assets/img/books/b111.png",
     description: "Introduces machine learning principles...",
     recommendedCourses: ["501"],
     recommendedVideos: ["v104", "v108", "v110"]
@@ -126,7 +126,7 @@ const BOOKS = [
     author: "CLRS",
     edition: "3rd Edition",
     category: "mathematics",
-    image: "images/books/clrs.jpg",
+    image: "assets/img/books/b112.png",
     description: "Authoritative reference on algorithms...",
     recommendedCourses: ["201", "302"],
     recommendedVideos: ["v103", "v105"]
@@ -137,7 +137,7 @@ const BOOKS = [
     author: "Shneiderman & Plaisant",
     edition: "6th Edition",
     category: "design",
-    image: "images/books/ui-design.jpg",
+    image: "assets/img/books/b113.png",
     description: "Covers principles of human-computer interaction...",
     recommendedCourses: ["304"],
     recommendedVideos: ["v107"]
@@ -148,7 +148,7 @@ const BOOKS = [
     author: "Terry Felke-Morris",
     edition: "9th Edition",
     category: "engineering",
-    image: "images/books/web-dev.jpg",
+    image: "assets/img/books/b114.png",
     description: "Introduces front-end and back-end web development...",
     recommendedCourses: ["303", "402", "503"],
     recommendedVideos: ["v107", "v101"]
@@ -158,7 +158,7 @@ const BOOKS = [
     title: "Cloud Computing: Concepts, Technology & Architecture",
     author: "Thomas Erl",
     category: "data",
-    image: "images/books/cloud-computing.jpg",
+    image: "assets/img/books/b115.png",
     description: "Provides a detailed exploration of cloud computing concepts...",
     recommendedCourses: ["403", "504"],
     recommendedVideos: ["v107", "v109"]
@@ -168,7 +168,7 @@ const BOOKS = [
     title: "Big Data: Principles and Best Practices",
     author: "Nathan Marz",
     category: "data",
-    image: "images/books/big-data.jpg",
+    image: "assets/img/books/b116.png",
     description: "Covers the principles and techniques for handling big data...",
     recommendedCourses: ["504"],
     recommendedVideos: ["v107", "v108"]
