@@ -174,7 +174,7 @@
     position: absolute;
     inset: 0;
     backdrop-filter: blur(2px);
-    background: rgba(163, 150, 150, 0.466); /* dark overlay */
+    background: rgba(131, 133, 140, 0.466); /* dark overlay */
     z-index: 2;
 }
 
@@ -462,7 +462,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(77, 74, 74, 0.6);
+    background: rgba(131, 133, 140, 0.466); /* dark overlay */
     backdrop-filter: blur(2px);
     z-index: 2;
 }

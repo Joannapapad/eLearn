@@ -1,19 +1,36 @@
-:root {
-    --primary: #e4dbdb;
-    --primary-dark: #5a4f4f;
-    --secondary-blue: #c9c7b8;
-    --secondary-teal: #d8cfc4;
-    --accent-orange: #f3e2c6;
-    --bg-light: #f9f5ef;
-    --gray-light: #e8e1d9;
-    --gray-medium: #b7aa9f;
-    --text-dark: #3a2f2b;
-    --text-medium: #6a5e56;
-    --card-bg: #ffffff;
-    --footer-bg: #2e2420;
-    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --radius: 12px;
+:root{
+  /* Brand (main) */
+  --primary: #4B5563;        /* slate gray */
+  --primary-dark: #1F2937;   /* charcoal */
+
+  /* Secondary */
+  --secondary-blue: #9CA3AF; /* gray 400 */
+  --secondary-teal: #E5E7EB; /* gray 200 */
+  --accent-orange: #6B7280;  /* gray 500 (as accent) */
+
+  /* Backgrounds */
+  --bg-light: #F9FAFB;       /* near-white gray */
+  --gray-light: #E5E7EB;     /* borders */
+  --gray-medium: #9CA3AF;    /* muted elements */
+
+  /* Text */
+  --text-dark: #111827;      /* almost black */
+  --text-medium: #374151;    /* readable gray */
+
+  /* Cards */
+  --card-bg: #FFFFFF;
+
+  /* Footer */
+  --footer-bg: #111827;
+
+  /* Effects */
+  --shadow-soft: 0 6px 18px rgba(0,0,0,0.08);
+  --radius: 12px;
 }
+
+
+
+
 html {
     height: 100%;
     min-height: 100vh;
@@ -151,3 +168,26 @@ footer {
     margin: 0;
     text-align: center;
 }
+
+.btn-primary{
+  background: var(--primary-dark);
+  color: #fff;
+}
+.btn-primary:hover{
+  background: #0B1220;
+}
+
+
+.card,
+.course-card,
+.book-card,
+.category,
+.preview-card,
+.creator,
+.details,
+.filters,
+.registration-form{
+  background: var(--card-bg);
+  border: 1px solid var(--gray-light);
+}
+
