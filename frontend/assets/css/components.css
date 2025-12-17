@@ -1096,7 +1096,8 @@
     background: var(--card-bg);
     border-radius: var(--radius);
     box-shadow: var(--shadow-soft);
-    padding: 30px 20px;
+    padding: 30px 30px;
+    margin-top: 40px;
 }
 
 .form-section{
