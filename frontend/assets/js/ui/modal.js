@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     <div class="book-body">
                         <div class="book-photo flex">
-                            <img src="${book.image}" alt="${book.title}">
+                            <img src="assets/img/books/${book.id}.png" alt="${book.title}">
                         </div>
 
                         <p class="book-desc">${book.description}</p>

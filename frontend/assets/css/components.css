@@ -174,7 +174,7 @@
     position: absolute;
     inset: 0;
     backdrop-filter: blur(2px);
-    background: rgba(131, 133, 140, 0.466); /* dark overlay */
+    background: rgba(163, 150, 150, 0.466); /* dark overlay */
     z-index: 2;
 }
 
@@ -209,7 +209,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 400px;
+    min-width: 300px;
     flex-direction: column;
     padding-bottom: 1.5rem;
     background-color: var(--gray-light);
@@ -244,11 +244,9 @@
    COURSES GRID & CARDS
 ========================================= */
 .courses-grid {
-    width: 100%;
     max-width: 1200px;
     margin: auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 16px;
     padding: 20px;
     overflow: hidden;
@@ -276,7 +274,7 @@
     min-height: 180px;
 }
 .book-card{
-    max-width: 400px;
+    max-width: 350px;
 }
 .course-card:hover {
     transform: translateY(-4px);
@@ -462,7 +460,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(131, 133, 140, 0.466); /* dark overlay */
+    background: rgba(77, 74, 74, 0.6);
     backdrop-filter: blur(2px);
     z-index: 2;
 }
@@ -1052,6 +1050,12 @@
 .recommended-categories {
     background-color: var(--gray-light);
 }
+
+
+
+
+
+
 
 
 

@@ -92,7 +92,7 @@ if (window.location.pathname.includes("courses.html")) {
             coursesList.innerHTML = results.map(c => `
                 <div class="course-card" data-id="${c.id}">
                 <div class="course-image">
-                    <img src="assets/img/courses/${c.image}" alt="${c.title}">
+                    <img src="assets/img/courses/${c.id}.png" alt="${c.title}">
                 </div>
         
                     <div class="card-header">
