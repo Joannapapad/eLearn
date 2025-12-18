@@ -58,5 +58,3 @@ function initScrollHeader() {
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleScroll); 
 }
-
-

@@ -244,15 +244,21 @@ document.addEventListener("click", function (e) {
     player.play();
 });
 
-// Close overlay
-document.getElementById("video-close").addEventListener("click", closeOverlay);
+const videoClose = document.getElementById("video-close");
+const videoOverlay = document.getElementById("video-overlay");
 
-// Close when clicking outside video
-document.getElementById("video-overlay").addEventListener("click", (e) => {
-    if (e.target.id === "video-overlay") {
-        closeOverlay();
-    }
-});
+if (videoClose) {
+    videoClose.addEventListener("click", closeOverlay);
+}
+
+if (videoOverlay) {
+    videoOverlay.addEventListener("click", (e) => {
+        if (e.target.id === "video-overlay") {
+            closeOverlay();
+        }
+    });
+}
+
 
 function closeOverlay() {
     const overlay = document.getElementById("video-overlay");

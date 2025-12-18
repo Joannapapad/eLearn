@@ -1,7 +1,7 @@
 const BOOKS = [
   {
     id: "B101",
-    title: "Python Programming: An Introduction to Computer Science",
+    title: "Python Programming: Introduction to Computer Science",
     author: "John Zelle",
     edition: "3rd Edition",
     category: "programming",

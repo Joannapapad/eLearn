@@ -1,29 +1,6 @@
 /* =========================================
-   ABOUT US PAGE - Beige Theme
+   COMPONENTS - About Us
 ========================================= */
-.about-us {
-    background: var(--bg-light);
-    padding: 4em 2em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: var(--text-dark);
-}
-
-.about-container {
-    max-width: 1000px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 2rem;
-    justify-content: space-between;
-    margin-bottom: 4em;
-}
-
-.about-text {
-    flex: 1 1 500px;
-}
-
 .about-text h1 {
     font-size: 2.5rem;
     color: var(--primary-dark);
@@ -42,39 +19,11 @@
     color: var(--text-medium);
 }
 
-.about-image {
-    flex: 1 1 400px;
-    display: flex;
-    justify-content: center;
-}
-
 .about-image img {
     width: 100%;
     max-width: 400px;
     border-radius: var(--radius);
     box-shadow: var(--shadow-soft);
-}
-
-/* Stats */
-.stats {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    max-width: 1000px;
-    text-align: center;
-    margin-top: 2em;
-    flex-wrap: wrap;
-    gap: 2rem;
-}
-
-.stat-item {
-
-    flex: 1 1 200px;
-    padding: 1.5em;
-}
-
-.two, .three{
-    border-left: 2px solid var(--primary-dark);
 }
 
 .stat-item h3 {
@@ -106,28 +55,14 @@
     background: var(--primary-dark);
 }
 
-/* Creators Section */
-.creators {
-    max-width: 1000px;
-    margin: 4rem auto;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-}
 
+/* =========================================
+   COMPONENTS - Creators Section
+========================================= */
 .creator {
-    display: flex;
-    flex-direction: row-reverse; /* image on the right */
-    align-items: center;
-    gap: 2rem;
     background: var(--card-bg);
-    padding: 1.5rem;
     border-radius: var(--radius);
     box-shadow: var(--shadow-soft);
-}
-
-.creator-info {
-    flex: 1;
 }
 
 .creator-info h3 {
@@ -150,74 +85,11 @@
     box-shadow: var(--shadow-soft);
 }
 
-/* =========================================
-   COURSES & DETAILS PAGE BACKGROUNDS
-========================================= */
-.courses-picture,
-.courses-details-picture {
-    width: 100%;
-    background-image: url("/frontend/assets/img/homebackground.png"); /* Replace with your image */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 40px 0; /* space above and below title */
-    position: relative;
-}
-
-.courses-details-picture {
-    min-height: 100vh;
-} 
-
-.courses-picture::before,
-.courses-details-picture::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    backdrop-filter: blur(2px);
-    background: rgba(163, 150, 150, 0.466); /* dark overlay */
-    z-index: 2;
-}
-
-.courses-details-picture * {
-    position: relative;
-    z-index: 2;
-}
-
 
 /* =========================================
-   LAYOUT & CONTAINERS
+   COMPONENTS - Courses & Filters
 ========================================= */
-.desktop {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
-}
-
-.container {
-    flex-direction: column;
-    width: 100%;
-    padding: 2rem;
-    gap: 1rem;
-}
-
-/* =========================================
-   FILTERS
-========================================= */
-.filters {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 300px;
-    flex-direction: column;
-    padding-bottom: 1.5rem;
-    background-color: var(--gray-light);
-}
-
 .filters label {
-    display: flex;
-    font-size: 0.9rem;
     color: var(--text-medium);
 }
 
@@ -230,27 +102,13 @@
     background: var(--bg-light);
 }
 
-.filter-options {
-    display: none;
-}
 
-.filter-options.open {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-/* =========================================
-   COURSES GRID & CARDS
-========================================= */
-.courses-grid {
-    max-width: 1200px;
-    margin: auto;
-    display: grid;
-    gap: 16px;
-    padding: 20px;
-    overflow: hidden;
-    box-sizing: border-box;
+.courses-picture,
+.courses-details-picture {
+    background-image: url("/frontend/assets/img/homebackground.png"); /* Replace with your image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .course-card,
@@ -276,6 +134,7 @@
 .book-card{
     max-width: 350px;
 }
+
 .course-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 6px 14px rgba(0,0,0,0.15);
@@ -339,18 +198,6 @@
     padding: 18px;
 }
 
-/* CATEGORY COLORS */
-.book-programming   { background: #a3c4f3; }
-.book-networks      { background: #d2a6f5; }
-.book-security      { background: #f5a3a3; }
-.book-databases     { background: #f5c28a; }
-.book-core          { background: #98d5b1; }
-.book-mathematics   { background: #90bede; }
-.book-systems       { background: #a8a9f0; }
-.book-design        { background: #e4a3d8; }
-.book-engineering   { background: #9c8c99; }
-.book-ai            { background: #a3a9f3; }
-.book-data          { background: #85c4d4; }
 
 /* =========================================
    COURSE CARD HEADER
@@ -364,14 +211,12 @@
 .course-title {
     margin: 0;
     font-size: 1.2rem;
-    color: var(--primary-dark);
 }
 
 .main-course-title {
     margin: 0;
     text-align: start;
     font-size: 1.1rem;
-    color: var(--primary-dark);
 }
 
 .course-category-icon {
@@ -381,7 +226,6 @@
     align-items: center;
     justify-content: center;
     border-radius: 20px;
-    background-color: var(--primary);
 }
 
 .course-category-icon img {
@@ -394,7 +238,6 @@
     margin: 4px 0 10px;
     font-size: 0.88rem;
     font-weight: 600;
-    color: var(--text-medium);
 }
 
 /* =========================================
@@ -404,92 +247,40 @@
 .book-description,
 .book-desc  {
     font-size: 0.9rem;
-    color: var(--text);
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: justify;
-    border-left: 2px solid var(--primary-dark);
     padding-left: 10px;
     margin-top: 2rem;
     margin-bottom: 20px;
-    -webkit-line-clamp: all; /* Limits to 4 lines */
-
 }
 
-.course-image {
-    width: 100%;
-    aspect-ratio: 16 / 9;   /* ΑΛΛΑΞΕ αν θες π.χ. 4 / 3 */
-    overflow: hidden;
-    border-radius: 10px 10px 0 0;
-    padding-bottom: 10px;
-}
-
-.course-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
- .book-description  {
+.book-description  {
     -webkit-line-clamp: 4; /* Limits to 4 lines */
     margin: 0;
-
 }
 
-.book-photo img{
-    max-width: 350px;
-    max-height: 350px;
+.course-desc,
+.book-desc  {
+    -webkit-line-clamp: all; /* Limits to 4 lines for courses */
 }
 
 /* =========================================
    HOME PAGE HERO
 ========================================= */
-.hero {
-    position: relative;
-    background: url("../img/homebackground.png") center/cover no-repeat;
-    height: 80vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    color: white;
-}
-
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(77, 74, 74, 0.6);
-    backdrop-filter: blur(2px);
-    z-index: 2;
-}
-
-.hero .hero-content {
-    position: relative;
-    z-index: 2;
-}
-
 .hero-content h1 {
     font-size: 2rem;
-    color: var(--text-medium);
-}
-
-.hero-content h1 span {
-    color: var(--primary);
 }
 
 .hero-content p {
     font-size: 1rem;
-    color: var(--text-medium);
 }
 
-.buttons {
-    margin-top: 1.5rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-}
+
+
+
 
 /* =========================================
    CATEGORIES
@@ -630,6 +421,15 @@
     height: 50px;
 }
 
+
+
+
+
+
+
+
+
+
 /* =========================================
    BOOK SLIDER (Recommended Books)
 ========================================= */
@@ -643,7 +443,6 @@
     box-sizing: border-box;
     padding: 0;
 }
-
 .book-item {
     position: relative;
     width: 100%;
@@ -656,7 +455,6 @@
     color: #333;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 .book-item:hover {
     transform: translateY(-2px);
     box-shadow: 0 3px 10px rgba(0,0,0,0.1);
@@ -985,9 +783,11 @@
     height: 80%;
     object-fit: contain;
 }
-
+.about-preview-image .btn-primary{
+    margin: 25px;
+}
 .about-preview-image {
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-around;
 }
 .about-preview-image img {
@@ -1011,6 +811,8 @@
     text-align: center;
     transition: 0.3s ease;
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
     height: 250px;
 }
@@ -1230,14 +1032,3 @@
   justify-content: flex-end;
   margin-top: 16px;
 }
-
-
-
-
-
-
-
-
-
-
-
