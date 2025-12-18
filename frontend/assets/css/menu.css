@@ -68,7 +68,7 @@
     justify-content: center;
 
     text-align: center;
-    background-color: #f3f3f386;
+    background-color: var(--light);
     -webkit-backdrop-filter: blur(2rem);
     backdrop-filter: blur(2rem);
 
@@ -122,7 +122,7 @@
     position: relative;
     top: 5px;
     height: 7px;
-    background-color: #726262;
+    background-color: var(--primary);
     margin-bottom: 10px;
     transition: 0.3s ease transform, 0.3s ease top, 0.3s ease width,
       0.3s ease right;

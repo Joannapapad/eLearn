@@ -80,8 +80,12 @@
 .courses-picture,
 .courses-details-picture {
     max-width: 100%;
-    padding: 40px 0;
+    padding: 40px 0 10px 0;
     position: relative;
+}
+
+.courses-details-picture {
+    min-width: 100vh;
     
 }
 .courses-picture::before,
@@ -91,7 +95,7 @@
     inset: 0;
     backdrop-filter: blur(2px);
 
-    background: rgba(163, 150, 150, 0.466);
+    background: rgba(166, 166, 166, 0.678);
     z-index: 2;
 }
 
@@ -136,6 +140,14 @@
     gap: 6px;
 }
 
+.creator {
+    flex-direction: column;
+    text-align: center;
+}
+.creator-image img {
+    width: 150px;
+    height: 150px;
+}
 
 /* =========================================
    COURSES GRID
@@ -183,7 +195,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(77, 74, 74, 0.6);
+    background: rgba(173, 174, 174, 0.571);
     backdrop-filter: blur(2px);
     z-index: 2;
 }
@@ -225,8 +237,6 @@
 
 
 
-
-
 /* Mobile */
 .courses-grid,
 .categories-right,
@@ -251,6 +261,11 @@
 
 
 @media (min-width: 800px) {
+    
+    .fade-section {
+        padding: 3rem 2rem 3rem 2rem;
+    }
+    
     
     .nav-toggle {
         display: none;
@@ -298,6 +313,11 @@
     .book-edition {
         display: none;
     }
+
+    .courses-picture,
+    .courses-details-picture {
+        padding: 70px 0 10px;        
+    }
 }
 
 @media (min-width: 950px) {
@@ -310,12 +330,20 @@
     .book-edition {
         display: block;
     }
+
+    .fade-section {
+        padding: 5rem 4rem 5rem 4rem;
+    }
+    
 }
 
 
 
 @media (min-width: 1024px) {
-
+    .courses-picture,
+    .courses-details-picture {
+        padding: 90px 0 30px;        
+    }
     .book-title {
         font-size: 1.2em;
     }
@@ -326,11 +354,6 @@
         gap: 1.5rem;
     }
 
-    @media (min-width: 1300px) {
-        .courses-grid {
-            grid-template-columns: repeat(3, 1fr); /* 3 columns  */
-        }
-    }
 
 }
 
@@ -343,17 +366,8 @@
         align-items: center;
     }
 }
-/* Responsive: stack on small screens */
-@media (max-width: 800px) {
-    .creator {
-        flex-direction: column;
-        text-align: center;
-    }
-    .creator-image img {
-        width: 150px;
-        height: 150px;
-    }
-}
+
+
 
 /* Responsive - Mobile-first (min-width for larger screens) */
 @media (min-width: 801px) {
@@ -369,5 +383,12 @@
     }
     .about-text h2 {
         font-size: 1.5rem;
+    }
+}
+
+
+@media (min-width: 1300px) {
+    .courses-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns  */
     }
 }
