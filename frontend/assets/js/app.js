@@ -151,6 +151,35 @@ function initBooksPage() {
     renderBooks();
 }
 
+function initAboutPage() {
+        const counters = document.querySelectorAll(".stat-item h3");
+
+        if (counters.length) {
+            const duration = 2000;
+
+            counters.forEach(counter => {
+                const target = parseInt(counter.textContent.replace(/,/g, ''));
+                let start = null;
+
+                const updateCounter = (timestamp) => {
+                    if (!start) start = timestamp;
+                    const progress = timestamp - start;
+                    const current = Math.min(
+                        Math.floor((progress / duration) * target),
+                        target
+                    );
+                    counter.textContent = current.toLocaleString();
+
+                    if (progress < duration) {
+                        requestAnimationFrame(updateCounter);
+                    }
+                };
+
+                requestAnimationFrame(updateCounter);
+            });
+        }
+}
+
 function initIndexPage() {
     /* ============================
        FADE-IN SECTIONS
@@ -242,4 +271,6 @@ function initIndexPage() {
 
     prevBtn?.addEventListener("click", () => scrollCourseCard(-1));
     nextBtn?.addEventListener("click", () => scrollCourseCard(1));
+
+
 }

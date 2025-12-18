@@ -103,8 +103,8 @@ const VIDEOS = [
         title: "Data Visualization Fundamentals",
         category: "data-science",
         duration: "15:55",
-        thumbnail: "assets/img/thumbnails/video10.jpg",
-        src: "assets/img/videos/v110.mp4",
+        thumbnail: "assets/img/thumbnails/video109.jpg",
+        src: "assets/img/videos/v109.mp4",
         level: "beginner",
         description: "Learn how charts, graphs, and dashboards help communicate insights, including common visualization tools.",
         tags: ["data", "charts"]

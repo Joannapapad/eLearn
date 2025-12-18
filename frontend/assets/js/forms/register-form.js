@@ -1,15 +1,19 @@
 document.addEventListener("DOMContentLoaded" , () => {
+    //get the registration form 
     const form = document.getElementById("registrationForm");
     if(!form) return;
 
+    //modal elements for the preview step 
     const modal = document.getElementById("summaryModal");
     const summaryBox = document.getElementById("summaryBox");
     const editBtn = document.getElementById("editBtn");
     const confirmBtn = document.getElementById("confirmBtn");
 
-    const DRAFT_KEY = "registerDraft";
-    const FINAL_KEY= "registrationData";
+    //Local storage keys 
+    const draft = "registerDraft"; // autosaves form progress
+    const final= "registrationData"; // confirmed registration data 
 
+    // input elements 
     const fields = {
         firstName : document.getElementById("firstName"),
         lastName:document.getElementById("lastName"),
@@ -22,6 +26,9 @@ document.addEventListener("DOMContentLoaded" , () => {
         goal:document.getElementById("goal")
     };
 
+    /*Error helpers*/
+
+    //finds the .error element that belongs to the same .form as the input i 
     function getError(i) {
         if(!i) 
             return null;
@@ -37,6 +44,7 @@ document.addEventListener("DOMContentLoaded" , () => {
     
     }
 
+    // set/remove an error message
     function setError(i,mess) {
         const err = getError(i);
         if(err) 
@@ -49,6 +57,7 @@ document.addEventListener("DOMContentLoaded" , () => {
         }
     }
 
+    //clear all errors 
     function clearErrors(){
         Object.values(fields).forEach((element) => element && setError(element,""));
         const interestErr= form.querySelector(".form-section.interests .error");
@@ -57,14 +66,19 @@ document.addEventListener("DOMContentLoaded" , () => {
         const expErr= form.querySelectorAll(".form-section.recommendations .error").forEach(e=>(e.textContent=""));
     }
 
+    /*Validation helpers*/
+
+    //check if a value is empty
     function isEmpty(value){
         return value==null || String(value).trim() ==="";
     }
 
+    //email format
     function isValidEmail(email) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
 
+    //pasword strength
     function strongPassword(pass) {
         const len = pass.length >=10;
         const upper = /[A-Z]/.test(pass);
@@ -74,6 +88,7 @@ document.addEventListener("DOMContentLoaded" , () => {
         return len && upper && lower && num && symbol;
     }
 
+    // calculate age from data object
     function calcAge(date){
         const today = new Date();
         let age = today.getFullYear() - date.getFullYear();
@@ -84,6 +99,7 @@ document.addEventListener("DOMContentLoaded" , () => {
         return age;
     }
 
+    // form to object convertion
     function formToObject() {
         const fd = new FormData(form);
         const obj = {};
@@ -100,6 +116,7 @@ document.addEventListener("DOMContentLoaded" , () => {
         return obj;
   }
 
+  // fill the form from a save object
   function fillForm(data) {
     if (!data || typeof data !== "object") return;
 
@@ -131,15 +148,17 @@ document.addEventListener("DOMContentLoaded" , () => {
     }
   }
 
-  // ---- Draft save/restore ----
+/*draft save/restore */
+
+//save current data as a draft
   function saveDraft() {
     const data = formToObject();
-    // don't store confirm password if you want (optional). We'll keep it simple:
-    localStorage.setItem(DRAFT_KEY, JSON.stringify(data));
+    localStorage.setItem(draft, JSON.stringify(data));
   }
 
+  //restore draft if it exists
   function restoreDraft() {
-    const raw = localStorage.getItem(DRAFT_KEY);
+    const raw = localStorage.getItem(draft);
     if (!raw) return;
     try {
       const data = JSON.parse(raw);
@@ -153,15 +172,16 @@ document.addEventListener("DOMContentLoaded" , () => {
   form.addEventListener("input", saveDraft);
   form.addEventListener("change", saveDraft);
 
-  // restore on load
+  // restore draft 
   restoreDraft();
 
-  // ---- Group error helper (interests, experience) ----
+ //set error message for a section .error element 
   function setGroupError(selector, message) {
     const err = form.querySelector(selector);
     if (err) err.textContent = message || "";
   }
 
+  //required fields 
     const required = [
         "firstName" , 
         "lastName",
@@ -172,11 +192,13 @@ document.addEventListener("DOMContentLoaded" , () => {
         "goal"
     ];
 
+    // validate the form and shws error on screen
     function validateFields() {
         clearErrors();
         let accept = true;
         let firstInvalid = null;
 
+        //required fields check 
         for(const fieledName of required) {
             const element = fields[fieledName];
 
@@ -190,6 +212,7 @@ document.addEventListener("DOMContentLoaded" , () => {
             }
         }
 
+        //email format check
         if( fields.email && !isEmpty(fields.email.value) && !isValidEmail(fields.email.value)) {
             accept = false;
             if(!firstInvalid) 
@@ -197,6 +220,7 @@ document.addEventListener("DOMContentLoaded" , () => {
             setError(fields.email , "Please enter a valid email addres (eg. example@email.com");
         }
 
+        //password strength check
         if(fields.password && !isEmpty(fields.password.value) && !strongPassword(fields.password.value)) {
             accept = false;
             if(!firstInvalid) 
@@ -204,6 +228,7 @@ document.addEventListener("DOMContentLoaded" , () => {
             setError(fields.password , "Password should be at least 10 characters, 1 lowercase , 1 uppercase, 1 number and 1 symbol");
         }
 
+        //password match check
         if( fields.password && fields.confirmPassword && !isEmpty(fields.password.value) && !isEmpty(fields.confirmPassword.value) && fields.password.value!== fields.confirmPassword.value ) {
             accept = false;
             if(!firstInvalid) 
@@ -212,6 +237,7 @@ document.addEventListener("DOMContentLoaded" , () => {
 
         }
 
+        //age check 
        if (fields.dateOfBirth && !isEmpty(fields.dateOfBirth.value)) {
             const dob = new Date(fields.dateOfBirth.value);
             if (Number.isNaN(dob.getTime())) {
@@ -228,11 +254,12 @@ document.addEventListener("DOMContentLoaded" , () => {
             }
         }
 
+        //interests checkbox required
         const interestsChecked = form.querySelectorAll('input[name="interests"]:checked');
         if (interestsChecked.length === 0) {
             accept = false;
             setGroupError(".form-section.interests .error", "Select at least one interest");
-            if (!firstInvalid && fields.firstName) firstInvalid = fields.firstName; // fallback focus
+            if (!firstInvalid && fields.firstName) firstInvalid = fields.firstName; 
         }
 
         // experience radio required
@@ -249,40 +276,33 @@ document.addEventListener("DOMContentLoaded" , () => {
         }
 
 
-
+        // focus the first invalid field
         if(!accept && firstInvalid) 
             firstInvalid.focus();
         return accept;
     }
 
-    fields.email?.addEventListener("blur" , () => {
-        if(isEmpty(fields.email.value))
-            return setError(fields.email,"");
-        setError(fields.email , isValidEmail(fields.email.value) ? "" : "Invalid email format");
-    });
+   
+    /*Modal */
 
-    fields.confirmPassword?.addEventListener("blur" , () => {
-        if(isEmpty(fields.confirmPassword.value))
-            return setError(fields.confirmPassword,"");
-        setError(fields.confirmPassword , fields.password.value === fields.confirmPassword.value ? "" : "Passwords do not match");
-    });
-
-        
-    // ---- Modal open/close + summary ----
+    //temporary object that stires the validated form data draft 
     let pendingData = null;
 
+    //open preview modal
     function openModal() {
         if (!modal) return;
         modal.setAttribute("aria-hidden", "false");
         document.body.style.overflow = "hidden";
     }
 
+    //close preview modal
     function closeModal() {
         if (!modal) return;
         modal.setAttribute("aria-hidden", "true");
         document.body.style.overflow = "";
     }
 
+    // summary HTML inside modal
     function showSummary(data) {
         if (!summaryBox) return;
 
@@ -300,7 +320,7 @@ document.addEventListener("DOMContentLoaded" , () => {
         `;
     }
 
-    // simple HTML escape to avoid injecting raw user text
+    // escape user-provided strings to prevent HTML injection
     function escapeHtml(str) {
         return String(str).replace(/[&<>"']/g, (m) => {
         const map = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
@@ -308,20 +328,22 @@ document.addEventListener("DOMContentLoaded" , () => {
         });
     }
 
-    // close modal on click outside the content
+    // close modal when the user clicks outside the modal 
     modal?.addEventListener("click", (e) => {
         if (e.target === modal) closeModal();
     });
 
+    //edit returns the user t the form 
     editBtn?.addEventListener("click", () => closeModal());
 
+    //confirm saves the final data and clears draft
     confirmBtn?.addEventListener("click", () => {
         if (!pendingData) return;
 
-        // save final
-        localStorage.setItem(FINAL_KEY, JSON.stringify(pendingData));
-        // clear draft
-        localStorage.removeItem(DRAFT_KEY);
+        // save final data 
+        localStorage.setItem(final, JSON.stringify(pendingData));
+        // remove draft
+        localStorage.removeItem(draft);
 
         closeModal();
         form.reset();
@@ -330,17 +352,20 @@ document.addEventListener("DOMContentLoaded" , () => {
         alert("Registration successful!");
     });
 
-    // ---- Submit handler: validate -> show preview modal ----
+    /*Submit */
     form.addEventListener("submit", (e) => {
         e.preventDefault();
 
         if (!validateFields()) return;
 
+        //prepare pending data from form
         pendingData = formToObject();
+
         // don't show passwords in summary
         delete pendingData.password;
         delete pendingData.confirmPassword;
 
+        //show preview modal
         showSummary(pendingData);
         openModal();
     });

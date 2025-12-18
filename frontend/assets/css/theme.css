@@ -6,7 +6,7 @@
   /* Secondary */
   --secondary-blue: #9CA3AF; 
   --secondary-teal: #E5E7EB; 
-  --accent-orange: #6B7280; 
+  --accent: #6B7280; 
 
   /* Backgrounds */
   --bg-light: #F9FAFB;      
@@ -179,14 +179,6 @@ footer {
     padding: 2em;
     margin: 0;
     text-align: center;
-}
-
-.btn-primary{
-  background: var(--primary-dark);
-  color: #fff;
-}
-.btn-primary:hover{
-  background: #0B1220;
 }
 
 .course-title,

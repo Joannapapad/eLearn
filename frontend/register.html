@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
 
+    <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/theme.css">
     <link rel="stylesheet" href="assets/css/menu.css">
     <link rel="stylesheet" href="assets/css/components.css">
@@ -13,7 +14,7 @@
 </head>
 <body>
 
-<header>Register Form</header>
+<header></header>
 
 <main class=" form-container">
     <div class="background-image">
@@ -64,14 +65,14 @@
                  <legend class="title">Account Details</legend>
                  <div class="form">
                     <label for="email">Email : </label>
-                    <input id="email" name="email" type="text" inputmode="email" required autocomplete="email" placeholder="ex. example@email.com"/>
+                    <input id="email" name="email" type="email" inputmode="email" required autocomplete="email" placeholder="ex. example@email.com"/>
                     <small class="error" aria-live="polite"></small>
                 </div>
 
                  <div class="form">
                     <label for="password">Password : </label>
                     <input id="password" name="password" type="password" required minlength="10" 
-                     patern= "(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{10,}" title="At least 10 chars , 1 uppercase, 1 lowercase, 1 number, 1 symbol"
+                    pattern= "(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{10,}" title="At least 10 chars , 1 uppercase, 1 lowercase, 1 number, 1 symbol"
                     placeholder="Enter Yout Password" autocomplete="new-password"/>
                     <small class="error" aria-live="polite"></small>
                 </div>
@@ -85,7 +86,7 @@
                 
             </fieldset>
             
-            <fieldset class="form-section intersts">
+            <fieldset class="form-section interests">
                 <legend class="title">Intersts </legend>
 
                 <div class="form">
@@ -108,7 +109,7 @@
                 <legend class="title">Learning Profile</legend>
 
                 <div class="form">
-                    <label><input type="radio" name="experience" value="begginer" required>Beginner</label>
+                    <label><input type="radio" name="experience" value="begginer" required>Begginer</label>
                     <label><input type="radio" name="experience" value="intermidiate" required>Intermidiate</label>
                     <label><input type="radio" name="experience" value="advanced" required>Advanced</label>
                     <small class="error" aria-live="polite"></small>
@@ -117,7 +118,7 @@
                 <div class="form">
                     <label for="goal">Goal </label>
                     <select id="goal" name="goal" required>
-                        <option value="" selected>Select Goal</oprtion>
+                        <option value="" selected>Select Goal</option>
                         <option value="job">Get a Job</option>
                         <option value="uni">University Support</option>
                         <option value="hobby">Hobby</option>

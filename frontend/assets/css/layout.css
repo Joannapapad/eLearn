@@ -1,6 +1,4 @@
-/* =========================================
-   LAYOUT - About Us
-========================================= */
+/* LAYOUT - About Us */
 .about-us {
     display: flex;
     flex-direction: column;
@@ -48,9 +46,7 @@
     border-left: 2px solid var(--primary-dark);
 }
 
-/* =========================================
-   LAYOUT - Creators Section
-========================================= */
+/* LAYOUT - Creators Section */
 .creators {
     max-width: 1000px;
     margin: 4rem auto;
@@ -59,13 +55,7 @@
     gap: 3rem;
 }
 
-.creator {
-    display: flex;
-    flex-direction: row-reverse; /* εικόνα δεξιά */
-    align-items: center;
-    gap: 2rem;
-    padding: 1.5rem;
-}
+
 .creator-info {
     flex: 1;
 }
@@ -74,9 +64,7 @@
     justify-content: center;
 }
 
-/* =========================================
-   LAYOUT - Courses & Details Page
-========================================= */
+/* LAYOUT - Courses & Details Page */
 .courses-picture,
 .courses-details-picture {
     max-width: 100%;
@@ -85,7 +73,7 @@
 }
 
 .courses-details-picture {
-    min-width: 100vh;
+    min-height: 100vh;
     
 }
 .courses-picture::before,
@@ -141,17 +129,20 @@
 }
 
 .creator {
+    display:flex;
     flex-direction: column;
     text-align: center;
+    gap:2rem;
+    padding:1.5rem;
+
+
 }
 .creator-image img {
     width: 150px;
     height: 150px;
 }
 
-/* =========================================
-   COURSES GRID
-========================================= */
+/* COURSES GRID*/
 .courses-grid {
     max-width: 1200px;
     margin: auto;
@@ -165,7 +156,7 @@
 
 .course-image {
     width: 100%;
-    aspect-ratio: 4 / 3;   /* ΑΛΛΑΞΕ αν θες π.χ. 4 / 3 */
+    aspect-ratio: 4 / 3;
     overflow: hidden;
     border-radius: 10px 10px 0 0;
     padding-bottom: 10px;
@@ -229,24 +220,14 @@
     margin-bottom: 15px;
 }
 
-
-
-
-
-
-
-
-
 /* Mobile */
 .courses-grid,
 .categories-right,
 .categories-container {
     display: grid;
-    grid-template-columns: 1fr; /* 1 column mobile */
+    grid-template-columns: 1fr; 
     gap: 1.5rem;
 }
-
-
 
 
 /* Tablet */
@@ -254,13 +235,19 @@
     .courses-grid,
     .categories-right,
     .categories-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns tablet */
+        grid-template-columns: repeat(2, 1fr); 
     }
 
 }
 
 
 @media (min-width: 800px) {
+
+    .creator {
+    display: flex;
+    text-align: left;
+    align-items: center;
+}
     
     .fade-section {
         padding: 3rem 2rem 3rem 2rem;
@@ -337,8 +324,6 @@
     
 }
 
-
-
 @media (min-width: 1024px) {
     .courses-picture,
     .courses-details-picture {
@@ -368,8 +353,6 @@
 }
 
 
-
-/* Responsive - Mobile-first (min-width for larger screens) */
 @media (min-width: 801px) {
     .about-container {
         flex-direction: row;
@@ -389,6 +372,6 @@
 
 @media (min-width: 1300px) {
     .courses-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 columns  */
+        grid-template-columns: repeat(3, 1fr); 
     }
 }

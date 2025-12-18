@@ -1,4 +1,4 @@
-/* ========== HEADER ========== */
+/*HEADER*/
 .header {
   position: fixed;
   top: 0;
@@ -29,7 +29,7 @@
     display: block;
   
 }
-/* ========== NAVIGATION ========== */
+/* NAVIGATION*/
 .nav-toggle {
   flex-shrink: 0;
   width: 60px;
@@ -43,7 +43,7 @@
   position: relative;
 }
 
-/* ========== LAYOUT HELPERS ========== */
+/*LAYOUT HELPERS */
 .flex {
     display: flex;
 
@@ -54,7 +54,7 @@
 }
 
 
-/* ========== MOBILE NAV HIDDEN BY DEFAULT ========== */
+/* MOBILE NAV HIDDEN BY DEFAULT */
 .nav {
     --gap: 4em;
     list-style: none;
@@ -189,7 +189,7 @@
 }
 
 .footer-section {
-  flex: 1 1 220px; /* responsive width */
+  flex: 1 1 220px; 
   min-width: 200px;
 }
 
@@ -217,14 +217,14 @@
 .social-links {
   list-style: none;
   display: flex;
-  justify-content: center; /* centers the items horizontally */
-  gap: 0.5em; /* spacing between items */
+  justify-content: center; 
+  gap: 0.5em; 
   padding: 0;
-  margin: 0; /* remove default margin */
+  margin: 0; 
 }
 
 .social-links li {
-  display: inline-block; /* ensures proper spacing inside flex */
+  display: inline-block; 
 }
 
 .social-links li a {
@@ -233,5 +233,5 @@
   border: 1px solid #fff;
   border-radius: 3px;
   font-size: 0.9em;
-  text-align: center; /* center text inside the link */
+  text-align: center; 
 }
