@@ -155,9 +155,12 @@ h1 {
     color: var(--primary);
     border-radius: 10px;
     padding: 0 10px;
+    transition: 0.25s ease;
+
 }
 .btn-outline:hover {
-    background: var(--gray-light);
+    background: var(--primary);
+    color: var(--bg-light);
 }
 .card {
     background: var(--card-bg);
@@ -231,6 +234,7 @@ footer {
 
 .course-instructor {
     background-color: var(--primary);
+    color: var(--bg-light);
 }
 
 .meta-prereqs ul li {

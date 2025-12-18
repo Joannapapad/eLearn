@@ -495,8 +495,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0,0,0,0.5);
-    color: #fff;
+    background: rgba(84, 89, 100, 0.886);
+    color: var(--bg-light);
     font-weight: bold;
     display: flex;
     justify-content: center;

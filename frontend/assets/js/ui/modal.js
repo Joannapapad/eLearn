@@ -144,7 +144,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 return `
                     <div class="book-item video-card" data-video-src="${video.src}">
-                        <img src="${video.thumbnail}" class="video-thumb">
                         <div class="book-title">
                             ${video.title} <span class="book-arrow">></span>
                         </div>

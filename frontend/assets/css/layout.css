@@ -289,7 +289,7 @@
     .filters {
         min-width: 20px;
     }
-
+    
     .filter-group .filter-options {
         display: flex !important;
         flex-direction: column;
