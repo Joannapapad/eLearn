@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("page-loaded");
+
     const path = window.location.pathname;
 
     if (path.includes("index.html")) {

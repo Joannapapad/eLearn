@@ -47,7 +47,14 @@ body {
     background: var(--bg-light);
     color: var(--text-medium);
     font-family: Arial, sans-serif;
+    opacity: 0;
+    transition: opacity 0.8s ease, transform 0.6s ease;
 }
+
+body.page-loaded {
+    opacity: 1;
+}
+
 #video-overlay {
     z-index: 999999 !important;
     isolation: isolate;
