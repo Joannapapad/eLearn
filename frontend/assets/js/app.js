@@ -4,34 +4,35 @@ document.addEventListener("DOMContentLoaded", () => {
     const path = window.location.pathname;
 
     if (path.includes("index.html")) {
-        // κλήση λειτουργιών για homepage (π.χ. featured courses)
+        // home page features 
         initIndexPage();
     }
 
     if (path.includes("courses.html")) {
-        // κλήση λειτουργιών για courses page
+        // course page features 
         initCoursesPage();
     }
 
     if (path.includes("books.html")) {
-        // κλήση λειτουργιών για books page
+        // book page features 
         initBooksPage();
     }
 
     if (path.includes("about.html")) {
-        // κλήση λειτουργιών για about page (π.χ. counters)
+        //about page features
         initAboutPage();
     }
 });
 
 
-
+//course page 
 function initCoursesPage() {
     
-    // URL Category
+    //read category from URL 
     const params = new URLSearchParams(window.location.search);
     const selectedCategory = params.get("category");
 
+    //pre check the matching category checkbox 
     if (selectedCategory) {
         document.querySelectorAll('[data-filter="category"] input')
             .forEach(cb => cb.checked = cb.value === selectedCategory);
@@ -43,26 +44,35 @@ function initCoursesPage() {
 
     if (!searchInput || !coursesList) return;
 
+    // render course list based on selected filters and search text 
     function renderCourses() {
+        //start with all courses
         let results = [...COURSES];
 
+        //collect selected categories
         const selectedCategories =
             [...document.querySelectorAll('[data-filter="category"] input:checked')]
                 .map(i => i.value);
 
+        //collect selected levels
         const selectedLevels =
             [...document.querySelectorAll('[data-filter="level"] input:checked')]
                 .map(i => i.value);
 
+        //search text 
         const searchTerm = searchInput.value.trim().toLowerCase();
 
+        //aply filters 
         if (selectedCategories.length) results = results.filter(c => selectedCategories.includes(c.category));
+
         if (selectedLevels.length) results = results.filter(c => selectedLevels.includes(c.level));
+        //apply search over title- description
         if (searchTerm) results = results.filter(c =>
             c.title.toLowerCase().includes(searchTerm) ||
             c.description.toLowerCase().includes(searchTerm)
         );
 
+        //build HTML cards
         coursesList.innerHTML = results.map(c => `
             <div class="course-card" data-id="${c.id}">
                 <div class="course-image">
@@ -84,6 +94,7 @@ function initCoursesPage() {
         });
     }
 
+    //re render when filters or search change 
     document.querySelectorAll('.filter-options input')
         .forEach(cb => cb.addEventListener('change', renderCourses));
     searchInput.addEventListener('input', renderCourses);
@@ -93,7 +104,7 @@ function initCoursesPage() {
 
 
 
-
+//book page 
 function initBooksPage() {
     const booksSearch = document.getElementById('filter-search-books');
     const booksList = document.getElementById('books-list');
@@ -101,25 +112,34 @@ function initBooksPage() {
     if (!booksSearch || !booksList) return;
 
     function renderBooks() {
+        //start with all books 
         let results = [...BOOKS];
 
+        //selected book categories 
         const selectedCategories =
             [...document.querySelectorAll('[data-filter="book-category"] input:checked')]
                 .map(i => i.value);
 
+        //selected levels  
         const selectedLevels =
             [...document.querySelectorAll('[data-filter="book-level"] input:checked')]
                 .map(i => i.value);
 
+        //search term 
         const searchTerm = booksSearch.value.trim().toLowerCase();
 
+        //apply filters 
         if (selectedCategories.length) results = results.filter(b => selectedCategories.includes(b.category));
+
         if (selectedLevels.length) results = results.filter(b => selectedLevels.includes(b.level));
+
+        //apply search 
         if (searchTerm) results = results.filter(b =>
             b.title.toLowerCase().includes(searchTerm) ||
             b.description.toLowerCase().includes(searchTerm)
         );
 
+        //build HTML cards
         booksList.innerHTML = results.map(b => `
             <div class="book-card" data-id="${b.id}">
                 <div class="book-header book-${b.category}">
@@ -142,6 +162,7 @@ function initBooksPage() {
         });
     }
 
+    //re render when filters or search change 
     document.querySelectorAll(
         '[data-filter="book-category"] input, [data-filter="book-level"] input'
     ).forEach(cb => cb.addEventListener('change', renderBooks));
@@ -151,16 +172,20 @@ function initBooksPage() {
     renderBooks();
 }
 
+//about page 
 function initAboutPage() {
         const counters = document.querySelectorAll(".stat-item h3");
 
         if (counters.length) {
+            //total animation time 
             const duration = 2000;
 
             counters.forEach(counter => {
+                //store the final number , then start animation from 0
                 const target = parseInt(counter.textContent.replace(/,/g, ''));
                 let start = null;
 
+                //runs every animation frame until duration is reached 
                 const updateCounter = (timestamp) => {
                     if (!start) start = timestamp;
                     const progress = timestamp - start;
@@ -180,10 +205,9 @@ function initAboutPage() {
         }
 }
 
+//home page 
 function initIndexPage() {
-    /* ============================
-       FADE-IN SECTIONS
-    ============================ */
+    /* FADE-IN SECTIONS*/
     const fadeSections = document.querySelectorAll(".fade-section");
     if (fadeSections.length) {
         const observer = new IntersectionObserver((entries) => {
@@ -195,9 +219,7 @@ function initIndexPage() {
         fadeSections.forEach(sec => observer.observe(sec));
     }
 
-    /* ============================
-       CATEGORY CARDS CLICK
-    ============================ */
+    /*  CATEGORY CARDS CLICK */
     const categoryCards = document.querySelectorAll(".category");
     categoryCards.forEach(card => {
         card.style.cursor = "pointer";
@@ -207,14 +229,14 @@ function initIndexPage() {
         });
     });
 
-    /* ============================
-       FEATURED COURSES
-    ============================ */
+    /* FEATURED COURSES */
     const featuredCoursesEl = document.getElementById("featured-courses-main");
     if (!featuredCoursesEl || typeof COURSES === "undefined") return;
 
+    //categories we want to highlight
     const preferred = ["programming", "networks", "security", "databases", "core", "mathematics", "systems", "ai", "engineering", "design", "data"];
     
+    //remove duplicates by id
     const uniqueCourses = [];
     const seen = new Set();
     for (const c of COURSES) {
@@ -224,6 +246,7 @@ function initIndexPage() {
         }
     }
 
+    //pick up 11 courses one per category 
     const picked = [];
     for (const cat of preferred) {
         const found = uniqueCourses.find(c => c.category === cat);
@@ -231,6 +254,7 @@ function initIndexPage() {
         if (picked.length === 11) break;
     }
 
+    //render slider cards
     function renderFeaturedCourses(items) {
         featuredCoursesEl.innerHTML = items.map(c => `
             <div class="course-card main-page-card" data-id="${c.id}">
@@ -255,12 +279,11 @@ function initIndexPage() {
 
     renderFeaturedCourses(picked);
 
-    /* ============================
-       FEATURED COURSES SLIDER
-    ============================ */
+    /* FEATURED COURSES SLIDER */
     const prevBtn = document.querySelector(".slider-btn.prev");
     const nextBtn = document.querySelector(".slider-btn.next");
 
+    //scroll by one card width 
     function scrollCourseCard(d) {
         const card = featuredCoursesEl.querySelector(".course-card");
         if (!card) return;

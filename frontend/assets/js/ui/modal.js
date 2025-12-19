@@ -1,18 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    //returns a pquery parametr value from the current URL
   function getParameterByName(name) {
       const urlParams = new URLSearchParams(window.location.search);
       return urlParams.get(name);
   }
 
-  /* --------------------------
-     COURSE DETAILS
-  -------------------------- */
+  /* COURSE DETAILS */
   if (window.location.pathname.includes("course-details.html")) {
       const courseId = getParameterByName('id');
       const course = COURSES.find(c => c.id === courseId);
       const container = document.getElementById("course-details-container");
 
+      //if course or container is missing, show fallback
       if (!course || !container) {
           container.innerHTML = `
               <div style="padding: 40px; text-align: center;">
@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
           `;
       } else {
+        //build reccomended list 
           const bibliographyList = course.bibliography.length > 0
               ? course.bibliography.map(bookId => {
                   const book = BOOKS.find(b => b.id === bookId);
@@ -35,9 +36,11 @@ document.addEventListener("DOMContentLoaded", () => {
               }).join("")
               : "<div>No recommended books</div>";
 
+              // built learning list 
           const learningList = course.learningOutcomes
               .map(item => `<li>${item}</li>`).join("");
 
+              //render full course details 
           container.innerHTML = `
           <div class="details">
               <div class="book-header">
@@ -103,14 +106,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
   }
 
-  /* --------------------------
-     BOOK DETAILS
-  -------------------------- */
+  /* BOOK DETAILS */
   if (window.location.pathname.includes("book-details.html")) {
     const bookId = getParameterByName('id');
     const book = BOOKS.find(b => b.id === bookId);
     const container = document.getElementById("book-details-container");
 
+    //if book or container is missing show fallback
     if (!book || !container) {
         container.innerHTML = `
             <div style="padding: 40px; text-align: center;">
@@ -120,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
     } else {
 
-        // Create Recommended Courses list
+        // Recommended Courses list
         const recommendedCoursesList = book.recommendedCourses && book.recommendedCourses.length > 0
             ? book.recommendedCourses.map(courseId => {
                 const course = COURSES.find(c => c.id === courseId);
@@ -136,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }).join('')
             : '<div>No recommended courses</div>';
 
-        // Create Recommended Videos list
+        // Recommended Videos list
         const recommendedVideosList = book.recommendedVideos && book.recommendedVideos.length > 0
             ? book.recommendedVideos.map(videoId => {
                 const video = VIDEOS.find(v => v.id === videoId);
@@ -154,6 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
             : '<div>No recommended videos</div>';
 
 
+            //render book details 
         container.innerHTML = `
         <div class="details">
 
@@ -224,7 +227,9 @@ document.addEventListener("DOMContentLoaded", () => {
 }
 
 
-// Video Overlay Logic
+//*VIDEO OVERPLAY PLAYER */
+
+//open overplay whe a video card is clicked 
 document.addEventListener("click", function (e) {
     const card = e.target.closest(".video-card");
     if (!card) return;
@@ -233,23 +238,26 @@ document.addEventListener("click", function (e) {
     const overlay = document.getElementById("video-overlay");
     const player = document.getElementById("video-player");
 
+    //load the selected video into the player and show overplay
     player.src = videoSrc;
     overlay.style.display = "flex";
 
-
-    // 🔒 LOCK SCROLL
+   //lock background scroll while overplay is open
     document.body.style.overflow = "hidden";
 
     player.play();
 });
 
+//close overplay 
 const videoClose = document.getElementById("video-close");
 const videoOverlay = document.getElementById("video-overlay");
 
+//close button 
 if (videoClose) {
     videoClose.addEventListener("click", closeOverlay);
 }
 
+//close if user clicks anywhere else besides the video content
 if (videoOverlay) {
     videoOverlay.addEventListener("click", (e) => {
         if (e.target.id === "video-overlay") {
@@ -259,6 +267,7 @@ if (videoOverlay) {
 }
 
 
+//stops the video 
 function closeOverlay() {
     const overlay = document.getElementById("video-overlay");
     const player = document.getElementById("video-player");
@@ -266,7 +275,8 @@ function closeOverlay() {
     player.pause();
     player.src = "";
     overlay.style.display = "none";
-    // 🔓 UNLOCK SCROLL
+
+    // leaces the background scroll
     document.body.style.overflow = "";
 }
 

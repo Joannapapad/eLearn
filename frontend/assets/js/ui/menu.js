@@ -40,19 +40,24 @@ function initNavMenu() {
     checkbox.addEventListener("change", () => {
         const isOpen = checkbox.checked;
 
+        // is used by css to slide the menu in and out 
         primaryNav.setAttribute("data-visible", isOpen);
         navToggleButton.setAttribute("aria-expanded", isOpen);
     });
 }
 
+/*Header scroll effect */
 function initScrollHeader() {
+    
     const header = document.querySelector(".header");
 
+    //stop if the header is missing
     if (!header) {
         console.error("Header not found for scroll effect");
         return;
     }
 
+    //add/remove the scrolled class based on the scroll position and width 
     function handleScroll() {
         if (window.innerWidth > 800) {
             if (window.scrollY > 50) {
@@ -61,11 +66,12 @@ function initScrollHeader() {
                 header.classList.remove("scrolled");
             }
         } else {
-            // remove scroll styling if user shrinks the window
+            // if the user shrinks the window , remove the effect 
             header.classList.remove("scrolled");
         }
     }
 
+    //keep the behavior consistent if the user resize the window or scroll 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleScroll); 
 }
