@@ -1,0 +1,377 @@
+/* LAYOUT - About Us */
+.about-us {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4em 2em;
+}
+
+.about-container {
+    max-width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+    justify-content: space-between;
+    margin-bottom: 4em;
+}
+
+.about-text {
+    flex: 1 1 500px;
+}
+
+.about-image {
+    flex: 1 1 400px;
+    display: flex;
+    justify-content: center;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 1000px;
+    text-align: center;
+    margin-top: 2em;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.stat-item {
+    flex: 1 1 200px;
+    padding: 1.5em;
+}
+
+.two, .three {
+    border-left: 2px solid var(--primary-dark);
+}
+
+/* LAYOUT - Creators Section */
+.creators {
+    max-width: 1000px;
+    margin: 4rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+
+.creator-info {
+    flex: 1;
+}
+.creator-image {
+    display: flex;
+    justify-content: center;
+}
+
+/* LAYOUT - Courses & Details Page */
+.courses-picture,
+.courses-details-picture {
+    max-width: 100%;
+    padding: 40px 0 10px 0;
+    position: relative;
+}
+
+.courses-details-picture {
+    min-height: 100vh;
+    
+}
+.courses-picture::before,
+.courses-details-picture::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(2px);
+
+    background: rgba(166, 166, 166, 0.678);
+    z-index: 2;
+}
+
+.courses-details-picture * {
+    z-index: 2;
+}
+
+.desktop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+.container {
+    flex-direction: column;
+    width: 100%;
+    padding: 2rem;
+    gap: 1rem;
+}
+
+.filters {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 300px;
+    flex-direction: column;
+    padding-bottom: 1.5rem;
+}
+.filters label {
+    display: flex;
+    font-size: 0.9rem;
+}
+
+.filter-options {
+    display: none;
+}
+.filter-options.open {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.creator {
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+    gap:2rem;
+    padding:1.5rem;
+
+
+}
+.creator-image img {
+    width: 150px;
+    height: 150px;
+}
+
+/* COURSES GRID*/
+.courses-grid {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    gap: 16px;
+    padding: 20px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+
+.course-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 10px 10px 0 0;
+    padding-bottom: 10px;
+}
+
+.course-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.book-photo img{
+    max-width: 350px;
+    max-height: 350px;
+}
+
+.hero {
+    position: relative;
+    background: url("../img/homebackground.png") center/cover no-repeat;
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(173, 174, 174, 0.571);
+    backdrop-filter: blur(2px);
+    z-index: 2;
+}
+
+.hero .hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.buttons {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/*COURSE*/
+
+.course-header h1 {
+    font-size: 1.7rem;
+}
+
+.course-about {
+    padding: 20px;
+    margin: 20px;
+    text-align: justify;
+}
+
+.course-about .category-icon {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Mobile */
+.courses-grid,
+.categories-right,
+.categories-container {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 1.5rem;
+}
+
+
+/* Tablet */
+@media (min-width: 660px) {
+    .courses-grid,
+    .categories-right,
+    .categories-container {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+
+}
+
+
+@media (min-width: 800px) {
+
+    .creator {
+    display: flex;
+    text-align: left;
+    align-items: center;
+}
+    
+    .fade-section {
+        padding: 3rem 2rem 3rem 2rem;
+    }
+    
+    
+    .nav-toggle {
+        display: none;
+    }
+  
+    .nav {
+        position: static;
+        transform: none;
+        flex-direction: row;
+        background: none;
+        justify-content: flex-end;
+        backdrop-filter: none;
+        gap: 2rem;
+    }
+  
+    .nav-link {
+        font-size: 1em;
+        margin: 0;
+    }
+
+    .filters {
+        min-width: 20px;
+    }
+    
+    .filter-group .filter-options {
+        display: flex !important;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .desktop {
+        align-items: start;
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 220px 1fr; 
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 20px;
+        box-sizing: border-box;
+
+    }
+    .book-title {
+        font-size: 1em;
+    }
+    .book-edition {
+        display: none;
+    }
+
+    .courses-picture,
+    .courses-details-picture {
+        padding: 70px 0 10px;        
+    }
+}
+
+@media (min-width: 950px) {
+
+    .desktop {
+        grid-template-columns: 280px 1fr; 
+
+    }
+
+    .book-edition {
+        display: block;
+    }
+
+    .fade-section {
+        padding: 5rem 4rem 5rem 4rem;
+    }
+    
+}
+
+@media (min-width: 1024px) {
+    .courses-picture,
+    .courses-details-picture {
+        padding: 90px 0 30px;        
+    }
+    .book-title {
+        font-size: 1.2em;
+    }
+
+    .courses-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 columns  */
+        gap: 1.5rem;
+    }
+
+
+}
+
+@media (max-width: 900px) {
+    .section-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .categories-left {
+        align-items: center;
+    }
+}
+
+
+@media (min-width: 801px) {
+    .about-container {
+        flex-direction: row;
+        text-align: left;
+        padding-top: 2rem;
+
+    }
+
+    .about-text h1 {
+        font-size: 2.5rem;
+    }
+    .about-text h2 {
+        font-size: 1.5rem;
+    }
+}
+
+
+@media (min-width: 1300px) {
+    .courses-grid {
+        grid-template-columns: repeat(3, 1fr); 
+    }
+}

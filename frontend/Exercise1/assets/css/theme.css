@@ -1,0 +1,258 @@
+:root{
+  /* Brand (main) */
+  --primary: #4B5563;       
+  --primary-dark: #1F2937;   
+
+  /* Secondary */
+  --secondary-blue: #9CA3AF; 
+  --secondary-teal: #E5E7EB; 
+  --accent: #6B7280; 
+
+  /* Backgrounds */
+  --bg-light: #F9FAFB;      
+  --gray-light: #dadde4;   
+  --gray-medium: #9ca6b7;  
+
+  /* Text */
+  --text-dark: #111827;     
+  --text-medium: #374151;   
+
+  /* Cards */
+  --card-bg: #FFFFFF;
+  --icon: #c7d3e6;
+  /* Footer */
+  --footer-bg: #111827;
+
+  --shadow-soft: 0 6px 18px rgba(0,0,0,0.08);
+  --radius: 12px;
+}
+
+/* CATEGORY COLORS */
+.book-programming   { background: #a3c4f3; }
+.book-networks      { background: #d2a6f5; }
+.book-security      { background: #f5a3a3; }
+.book-databases     { background: #f5c28a; }
+.book-core          { background: #98d5b1; }
+.book-mathematics   { background: #90bede; }
+.book-systems       { background: #a8a9f0; }
+.book-design        { background: #e4a3d8; }
+.book-engineering   { background: #9c8c99; }
+.book-ai            { background: #a3a9f3; }
+.book-data          { background: #85c4d4; }
+
+body {
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    background: var(--bg-light);
+    color: var(--text-medium);
+    font-family: Arial, sans-serif;
+    opacity: 0;
+    transition: opacity 0.8s ease, transform 0.6s ease;
+}
+
+body.page-loaded {
+    opacity: 1;
+}
+
+#video-overlay {
+    z-index: 999999 !important;
+    isolation: isolate;
+}
+.nav-toggle {
+    z-index: 2500;
+}
+.header {
+    z-index: 1000;
+}
+.nav {
+    z-index: 1400;
+}
+p {
+    margin: 0;
+}
+ul {
+    margin-bottom: 0;
+}
+*::-webkit-scrollbar {
+    width: 11px;
+}
+*::-webkit-scrollbar-track {
+    background: #f3f3f3;
+}
+*::-webkit-scrollbar-thumb {
+    background: #AFA4A5;
+    border-radius: 8px;
+}
+.recommended-categories {
+    background-color: var(--secondary-teal);
+}
+/* Hide scrollbar for Chrome, Safari, Opera */
+.slider-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge */
+.slider-track {
+    -ms-overflow-style: none;
+}
+
+/* Hide scrollbar for Firefox */
+.slider-track {
+    scrollbar-width: none;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+h1, h2, h3 {
+    color: var(--text-dark);
+}
+h1 {
+    font-size: 1.3rem;
+}
+.back-btn {
+    display: inline-block;
+    margin-top: 30px;
+    text-decoration: none;
+    color: var(--primary-dark);
+    font-weight: 600;
+}
+.page-title {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    color: var(--primary-dark);
+    font-size: 2rem;
+}
+.burger div {
+    background: var(--primary-dark);
+}
+.btn-primary {
+    max-width: fit-content;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.75em 1.4em;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+.btn-course-detail {
+    margin: 2rem;
+}
+.btn-primary:hover {
+    background: var(--primary-dark);
+}
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    border-radius: 10px;
+    padding: 0 10px;
+    transition: 0.25s ease;
+
+}
+.btn-outline:hover {
+    background: var(--primary);
+    color: var(--bg-light);
+}
+.card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+}
+.nav-link, a {
+    color: var(--text-dark);
+    text-decoration: none;
+}
+.nav-link:hover, a:hover {
+    color: var(--secondary-blue);
+}
+footer {
+    background: var(--primary);
+    padding: 2em;
+    margin: 0;
+    text-align: center;
+}
+
+.course-title,
+.main-course-title {
+    color: var(--primary-dark);
+}
+
+.course-level {
+    color: var(--text-medium);
+}
+
+.course-desc,
+.book-description,
+.book-desc  {
+    color: var(--text);
+    border-left: 2px solid var(--primary-dark);
+}
+
+.course-category-icon {
+    background-color: var(--icon);
+}
+.hero-content h1 {
+    color: var(--text-medium);
+}
+
+.hero-content h1 span {
+    color: var(--primary);
+}
+
+.hero-content p {
+    color: var(--text-medium);
+}
+
+.course-id {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.section-title {
+    text-align: center;
+    font-weight: bold;
+    margin: 20px 0 15px 0;
+    font-size: 1.1em;
+}
+
+.course-instructor {
+    background-color: var(--primary);
+    color: var(--bg-light);
+}
+
+.meta-prereqs ul li {
+    color: #333;
+}
+
+.course-about {
+    border: 2px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+.course-about .category-icon img {
+    width: 50px;
+    height: 50px;
+}
+
+.card,
+.course-card,
+.book-card,
+.category,
+.preview-card,
+.creator,
+.details,
+.filters,
+.registration-form{
+  background: var(--card-bg);
+  border: 1px solid var(--gray-light);
+}
+
