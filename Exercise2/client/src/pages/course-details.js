@@ -5,9 +5,7 @@ export async function loadCourseDetails(container, courseId) {
   if (!container || !courseId) return;
 
   try {
-    const courseRes = await fetch(`http://localhost:5000/api/courses/${courseId}`);
-    if (!courseRes.ok) throw new Error("Failed to fetch course");
-    const course = await courseRes.json();
+    const course = await api.getCourseById(courseId);
 
     if (!course) {
       container.innerHTML = `
@@ -19,23 +17,27 @@ export async function loadCourseDetails(container, courseId) {
       return;
     }
 
-    // Fetch recommended books
-    let bibliographyList = "<div>No recommended books</div>";
-    if (course.bibliography?.length) {
-      const allBooks = await api.getBooks?.() || []; // optional if you add getBooks() to api
-      bibliographyList = course.bibliography
-        .map(bookId => {
-          const book = allBooks.find(b => b._id === bookId || b.id === bookId);
-          if (!book) return "";
-          return `
-            <a href="#/book-details?id=${book._id || book.id}" class="book-item">
-              <div class="book-title">${book.title} <span class="book-arrow">></span></div>
-              <div class="book-hover">Learn More</div>
-            </a>
-          `;
-        })
-        .join("") || "<div>No recommended books</div>";
-    }
+// Fetch recommended books
+let bibliographyList = "<div>No recommended books</div>";
+if (course.bibliography?.length) {
+  const allBooks = await api.getBooks?.() || [];
+
+  bibliographyList = course.bibliography
+    .map(bookId => {
+      const book = allBooks.find(
+        b => (b._id?.toString() === bookId) || (b.id?.toString() === bookId)
+      );
+      if (!book) return "";
+      return `
+        <a href="#/book/${book.id || book.id}" class="book-item">
+          <div class="book-title">${book.title} <span class="book-arrow">></span></div>
+          <div class="book-hover">Learn More</div>
+        </a>
+      `;
+    })
+    .join("") || "<div>No recommended books</div>";
+}
+
 
     // Render learning outcomes
     const learningList = course.learningOutcomes?.map(item => `<li>${item}</li>`).join("") || "";

@@ -1,5 +1,12 @@
-const BASE_URL = "/api";
+// src/services/api.service.js
+const BASE_URL = "http://localhost:5000/api"; // adjust if needed
 
+/**
+ * Generic fetch wrapper
+ * @param {string} endpoint
+ * @param {object} options
+ * @returns {Promise<any>}
+ */
 async function request(endpoint, options = {}) {
   const res = await fetch(BASE_URL + endpoint, {
     headers: { "Content-Type": "application/json" },
@@ -7,8 +14,8 @@ async function request(endpoint, options = {}) {
   });
 
   if (!res.ok) {
-    const error = await res.text();
-    throw new Error(error || "API error");
+    const errorText = await res.text();
+    throw new Error(errorText || "API error");
   }
 
   return res.json();
@@ -21,7 +28,17 @@ export const api = {
   },
 
   getCourseById(id) {
+    // Accept either string or ObjectId string
     return request(`/courses/${id}`);
+  },
+
+  // BOOKS
+  getBooks() {
+    return request("/books");
+  },
+
+  getBookById(id) {
+    return request(`/books/${id}`);
   },
 
   // USERS
@@ -31,4 +48,11 @@ export const api = {
       body: JSON.stringify(data),
     });
   },
+
+  loginUser(data) {
+    return request("/users/login", {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+  }
 };

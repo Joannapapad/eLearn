@@ -1,3 +1,5 @@
+import { api } from "../services/api.service.js"; 
+
 export function loadCourses(container) {
   if (!container) return;
 
@@ -74,14 +76,11 @@ export function loadCourses(container) {
 
   async function fetchCourses() {
     try {
-      const res = await fetch("http://localhost:5000/api/courses");
-      if (!res.ok) throw new Error("Failed to fetch courses");
-
-      ALL_COURSES = await res.json();
+      ALL_COURSES = await api.getCourses();
       renderCourses();
     } catch (err) {
-      console.error(err);
-      coursesList.innerHTML = `<p class="error">Failed to load courses</p>`;
+      console.error("Failed to load courses:", err);
+      // Optionally show an error message in the UI
     }
   }
 

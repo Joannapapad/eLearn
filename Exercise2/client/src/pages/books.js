@@ -1,3 +1,5 @@
+import { api } from "../services/api.service.js"; 
+
 export function loadBooks(container) {
   if (!container) return;
 
@@ -60,10 +62,7 @@ export function loadBooks(container) {
 
   async function fetchBooks() {
     try {
-      const res = await fetch("http://localhost:5000/api/books");
-      if (!res.ok) throw new Error("Failed to fetch books");
-
-      ALL_BOOKS = await res.json();
+      ALL_BOOKS = await api.getBooks();
       renderBooks();
     } catch (err) {
       console.error(err);
