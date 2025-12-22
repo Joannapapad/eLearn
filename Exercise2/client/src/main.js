@@ -14,6 +14,7 @@ import { loadHome } from "./pages/home.js";
 import { loadCourses } from "./pages/courses.js";
 
 import { loadBooks } from "./pages/books.js";
+import { loadBookDetails } from "./pages/book-details.js";
 import { loadCourseDetails } from "./pages/course-details.js";
 import { loadRegister } from "./pages/register.js";
 import { loadAbout } from "./pages/about.js";
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '/': () => loadHome(app),
         '/courses': () => loadCourses(app),
         '/books': () => loadBooks(app),
+        '/book/:id': (id) => loadBookDetails(app, id),
         '/course/:id': (id) => loadCourseDetails(app, id),
         '/register': () => loadRegister(app),
         '/about': () => loadAbout(app)

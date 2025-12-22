@@ -36,8 +36,8 @@ const booksRoutes = require("./routes/book.routes");
 app.use("/api/books", booksRoutes);
 
 // VID ROUTE
-//const videosRoutes = require("./routes/video.routes");
-//app.use("/api/videos", videosRoutes);
+const videosRoutes = require("./routes/video.routes");
+app.use("/api/videos", videosRoutes);
 
 // USER ROUTE
 const usersRoutes = require("./routes/users.routes");

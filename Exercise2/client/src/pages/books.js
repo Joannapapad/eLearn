@@ -99,7 +99,7 @@ export function loadBooks(container) {
     }
 
     booksList.innerHTML = results.map(b => `
-      <div class="book-card" data-id="${b._id}">
+      <div class="book-card" data-id="${b.id}">
         <div class="book-header book-${b.category}">
           <div class="book-title-wrapper">
             <p class="book-author">${b.author}</p>
@@ -115,8 +115,9 @@ export function loadBooks(container) {
 
     document.querySelectorAll(".book-card").forEach(card => {
       card.addEventListener("click", () => {
-        window.location.hash = `/book/${card.dataset.id}`;
-      });
+        const id = card.dataset.id; // make sure this is the MongoDB _id
+        if (!id) return;
+        window.location.hash = `/book/${id}`;      });
     });
   }
 

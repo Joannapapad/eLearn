@@ -1,68 +1,59 @@
-// src/controllers/video.controller.js
-const Video = require("../models/video.model");
+const Video = require("../models/video");
 
 // GET all videos
-const getAllVideos = async (req, res, next) => {
+exports.getAllVideos = async (req, res) => {
   try {
     const videos = await Video.find();
-    res.status(200).json(videos);
-  } catch (error) {
-    next(error);
+    res.json(videos);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };
 
-// GET a single video by ID
-const getVideoById = async (req, res, next) => {
+// GET video by ID
+exports.getVideoById = async (req, res) => {
   try {
-    const video = await Video.findOne({ id: req.params.id });
-    if (!video) return res.status(404).json({ message: "Video not found" });
-    res.status(200).json(video);
-  } catch (error) {
-    next(error);
+    const video = await Video.findById(req.params.id);
+    if (!video) {
+      return res.status(404).json({ message: "Video not found" });
+    }
+    res.json(video);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };
 
-// CREATE a new video
-const createVideo = async (req, res, next) => {
+// CREATE video
+exports.createVideo = async (req, res) => {
   try {
     const video = new Video(req.body);
-    await video.save();
-    res.status(201).json(video);
-  } catch (error) {
-    next(error);
+    const savedVideo = await video.save();
+    res.status(201).json(savedVideo);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
   }
 };
 
-// UPDATE a video by ID
-const updateVideo = async (req, res, next) => {
+// UPDATE video
+exports.updateVideo = async (req, res) => {
   try {
-    const video = await Video.findOneAndUpdate(
-      { id: req.params.id },
+    const updatedVideo = await Video.findByIdAndUpdate(
+      req.params.id,
       req.body,
       { new: true }
     );
-    if (!video) return res.status(404).json({ message: "Video not found" });
-    res.status(200).json(video);
-  } catch (error) {
-    next(error);
+    res.json(updatedVideo);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
   }
 };
 
-// DELETE a video by ID
-const deleteVideo = async (req, res, next) => {
+// DELETE video
+exports.deleteVideo = async (req, res) => {
   try {
-    const video = await Video.findOneAndDelete({ id: req.params.id });
-    if (!video) return res.status(404).json({ message: "Video not found" });
-    res.status(200).json({ message: "Video deleted successfully" });
-  } catch (error) {
-    next(error);
+    await Video.findByIdAndDelete(req.params.id);
+    res.json({ message: "Video deleted" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
-};
-
-module.exports = {
-  getAllVideos,
-  getVideoById,
-  createVideo,
-  updateVideo,
-  deleteVideo
 };

@@ -41,6 +41,11 @@ export const api = {
     return request(`/books/${id}`);
   },
 
+  getVideos() {
+    return request("/videos");
+  },
+  
+
   // USERS
   registerUser(data) {
     return request("/users/register", {

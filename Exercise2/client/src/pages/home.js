@@ -1,7 +1,7 @@
+import { api } from "../services/api.service.js"; 
+
 async function fetchCourses() {
-  const res = await fetch("http://localhost:5000/api/courses");
-  if (!res.ok) throw new Error("Failed to load courses");
-  return res.json();
+  return await api.getCourses();
 }
 
 export async function loadHome(container) {
