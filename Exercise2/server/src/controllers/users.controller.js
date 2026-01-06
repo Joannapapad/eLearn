@@ -17,7 +17,7 @@ exports.registerUser = async (req, res, next) => {
     } = req.body;
 
     // basic validation
-    if (!firstName || !lastName || !email || !password || !experience || !goal) {
+    if (!firstName || !lastName || !dateOfBirth || !email || !password || !experience || !goal) {
       return res.status(400).json({ message: "Missing required fields" });
     }
 

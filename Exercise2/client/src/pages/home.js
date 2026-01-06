@@ -147,19 +147,10 @@ export async function loadHome(container) {
       </main>
     `;
 
+    
     document.body.classList.add("page-loaded");
 
-    /* FADE-IN SECTIONS*/
-    const fadeSections = document.querySelectorAll(".fade-section");
-    if (fadeSections.length) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                entry.target.classList.toggle("is-visible", entry.isIntersecting);
-            });
-        }, { threshold: 0.2 });
-
-        fadeSections.forEach(sec => observer.observe(sec));
-    }
+    
 
     /*  CATEGORY CARDS CLICK */
     const categoryCards = document.querySelectorAll(".category");
