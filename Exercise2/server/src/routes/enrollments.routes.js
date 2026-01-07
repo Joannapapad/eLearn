@@ -2,24 +2,38 @@ const express = require("express");
 const router = express.Router();
 const Enrollment = require("../models/Enrollment");
 
-router.post("/", async (req, res) => {
-  const { userId, courseId } = req.body;
 
-  const existing = await Enrollment.findOne({
-    user: userId,
-    course: courseId
-  });
-
-  if (existing) {
-    return res.status(409).json({ message: "Already enrolled" });
+router.get("/", async (req, res, next) => {
+  try {
+    const enrollments = await Enrollment.find();
+    res.json(enrollments);
+  } catch (err) {
+    next(err);
   }
-
-  const enrollment = await Enrollment.create({
-    user: userId,
-    course: courseId
-  });
-
-  res.status(201).json(enrollment);
 });
+
+
+router.post("/", async (req, res, next) => {
+  try {
+    const { userId, courseId } = req.body;
+
+    if (!userId || !courseId) {
+      return res.status(400).json({ message: "userId and courseId are required" });
+    }
+
+    const existing = await Enrollment.findOne({ userId, courseId });
+    if (existing) {
+      return res.status(409).json({ message: "Already enrolled" });
+    }
+
+    const enrollment = await Enrollment.create({ userId, courseId });
+
+    res.status(201).json(enrollment);
+  } catch (err) {
+    console.error("ENROLLMENT ERROR:", err);
+    next(err);
+  }
+});
+
 
 module.exports = router;
