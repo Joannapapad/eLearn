@@ -1,16 +1,17 @@
-import { api } from "../services/api.service.js"; 
+import { api } from "../services/api.service.js";
 
-// Simple wrapper so the home page doesn't care how courses are fetched
+// Fetch all courses from the API
 async function fetchCourses() {
   return await api.getCourses();
 }
 
+// Load and render the Home page
 export async function loadHome(container) {
 
-  // Build the home page layout (hero, about preview, categories, featured slider)
+  // Main home page layout
   container.innerHTML = `
     <main class="home-page">
-
+  
       <section class="hero">
         <div class="container flex">
           <div class="hero-content">
@@ -23,7 +24,7 @@ export async function loadHome(container) {
           </div>
         </div>
       </section>
-
+  
       <section class="fade-section">
         <section class="two-column-section main-about-preview">
           <div class="section-container">
@@ -35,7 +36,7 @@ export async function loadHome(container) {
                 the e-learning service and allows basic user data collection and management entirely in the browser. 
                 We use HTML5 for structure, CSS3 for appearance and layout, and JavaScript for interactivity and logic.
               </p>
-
+  
               <div class="preview-cards">
                 <a href="#/courses" data-link class="preview-card">
                   <div class="card-icon">
@@ -46,7 +47,7 @@ export async function loadHome(container) {
                     <p>We offer categories in IT courses such as programming, networks, security, and databases.</p>
                   </div>
                 </a>
-
+  
                 <a href="#/books" data-link class="preview-card">
                   <div class="card-icon">
                     <img src="/assets/img/icons/open-book.png" alt="Books & Videos">
@@ -58,7 +59,7 @@ export async function loadHome(container) {
                 </a>
               </div>
             </div>
-
+  
             <div class="section-right about-preview-image">
               <img
                 src="/assets/img/ebout_main_900.jpg"
@@ -76,7 +77,7 @@ export async function loadHome(container) {
           </div>
         </section>
       </section>
-
+  
       <section class="fade-section two-column-section recommended-categories">
         <div class="section-container">
           <div class="section-left categories-left">
@@ -87,7 +88,7 @@ export async function loadHome(container) {
             </p>
             <a href="/courses" data-link class="btn-primary">View All Categories</a>
           </div>
-
+  
           <div class="section-right categories-right">
             <a href="#/courses?category=programming" data-link class="category-link">
               <article class="category" data-category="programming">
@@ -98,7 +99,7 @@ export async function loadHome(container) {
                 <p>Learn HTML, CSS, JavaScript and build real-world applications.</p>
               </article>
             </a>
-
+  
             <a href="#/courses?category=ai" data-link class="category-link">
               <article class="category" data-category="ai">
                 <div class="category-icon">
@@ -108,7 +109,7 @@ export async function loadHome(container) {
                 <p>Understand machine learning, neural networks and AI fundamentals.</p>
               </article>
             </a>
-
+  
             <a href="#/courses?category=data" data-link class="category-link">
               <article class="category" data-category="data">
                 <div class="category-icon">
@@ -118,25 +119,24 @@ export async function loadHome(container) {
                 <p>Analyze, visualize and extract insights from complex datasets.</p>
               </article>
             </a>
-
+  
             <a href="#/courses?category=security" data-link class="category-link">
               <article class="category" data-category="security">
-                <article class="category" data-category="security">
-                  <div class="category-icon">
-                    <img src="/assets/img/icons/security.png" alt="Security">
-                  </div>
-                  <h3>Cyber Security</h3>
-                  <p>Learn how to protect systems, networks and digital information.</p>
-                </article>
+                <div class="category-icon">
+                  <img src="/assets/img/icons/security.png" alt="Security">
+                </div>
+                <h3>Cyber Security</h3>
+                <p>Learn how to protect systems, networks and digital information.</p>
+              </article>
             </a>
           </div>
         </div>
       </section>
-
+  
       <section class="fade-section featured-courses">
         <h1>Recommended Courses</h1>
         <p>One course for each category</p>
-
+  
         <div class="slider">
           <button class="slider-btn prev" type="button">‹</button>
           <div class="slider-viewport">
@@ -146,14 +146,14 @@ export async function loadHome(container) {
         </div>
         <a href="/courses" data-link class="btn-primary">Explore</a>
       </section>
-
+  
     </main>
   `;
 
-  // Used for page-load transitions (CSS can hook into this)
+  // Mark page as fully loaded
   document.body.classList.add("page-loaded");
 
-  // Fade-in animation when sections enter the viewport
+  // Fade-in animation using IntersectionObserver
   const fadeSections = document.querySelectorAll(".fade-section");
   if (fadeSections.length) {
     const observer = new IntersectionObserver((entries) => {
@@ -165,7 +165,7 @@ export async function loadHome(container) {
     fadeSections.forEach(sec => observer.observe(sec));
   }
 
-  // Make category cards behave like quick filters (updates the hash with a query param)
+  // Handle category card navigation
   const categoryCards = document.querySelectorAll(".category");
   categoryCards.forEach(card => {
     card.style.cursor = "pointer";
@@ -175,14 +175,13 @@ export async function loadHome(container) {
     });
   });
 
-  // Featured courses slider content container
+  // Featured courses container
   const featuredCoursesEl = document.getElementById("featured-courses-main");
   if (!featuredCoursesEl) {
     console.error("featuredCoursesEl not found!");
     return;
   }
 
-  // Fetch courses from the API and handle failures gracefully
   let allCourses = [];
   try {
     allCourses = await fetchCourses();
@@ -192,7 +191,7 @@ export async function loadHome(container) {
     return;
   }
 
-  // Remove duplicates (some APIs may return repeated items)
+  // Remove duplicate courses based on MongoDB _id
   const uniqueCourses = [];
   const seen = new Set();
 
@@ -203,11 +202,20 @@ export async function loadHome(container) {
     }
   }
 
-  // Pick up to 11 courses, ideally one per category (based on a preferred order)
+  // Select one course per preferred category
   const picked = [];
   const preferred = [
-    "programming", "networks", "security", "databases", "core",
-    "mathematics", "systems", "ai", "engineering", "design", "data"
+    "programming",
+    "networks",
+    "security",
+    "databases",
+    "core",
+    "mathematics",
+    "systems",
+    "ai",
+    "engineering",
+    "design",
+    "data"
   ];
 
   for (const cat of preferred) {
@@ -216,7 +224,7 @@ export async function loadHome(container) {
     if (picked.length === 11) break;
   }
 
-  // Render featured courses as slider cards
+  // Render featured course cards
   function renderFeaturedCourses(items) {
     featuredCoursesEl.innerHTML = items.map(c => `
       <a href="#/course/${c.id}" data-link class="course-card main-page-card">
@@ -235,17 +243,16 @@ export async function loadHome(container) {
 
   renderFeaturedCourses(picked);
 
-  // Slider buttons: scroll horizontally by one card width each click
+  // Featured courses slider controls
   const prevBtn = document.querySelector(".slider-btn.prev");
   const nextBtn = document.querySelector(".slider-btn.next");
 
+  // Scroll slider by one card width
   function scrollCourseCard(direction) {
     const card = featuredCoursesEl.querySelector(".course-card");
     if (!card) return;
-
-    const gap = 16; // matches the spacing in CSS between cards
+    const gap = 16;
     const amount = card.getBoundingClientRect().width + gap;
-
     featuredCoursesEl.scrollBy({ left: direction * amount, behavior: "smooth" });
   }
 
