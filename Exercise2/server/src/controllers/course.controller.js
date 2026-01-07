@@ -1,7 +1,6 @@
-// src/controllers/course.controller.js
 const Course = require("../models/Course");
 
-// GET all courses
+// Retrieve all courses
 const getAllCourses = async (req, res, next) => {
   try {
     const courses = await Course.find();
@@ -11,7 +10,7 @@ const getAllCourses = async (req, res, next) => {
   }
 };
 
-// GET course by id (π.χ. 101)
+// Retrieve a single course by its id
 const getCourseById = async (req, res, next) => {
   try {
     const course = await Course.findOne({ id: req.params.id });
@@ -26,18 +25,19 @@ const getCourseById = async (req, res, next) => {
   }
 };
 
-// CREATE new course
+// Create a new course
 const createCourse = async (req, res, next) => {
   try {
     const course = new Course(req.body);
     const savedCourse = await course.save();
+
     res.status(201).json(savedCourse);
   } catch (error) {
     next(error);
   }
 };
 
-// UPDATE course by id
+// Update an existing course by id
 const updateCourse = async (req, res, next) => {
   try {
     const updatedCourse = await Course.findOneAndUpdate(
@@ -56,7 +56,7 @@ const updateCourse = async (req, res, next) => {
   }
 };
 
-// DELETE course by id
+// Delete a course by id
 const deleteCourse = async (req, res, next) => {
   try {
     const deletedCourse = await Course.findOneAndDelete({ id: req.params.id });
@@ -71,6 +71,7 @@ const deleteCourse = async (req, res, next) => {
   }
 };
 
+// Export controller methods
 module.exports = {
   getAllCourses,
   getCourseById,

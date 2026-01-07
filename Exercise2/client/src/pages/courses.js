@@ -1,8 +1,10 @@
-import { api } from "../services/api.service.js"; 
+import { api } from "../services/api.service.js";
 
+// Load and render the Courses page
 export function loadCourses(container) {
   if (!container) return;
 
+  // Base page layout (filters + courses grid)
   container.innerHTML = `
     <main class="courses-page">
 
@@ -53,6 +55,8 @@ export function loadCourses(container) {
   `;
 
   document.body.classList.add("page-loaded");
+
+  // Enable mobile filter dropdown behavior
   initMobileFilters();
 
   const coursesList = document.getElementById("courses-list");
@@ -60,9 +64,7 @@ export function loadCourses(container) {
 
   let ALL_COURSES = [];
 
-  // -------------------------
-  // Read category from URL
-  // -------------------------
+  // Read optional category filter from URL (e.g. #/courses?category=ai)
   const params = new URLSearchParams(window.location.hash.split("?")[1]);
   const selectedCategory = params.get("category");
 
@@ -72,39 +74,47 @@ export function loadCourses(container) {
       .forEach(cb => cb.checked = cb.value === selectedCategory);
   }
 
+  // Initial data fetch
   fetchCourses();
 
+  // Fetch all courses from API
   async function fetchCourses() {
     try {
       ALL_COURSES = await api.getCourses();
       renderCourses();
     } catch (err) {
       console.error("Failed to load courses:", err);
-      // Optionally show an error message in the UI
     }
   }
 
+  // Render courses based on filters and search input
   function renderCourses() {
     let results = [...ALL_COURSES];
 
+    // Get selected categories
     const selectedCategories = [
       ...document.querySelectorAll('[data-filter="category"] input:checked')
     ].map(i => i.value);
 
+    // Get selected levels
     const selectedLevels = [
       ...document.querySelectorAll('[data-filter="level"] input:checked')
     ].map(i => i.value);
 
+    // Normalize search term
     const searchTerm = searchInput.value.trim().toLowerCase();
 
+    // Apply category filter
     if (selectedCategories.length) {
       results = results.filter(c => selectedCategories.includes(c.category));
     }
 
+    // Apply level filter
     if (selectedLevels.length) {
       results = results.filter(c => selectedLevels.includes(c.level));
     }
 
+    // Apply text search filter
     if (searchTerm) {
       results = results.filter(c =>
         c.title.toLowerCase().includes(searchTerm) ||
@@ -112,6 +122,7 @@ export function loadCourses(container) {
       );
     }
 
+    // Render course cards
     coursesList.innerHTML = results.map(c => `
       <div class="course-card" data-id="${c.id}">
         <div class="course-image">
@@ -126,23 +137,25 @@ export function loadCourses(container) {
       </div>
     `).join("");
 
+    // Navigate to course details on click
     document.querySelectorAll(".course-card").forEach(card => {
       card.addEventListener("click", () => {
-        const id = card.dataset.id; // make sure this is the MongoDB _id
+        const id = card.dataset.id;
         if (!id) return;
         window.location.hash = `/course/${id}`;
       });
     });
-    
-    
   }
 
+  // Re-render when filters change
   document
     .querySelectorAll('[data-filter="category"] input, [data-filter="level"] input')
     .forEach(cb => cb.addEventListener("change", renderCourses));
 
+  // Re-render on search input
   searchInput.addEventListener("input", renderCourses);
 
+  // Handle mobile filter dropdown behavior
   function initMobileFilters() {
     const filters = document.querySelectorAll(".filter-group");
 
@@ -153,16 +166,21 @@ export function loadCourses(container) {
 
       header.addEventListener("click", () => {
         if (window.innerWidth < 900) {
-          const open = opts.classList.contains("open");
-          document.querySelectorAll(".filter-options").forEach(o => o.classList.remove("open"));
-          if (!open) opts.classList.add("open");
+          const isOpen = opts.classList.contains("open");
+          document
+            .querySelectorAll(".filter-options")
+            .forEach(o => o.classList.remove("open"));
+          if (!isOpen) opts.classList.add("open");
         }
       });
     });
 
+    // Close open filters when clicking outside (mobile)
     document.addEventListener("click", e => {
       if (window.innerWidth < 900 && !e.target.closest(".filter-group")) {
-        document.querySelectorAll(".filter-options").forEach(o => o.classList.remove("open"));
+        document
+          .querySelectorAll(".filter-options")
+          .forEach(o => o.classList.remove("open"));
       }
     });
   }

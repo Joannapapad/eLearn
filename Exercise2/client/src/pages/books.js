@@ -1,8 +1,10 @@
-import { api } from "../services/api.service.js"; 
+import { api } from "../services/api.service.js";
 
+// Load and render the Books page
 export function loadBooks(container) {
   if (!container) return;
 
+  // Base page layout (filters + books list)
   container.innerHTML = `
     <main class="courses-page">
       <div class="courses-picture">
@@ -51,6 +53,7 @@ export function loadBooks(container) {
 
   document.body.classList.add("page-loaded");
 
+  // Enable mobile filter behavior
   initMobileBookFilters();
 
   const booksList = document.getElementById("books-list");
@@ -58,8 +61,10 @@ export function loadBooks(container) {
 
   let ALL_BOOKS = [];
 
+  // Initial data fetch
   fetchBooks();
 
+  // Fetch all books from API
   async function fetchBooks() {
     try {
       ALL_BOOKS = await api.getBooks();
@@ -70,27 +75,34 @@ export function loadBooks(container) {
     }
   }
 
+  // Render books based on active filters and search input
   function renderBooks() {
     let results = [...ALL_BOOKS];
 
+    // Get selected categories
     const selectedCategories = [
       ...document.querySelectorAll('[data-filter="book-category"] input:checked')
     ].map(i => i.value);
 
+    // Get selected levels
     const selectedLevels = [
       ...document.querySelectorAll('[data-filter="book-level"] input:checked')
     ].map(i => i.value);
 
+    // Normalize search term
     const searchTerm = booksSearch.value.trim().toLowerCase();
 
+    // Apply category filter
     if (selectedCategories.length) {
       results = results.filter(b => selectedCategories.includes(b.category));
     }
 
+    // Apply level filter
     if (selectedLevels.length) {
       results = results.filter(b => selectedLevels.includes(b.level));
     }
 
+    // Apply text search filter
     if (searchTerm) {
       results = results.filter(b =>
         b.title.toLowerCase().includes(searchTerm) ||
@@ -98,6 +110,7 @@ export function loadBooks(container) {
       );
     }
 
+    // Render book cards
     booksList.innerHTML = results.map(b => `
       <div class="book-card" data-id="${b.id}">
         <div class="book-header book-${b.category}">
@@ -113,41 +126,49 @@ export function loadBooks(container) {
       </div>
     `).join("");
 
+    // Navigate to book details on click
     document.querySelectorAll(".book-card").forEach(card => {
       card.addEventListener("click", () => {
-        const id = card.dataset.id; // make sure this is the MongoDB _id
+        const id = card.dataset.id;
         if (!id) return;
-        window.location.hash = `/book/${id}`;      });
+        window.location.hash = `/book/${id}`;
+      });
     });
   }
 
-  // re-render on filters
+  // Re-render when filters change
   document.querySelectorAll(
     '[data-filter="book-category"] input, [data-filter="book-level"] input'
   ).forEach(cb => cb.addEventListener("change", renderBooks));
 
+  // Re-render on search input
   booksSearch.addEventListener("input", renderBooks);
 
+  // Handle mobile filter dropdown behavior
   function initMobileBookFilters() {
-    const filters = document.querySelectorAll('.filter-group');
+    const filters = document.querySelectorAll(".filter-group");
 
     filters.forEach(f => {
-      const header = f.querySelector('.filter-header');
-      const opts = f.querySelector('.filter-options');
+      const header = f.querySelector(".filter-header");
+      const opts = f.querySelector(".filter-options");
       if (!header || !opts) return;
 
-      header.addEventListener('click', () => {
+      header.addEventListener("click", () => {
         if (window.innerWidth < 900) {
-          const open = opts.classList.contains("open");
-          document.querySelectorAll(".filter-options").forEach(o => o.classList.remove("open"));
-          if (!open) opts.classList.add("open");
+          const isOpen = opts.classList.contains("open");
+          document
+            .querySelectorAll(".filter-options")
+            .forEach(o => o.classList.remove("open"));
+          if (!isOpen) opts.classList.add("open");
         }
       });
     });
 
-    document.addEventListener('click', e => {
-      if (window.innerWidth < 900 && !e.target.closest('.filter-group')) {
-        document.querySelectorAll('.filter-options')
+    // Close filters when clicking outside (mobile)
+    document.addEventListener("click", e => {
+      if (window.innerWidth < 900 && !e.target.closest(".filter-group")) {
+        document
+          .querySelectorAll(".filter-options")
           .forEach(o => o.classList.remove("open"));
       }
     });

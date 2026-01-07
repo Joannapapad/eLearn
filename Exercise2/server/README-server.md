@@ -1,150 +1,65 @@
+# eLearn Server -- Part B (MEAN)
 
-# eLearn Platform – Server Side (MEAN Stack)
+The server follows the **MEAN architecture** and is built using
+**Node.js**, **Express**, and **MongoDB**.
+It exposes a REST API that is consumed by the client application.
 
-This project implements the **server-side (backend)** of an e-learning platform as part of the course assignment.  
-The backend follows the **MEAN architecture**, using **Node.js**, **Express**, and **MongoDB**.
+The main goal of the backend is to store, manage and serve application
+data
 
----
+------------------------------------------------------------------------
 
-## 📌 Project Description
+## Purpose
 
-The server provides a RESTful API for managing:
-- Users
-- Courses
-- Books
-- Videos
-- Enrollments
+The server is responsible for:
 
-All data are stored in **MongoDB** and accessed through **Mongoose models**.  
-The backend is responsible for handling requests from the client-side application.
+-   Managing users, courses, books, videos and enrollments.
+-   Providing REST endpoints for CRUD operations.
+-   Storing data in a MongoDB database using Mongoose schemas.
+-   Validating requests and handling errors gracefully.
+-   Acting as the data layer of the full client--server application.
 
----
+The server contains no HTML or UI logic. 
 
-## 🛠 Technologies Used
+------------------------------------------------------------------------
 
-- **Node.js**
-- **Express.js**
-- **MongoDB**
-- **Mongoose**
-- **dotenv**
-- **cors**
+## Technologies Used
 
----
+-   **Node.js**
+-   **Express.js**
+-   **MongoDB**
+-   **dotenv** (environment variables)
+-   **cors** (cross-origin requests)
 
-## 📁 Project Structure
+------------------------------------------------------------------------
 
-```
+## Environment Variables
 
-server/
-│
-├── .env
-├── package.json
-└── src/
-├── app.js
-├── config/
-│   └── db.js
-├── models/
-│   ├── user.model.js
-│   ├── course.model.js
-│   ├── book.model.js
-│   ├── video.model.js
-│   └── enrollment.model.js
-├── routes/
-│   ├── users.routes.js
-│   ├── courses.routes.js
-│   ├── books.routes.js
-│   ├── videos.routes.js
-│   └── enrollments.routes.js
-├── controllers/
-│   ├── users.controller.js
-│   ├── courses.controller.js
-│   ├── books.controller.js
-│   ├── videos.controller.js
-│   └── enrollments.controller.js
-└── middleware/
-└── errorHandler.js
+Create a `.env` file inside the `server` folder using the following
+example:
 
-```
+    MONGO_URI=mongodb://localhost:27017/eLearn
+    PORT=5000
 
----
+Make sure MongoDB is running locally before starting the server.
 
-## ⚙️ Environment Variables
+------------------------------------------------------------------------
 
-Create a `.env` file in the `server` directory with the following content:
+## How to Run the Server
 
-```
+### 1. Navigate to the server directory
 
-MONGO_URI=mongodb://localhost:27017/eLearn
-PORT=5000
-
-````
-
----
-
-## ▶️ How to Run the Server
-
-1. Navigate to the server directory:
-```bash
 cd server
-````
 
-2. Install dependencies:
+### 2. Install dependencies
 
-```bash
 npm install
-```
 
-3. Start the server:
+### 3. Start the server
 
-```bash
-node src/app.js
-```
+node src/app.js 
+or 
+npm run dev 
 
-The server will run on:
-
-```
+The server will start on:
 http://localhost:5000
-```
-
----
-
-## 🔗 API Endpoints
-
-| Resource    | Endpoint           |
-| ----------- | ------------------ |
-| Users       | `/api/users`       |
-| Courses     | `/api/courses`     |
-| Books       | `/api/books`       |
-| Videos      | `/api/videos`      |
-| Enrollments | `/api/enrollments` |
-
----
-
-## 🧪 Testing
-
-The API can be tested using:
-
-* Browser (GET requests)
-* Postman or similar REST clients
-
-Example:
-
-```
-GET http://localhost:5000/api/courses
-```
-
----
-
-## 📚 Notes
-
-* Data are inserted manually into MongoDB.
-* No authentication is implemented, as it was not required by the assignment.
-* The project focuses on backend structure and REST API design.
-
----
-
-##  Author
-
-Student: Ioanna
-Course: Web Information Systems
-Academic Year: 2024–2025

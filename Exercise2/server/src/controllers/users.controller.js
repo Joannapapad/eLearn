@@ -1,5 +1,6 @@
 const User = require("../models/User");
 
+// Register a new user
 // POST /api/users/register
 exports.registerUser = async (req, res, next) => {
   try {
@@ -16,17 +17,26 @@ exports.registerUser = async (req, res, next) => {
       goal
     } = req.body;
 
-    // basic validation
-    if (!firstName || !lastName || !dateOfBirth || !email || !password || !experience || !goal) {
+    // Basic required field validation
+    if (
+      !firstName ||
+      !lastName ||
+      !dateOfBirth ||
+      !email ||
+      !password ||
+      !experience ||
+      !goal
+    ) {
       return res.status(400).json({ message: "Missing required fields" });
     }
 
-    // check if email already exists
+    // Check if a user with the same email already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(409).json({ message: "Email already registered" });
     }
 
+    // Create new user 
     const user = await User.create({
       firstName,
       lastName,
@@ -34,7 +44,7 @@ exports.registerUser = async (req, res, next) => {
       gender,
       occupation,
       email,
-      password, // (χωρίς hashing για τώρα)
+      password,
       interests,
       experience,
       goal
@@ -55,9 +65,11 @@ exports.registerUser = async (req, res, next) => {
   }
 };
 
+// Retrieve all users
 // GET /api/users
 exports.getAllUsers = async (req, res, next) => {
   try {
+    // Exclude passwords from the response
     const users = await User.find().select("-password");
     res.json(users);
   } catch (err) {
@@ -65,22 +77,24 @@ exports.getAllUsers = async (req, res, next) => {
   }
 };
 
+// Authenticate user login
+// POST /api/users/login
 exports.loginUser = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
+    // Validate credentials
     if (!email || !password) {
       return res.status(400).json({ message: "Email and password are required" });
     }
 
     // Find user by email
     const user = await User.findOne({ email });
-
     if (!user) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
-    // Check password (plain text for now)
+    // Compare passwords
     if (user.password !== password) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
@@ -91,8 +105,8 @@ exports.loginUser = async (req, res, next) => {
         id: user._id,
         firstName: user.firstName,
         lastName: user.lastName,
-        email: user.email,
-      },
+        email: user.email
+      }
     });
 
   } catch (err) {

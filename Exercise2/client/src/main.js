@@ -1,73 +1,96 @@
-// CSS (τώρα με σωστά μονοπάτια για Vite)
-import '/assets/css/reset.css';
-import '/assets/css/theme.css';
-import '/assets/css/menu.css';
-import '/assets/css/components.css';
-import '/assets/css/layout.css';
 
-
+// CSS imports 
+import "/assets/css/reset.css";
+import "/assets/css/theme.css";
+import "/assets/css/menu.css";
+import "/assets/css/components.css";
+import "/assets/css/layout.css";
 
 import { renderNavbar } from "./components/navbar.js";
 import { renderFooter } from "./components/footer.js";
 
 import { loadHome } from "./pages/home.js";
 import { loadCourses } from "./pages/courses.js";
-
 import { loadBooks } from "./pages/books.js";
 import { loadBookDetails } from "./pages/book-details.js";
 import { loadCourseDetails } from "./pages/course-details.js";
 import { loadRegister } from "./pages/register.js";
 import { loadAbout } from "./pages/about.js";
 
-// Αρχικοποίηση UI components
-document.addEventListener('DOMContentLoaded', () => {
+// Initialize the app once the DOM is ready
+document.addEventListener("DOMContentLoaded", () => {
+  // Main layout containers
+  const app = document.getElementById("app");
+  const nav = document.getElementById("navbar");
+  const footer = document.getElementById("footer");
 
-    
-    const app = document.getElementById("app");
-    const nav = document.getElementById("navbar");
-    const footer = document.getElementById("footer");
+  // Render shared UI components
+  renderNavbar(nav);
+  renderFooter(footer);
 
-    renderNavbar(nav);
-    renderFooter(footer);
-    
-    // Router
-    const routes = {
-        '/': () => loadHome(app),
-        '/courses': () => loadCourses(app),
-        '/books': () => loadBooks(app),
-        '/book/:id': (id) => loadBookDetails(app, id),
-        '/course/:id': (id) => loadCourseDetails(app, id),
-        '/register': () => loadRegister(app),
-        '/about': () => loadAbout(app)
+  /*
+   Route table (hash-based SPA)
+   Each route maps to a page loader function.
+  */
+  const routes = {
+    "/": () => loadHome(app),
+    "/courses": () => loadCourses(app),
+    "/books": () => loadBooks(app),
+    "/book/:id": (id) => loadBookDetails(app, id),
+    "/course/:id": (id) => loadCourseDetails(app, id),
+    "/register": () => loadRegister(app),
+    "/about": () => loadAbout(app),
+  };
 
-    };
-    
-    async function router() {
-      const hash = window.location.hash.slice(1) || '/';
-      const [path, queryString] = hash.split('?'); // split query string
-      const query = new URLSearchParams(queryString); // parse query
-      
-      for (let route of Object.keys(routes)) {
-        const pattern = new RegExp('^' + route.replace(/:\w+/g, '([^/]+)') + '$');
-        const match = path.match(pattern); // match only the path
-        if (match) {
-          const params = match.slice(1);
-          await routes[route](...params, query); // pass query to page loader
-          return;
-        }
+  /*
+    Basic router:
+    - Reads window.location.hash
+    - Matches it against known routes (including dynamic params)
+   */
+   
+  async function router() {
+    // Remove the leading "#" and fallback to home route
+    const hash = window.location.hash.slice(1) || "/";
+    const [path, queryString] = hash.split("?");
+
+    // Parse query parameters into a URLSearchParams object
+    const query = new URLSearchParams(queryString);
+
+    // Try to match current path with any registered route pattern
+    for (let route of Object.keys(routes)) {
+      // Convert "/course/:id" into a regex
+      const pattern = new RegExp("^" + route.replace(/:\w+/g, "([^/]+)") + "$");
+      const match = path.match(pattern);
+
+      if (match) {
+        // Extract dynamic params
+        const params = match.slice(1);
+
+        // Pass params and query to the page loader
+        // (pages that don't need query can simply ignore it)
+        await routes[route](...params, query);
+        return;
       }
-      
     }
-    
+
   
-    // SPA navigation
-    document.addEventListener("click", e => {
-        if (e.target.matches("[data-link]")) {
-            e.preventDefault();
-            window.location.hash = e.target.getAttribute('href');
-        }
-    });
-    
-    window.addEventListener("hashchange", router);
-    router();
+  }
+
+  /*
+    SPA navigation:
+    Any link with data-link will be handled internally (no full page reload).
+    We update the hash and let the router render the correct page.
+   */
+  document.addEventListener("click", (e) => {
+    if (e.target.matches("[data-link]")) {
+      e.preventDefault();
+      window.location.hash = e.target.getAttribute("href");
+    }
+  });
+
+  // Re-render page on route changes
+  window.addEventListener("hashchange", router);
+
+  // Initial route render
+  router();
 });
