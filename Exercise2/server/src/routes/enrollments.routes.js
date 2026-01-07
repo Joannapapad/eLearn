@@ -1,9 +1,25 @@
 const express = require("express");
 const router = express.Router();
-const enrollmentsController = require("../controllers/enrollments.controller");
+const Enrollment = require("../models/Enrollment");
 
-router.post("/", enrollmentsController.createEnrollment);
-router.get("/", enrollmentsController.getAllEnrollments);
-router.get("/user/:userId", enrollmentsController.getEnrollmentsByUser);
+router.post("/", async (req, res) => {
+  const { userId, courseId } = req.body;
+
+  const existing = await Enrollment.findOne({
+    user: userId,
+    course: courseId
+  });
+
+  if (existing) {
+    return res.status(409).json({ message: "Already enrolled" });
+  }
+
+  const enrollment = await Enrollment.create({
+    user: userId,
+    course: courseId
+  });
+
+  res.status(201).json(enrollment);
+});
 
 module.exports = router;

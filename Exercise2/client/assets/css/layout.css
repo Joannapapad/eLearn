@@ -84,7 +84,7 @@
     backdrop-filter: blur(2px);
 
     background: rgba(166, 166, 166, 0.678);
-    z-index: 2;
+    z-index: -1;
 }
 
 .courses-details-picture * {

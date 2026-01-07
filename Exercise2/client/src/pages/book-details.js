@@ -23,10 +23,10 @@ export async function loadBookDetails(container, bookId) {
       const allCourses = await api.getCourses(); // fetch all courses
       recommendedCoursesList = book.recommendedCourses
         .map(courseId => {
-          const course = allCourses.find(c => c._id === courseId || c.id === courseId);
+          const course = allCourses.find(c => c.id?.toString() === courseId);
           if (!course) return "";
           return `
-            <a href="#/course/${course._id || course.id}" class="book-item">
+            <a href="#/course/${ course.id}" class="book-item">
               <div class="book-title">${course.title} <span class="book-arrow">></span></div>
               <div class="book-hover">Learn More</div>
             </a>
@@ -41,7 +41,7 @@ export async function loadBookDetails(container, bookId) {
       const allVideos = await api.getVideos(); 
       recommendedVideosList = book.recommendedVideos
         .map(videoId => {
-          const video = allVideos.find(v => v._id === videoId || v.id === videoId);
+          const video = allVideos.find(v => v.id?.toString() === videoId);
           if (!video) return "";
           return `
             <div class="book-item video-card" data-video-src="${video.src}">
@@ -55,7 +55,16 @@ export async function loadBookDetails(container, bookId) {
 
     // Render HTML
     container.innerHTML = `
-      <div class="details">
+
+    <div id="video-overlay">
+      <div id="video-overlay-content">
+          <span id="video-close">&times;</span>
+          <video id="video-player" controls></video>
+      </div>
+    </div>
+    
+  <div class="courses-picture">
+    <div class="details">
         <div class="book-header book-${book.category}">
           <div class="book-header-left">
             <h1 class="book-title">${book.title}</h1>
@@ -69,7 +78,7 @@ export async function loadBookDetails(container, bookId) {
           <div class="left-column">
             <div class="book-body">
               <div class="book-photo flex">
-                <img src="/assets/img/books/${book._id || book.id}.png" alt="${book.title}">
+                <img src="/assets/img/books/${book.id}.png" alt="${book.title}">
               </div>
               <p class="book-desc">${book.description}</p>
             </div>
@@ -106,7 +115,11 @@ export async function loadBookDetails(container, bookId) {
 
         <a href="#/books" class="btn-primary btn-book-detail">← Back to Books</a>
       </div>
+      </div>
+
     `;
+
+
     document.body.classList.add("page-loaded");
 
     // Video overlay handling

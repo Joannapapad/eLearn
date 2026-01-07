@@ -39,28 +39,27 @@ document.addEventListener('DOMContentLoaded', () => {
         '/course/:id': (id) => loadCourseDetails(app, id),
         '/register': () => loadRegister(app),
         '/about': () => loadAbout(app)
+
     };
     
     async function router() {
       const hash = window.location.hash.slice(1) || '/';
+      const [path, queryString] = hash.split('?'); // split query string
+      const query = new URLSearchParams(queryString); // parse query
+      
       for (let route of Object.keys(routes)) {
         const pattern = new RegExp('^' + route.replace(/:\w+/g, '([^/]+)') + '$');
-        const match = hash.match(pattern);
+        const match = path.match(pattern); // match only the path
         if (match) {
           const params = match.slice(1);
-          await routes[route](...params); // pass id to loadCourseDetails
+          await routes[route](...params, query); // pass query to page loader
           return;
         }
       }
-      app.innerHTML = "<h2>Page not found</h2>";
+      
     }
     
-    
-    
-    
-    
-      
-    
+  
     // SPA navigation
     document.addEventListener("click", e => {
         if (e.target.matches("[data-link]")) {

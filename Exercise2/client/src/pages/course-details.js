@@ -39,65 +39,73 @@ if (course.bibliography?.length) {
 }
 
 
+
     // Render learning outcomes
     const learningList = course.learningOutcomes?.map(item => `<li>${item}</li>`).join("") || "";
 
     // Render HTML
     container.innerHTML = `
-      <div class="details">
-        <div class="book-header">
-          <div class="course-header">
-            <h1 class="course-title">${course.title}</h1>
-            <div class="course-id">Course ID: ${course.id}</div>
-          </div>
-        </div>
+    <div class="courses-picture">
 
-        <div class="course-columns">
-          <div class="left-column">
-            <div class="course-desc"><p>${course.description}</p></div>
-            <div class="course-instructor">
-              <div class="instructor-photo">
-                <img src="/assets/img/default.png" alt="Instructor">
-              </div>
-              <div class="instructor-name">${course.profesor}</div>
-            </div>
-
-            <div class="course-meta">
-              <div class="meta-item"><strong>Credits:</strong> ${course.credits}</div>
-              <div class="meta-item"><strong>Semester:</strong> ${course.semester}</div>
-              <div class="meta-item"><strong>Category:</strong><ul><li>${course.category}</li></ul></div>
-              <div class="meta-item meta-prereqs">
-                <strong>Prerequisites:</strong>
-                <ul>
-                  ${course.prerequisites?.length ? course.prerequisites.map(p => `<li>${p}</li>`).join("") : "<li>None</li>"}
-                </ul>
-              </div>
+        <div class="details">
+          <div class="book-header">
+            <div class="course-header">
+              <h1 class="course-title">${course.title}</h1>
+              <div class="course-id">Course ID: ${course.id}</div>
             </div>
           </div>
 
-          <div class="right-column">
-            <div class="course-about">
-              <div class="section-title">About this Course</div>
-              <div class="category-icon">
-                <img src="/assets/img/icons/${course.category}.png" alt="${course.category}">
+          <div class="course-columns">
+            <div class="left-column">
+              <div class="course-desc"><p>${course.description}</p></div>
+              <div class="course-instructor">
+                <div class="instructor-photo">
+                  <img src="/assets/img/default.png" alt="Instructor">
+                </div>
+                <div class="instructor-name">${course.profesor}</div>
               </div>
-              <p>This course belongs to the <strong>${course.category}</strong> category. It provides the foundational knowledge required for this field.</p>
+
+              <div class="course-meta">
+                <div class="meta-item"><strong>Credits:</strong> ${course.credits}</div>
+                <div class="meta-item"><strong>Semester:</strong> ${course.semester}</div>
+                <div class="meta-item"><strong>Category:</strong><ul><li>${course.category}</li></ul></div>
+                <div class="meta-item meta-prereqs">
+                  <strong>Prerequisites:</strong>
+                  <ul>
+                    ${course.prerequisites?.length ? course.prerequisites.map(p => `<li>${p}</li>`).join("") : "<li>None</li>"}
+                  </ul>
+                </div>
+              </div>
             </div>
 
-            <div class="recommended-books">
-              <div class="section-title">Recommended Books</div>
-              <div class="book-slider">${bibliographyList}</div>
+            <div class="right-column">
+              <div class="course-about">
+                <div class="section-title">About this Course</div>
+                <div class="category-icon">
+                  <img src="/assets/img/icons/${course.category}.png" alt="${course.category}">
+                </div>
+                <p>This course belongs to the <strong>${course.category}</strong> category. It provides the foundational knowledge required for this field.</p>
+              </div>
+
+              <div class="recommended-books">
+                <div class="section-title">Recommended Books</div>
+                <div class="book-slider">${bibliographyList}</div>
+              </div>
+
             </div>
           </div>
-        </div>
 
-        <div class="course-learning">
-          <div class="section-title">Learning Outcomes</div>
-          <ul>${learningList}</ul>
-        </div>
+          <div class="course-learning">
+            <div class="section-title">Learning Outcomes</div>
+            <ul>${learningList}</ul>
+          </div>
 
-        <a href="#/courses" class="btn-primary btn-course-detail">← Back to Courses</a>
+          <button id="enrollBtn" data-course-id="${course._id} class="btn-primary">Enroll</button>
+
+          <a href="#/courses" class="btn-primary btn-course-detail">← Back to Courses</a>
+        </div>
       </div>
+
     `;
   } catch (err) {
     console.error(err);
@@ -109,6 +117,78 @@ if (course.bibliography?.length) {
       </div>
     `;
   }
+
   document.body.classList.add("page-loaded");
+
+  // 👇 NOW the button exists in the DOM
+  const enrollBtn = container.querySelector("#enrollBtn");
+  enrollBtn.addEventListener("click", () => enroll(courseId));
+
+
+  async function enroll(courseId) {
+    console.log("Enroll button clicked for courseId:", courseId);
+  
+    const userStr = localStorage.getItem("currentUser");
+    console.log("Current user from localStorage:", userStr);
+  
+    if (!userStr) {
+      alert("You must be logged in to enroll");
+      window.location.hash = "#/register";
+      return;
+    }
+  
+    let stored;
+    try {
+      stored = JSON.parse(userStr);
+      console.log("Parsed localStorage object:", stored);
+    } catch (err) {
+      console.error("Failed to parse localStorage:", err);
+      alert("User info is corrupted. Please login again.");
+      window.location.hash = "#/register";
+      return;
+    }
+  
+    // Extract the nested user
+    const user = stored.user;
+    if (!user || !user.id) {
+      console.error("User object missing id:", user);
+      alert("User ID not found. Please login again.");
+      window.location.hash = "#/register";
+      return;
+    }
+  
+    try {
+      console.log("Sending POST to /api/enrollments with body:", {
+        userId: user.id,
+        courseId
+      });
+  
+      const res = await fetch("/api/enrollments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: user.id,   // <-- use user.id, not user._id
+          courseId
+        })
+      });
+  
+      const data = await res.json();
+      console.log("Response from server:", res.status, data);
+  
+      if (!res.ok) {
+        alert(data.message || "Enrollment failed");
+        return;
+      }
+  
+      alert("Enrolled successfully!");
+    } catch (err) {
+      console.error("Fetch error during enrollment:", err);
+      alert("An error occurred while enrolling. Check console.");
+    }
+  }
+  
+  
+
+
 
 }

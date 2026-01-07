@@ -35,7 +35,7 @@ export async function loadHome(container) {
                 </p>
   
                 <div class="preview-cards">
-                  <a href="/courses" data-link class="preview-card">
+                  <a href="#/courses" data-link class="preview-card">
                     <div class="card-icon">
                       <img src="/assets/img/icons/learning.png" alt="Courses">
                     </div>
@@ -45,7 +45,7 @@ export async function loadHome(container) {
                     </div>
                   </a>
   
-                  <a href="/books" data-link class="preview-card">
+                  <a href="#/books" data-link class="preview-card">
                     <div class="card-icon">
                       <img src="/assets/img/icons/open-book.png" alt="Books & Videos">
                     </div>
@@ -69,7 +69,7 @@ export async function loadHome(container) {
                   alt="About preview"
                   loading="lazy"
                 />
-                <a href="/about" data-link class="btn-primary">Learn More</a>
+                <a href="#/about" data-link class="btn-primary">Learn More</a>
               </div>
             </div>
           </section>
@@ -87,7 +87,7 @@ export async function loadHome(container) {
             </div>
   
             <div class="section-right categories-right">
-              <a href="/courses?category=programming" data-link class="category-link">
+              <a href="#/courses?category=programming" data-link class="category-link">
                 <article class="category" data-category="programming">
                   <div class="category-icon">
                     <img src="/assets/img/icons/programming.png" alt="Programming">
@@ -97,7 +97,7 @@ export async function loadHome(container) {
                 </article>
               </a>
   
-              <a href="/courses?category=ai" data-link class="category-link">
+              <a href="#/courses?category=ai" data-link class="category-link">
                 <article class="category" data-category="ai">
                   <div class="category-icon">
                     <img src="/assets/img/icons/ai.png" alt="AI">
@@ -107,7 +107,7 @@ export async function loadHome(container) {
                 </article>
               </a>
   
-              <a href="/courses?category=data" data-link class="category-link">
+              <a href="#/courses?category=data" data-link class="category-link">
                 <article class="category" data-category="data">
                   <div class="category-icon">
                     <img src="/assets/img/icons/data.png" alt="Data">
@@ -117,7 +117,7 @@ export async function loadHome(container) {
                 </article>
               </a>
   
-              <a href="/courses?category=security" data-link class="category-link">
+              <a href="#/courses?category=security" data-link class="category-link">
                 <article class="category" data-category="security">
                   <div class="category-icon">
                     <img src="/assets/img/icons/security.png" alt="Security">
@@ -151,6 +151,16 @@ export async function loadHome(container) {
     document.body.classList.add("page-loaded");
 
     
+    const fadeSections = document.querySelectorAll(".fade-section");
+    if (fadeSections.length) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                entry.target.classList.toggle("is-visible", entry.isIntersecting);
+            });
+        }, { threshold: 0.2 });
+
+        fadeSections.forEach(sec => observer.observe(sec));
+    }
 
     /*  CATEGORY CARDS CLICK */
     const categoryCards = document.querySelectorAll(".category");
@@ -158,7 +168,7 @@ export async function loadHome(container) {
         card.style.cursor = "pointer";
         card.addEventListener("click", () => {
             const categoryKey = card.dataset.category;
-            window.location.hash = `/courses?category=${categoryKey}`;
+            window.location.hash = `#/courses?category=${categoryKey}`;
           });
     });
 
@@ -179,16 +189,16 @@ export async function loadHome(container) {
         featuredCoursesEl.innerHTML = "<p>Unable to load courses</p>";
         return;
     }
-   //remove duplicates by _id
-const uniqueCourses = [];
-const seen = new Set();
+    //remove duplicates by _id
+  const uniqueCourses = [];
+  const seen = new Set();
 
-for (const c of allCourses) {
-    if (!seen.has(c._id)) {
-        uniqueCourses.push(c);
-        seen.add(c._id);
-    }
-}
+  for (const c of allCourses) {
+      if (!seen.has(c._id)) {
+          uniqueCourses.push(c);
+          seen.add(c._id);
+      }
+  }
 
 //pick up 11 courses one per category 
 const picked = [];
@@ -204,24 +214,20 @@ for (const cat of preferred) {
     //render slider cards
     function renderFeaturedCourses(items) {
         featuredCoursesEl.innerHTML = items.map(c => `
-            <div class="course-card main-page-card" data-id="${c._id}">
-                <div class="main-page">
-                    <img src="assets/img/courses/${c._id}.png" alt="${c.title}">
-                </div>
-                <div class="card-header">
-                    <h3 class="main-course-title">${c.title}</h3>
-                    <div class="course-category-icon">
-                        <img src="assets/img/icons/${c.category}.png" alt="${c.category}">
-                    </div>
+        <a href="#/course/${c.id}" data-link class="course-card main-page-card">
+            <div class="main-page">
+                <img src="assets/img/courses/${c.id}.png" alt="${c.title}">
+            </div>
+            <div class="card-header">
+                <h3 class="main-course-title">${c.title}</h3>
+                <div class="course-category-icon">
+                    <img src="assets/img/icons/${c.category}.png" alt="${c.category}">
                 </div>
             </div>
+        </a>
+    
         `).join('');
-
-        featuredCoursesEl.querySelectorAll('.course-card').forEach(card => {
-            card.addEventListener('click', () => {
-                window.location.href = `course-details.html?id=${card.dataset.id}`;
-            });
-        });
+      
     }
 
     renderFeaturedCourses(picked);

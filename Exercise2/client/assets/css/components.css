@@ -112,6 +112,7 @@
 
 .courses-picture,
 .courses-details-picture {
+    z-index: 0;
     background-image: url("../img/homebackground.png");
     background-size: cover;
     background-position: center;
@@ -892,7 +893,6 @@
     inset: 0;
     background: rgb(211, 211, 211,0.55);
     backdrop-filter: blur(3px);
-    z-index: 0;
 }
 
 .registration-form{
@@ -1032,4 +1032,45 @@
   gap: 12px;
   justify-content: flex-end;
   margin-top: 16px;
+}
+
+.auth-card {
+    position: relative;
+    z-index: 1;
+    width: min(500px, 90%);
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.auth-toggle {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.auth-toggle button.active {
+    background-color: var(--primary);
+    color: white;
+}
+
+.auth-toggle button {
+    padding: 5px 15px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: var(--bg-light);
+}
+
+.auth-form.hidden {
+    display: none !important;
+}
+
+.auth-form {
+    width: 100%;
 }
